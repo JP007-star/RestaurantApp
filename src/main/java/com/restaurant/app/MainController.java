@@ -7,11 +7,15 @@
  */
 package com.restaurant.app;
 
+import com.restaurant.app.user.User;
+import com.restaurant.app.user.UserRepository;
+import com.restaurant.app.user.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class MainController {
@@ -25,4 +29,6 @@ public class MainController {
     public String reservation(Model model){
         return "index";
     }
+
+
 }

@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -41,6 +42,12 @@ public class UserServiceImpl implements UserService {
 
         return userRepository.save(user);
     }
+    @Override
+    public List<User> findAll(){
+        return userRepository.findAll();
+    }
+
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

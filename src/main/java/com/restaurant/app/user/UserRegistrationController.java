@@ -4,10 +4,13 @@ package com.restaurant.app.user;
 import com.restaurant.app.user.UserRegistrationDto;
 import com.restaurant.app.user.UserService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/registration")
@@ -34,5 +37,11 @@ public class UserRegistrationController {
 	public String registerUserAccount(@ModelAttribute("user") UserRegistrationDto registrationDto) {
 		userService.save(registrationDto);
 		return "redirect:/registration?success";
+	}
+	@GetMapping("/users")
+	public String fetchUsers(Model model){
+		List<User> userList=userService.findAll();
+		model.addAttribute("users",userList);
+		return "users";
 	}
 }

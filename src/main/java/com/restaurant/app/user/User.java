@@ -10,6 +10,7 @@ import com.restaurant.app.role.Role;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name =  "user", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
@@ -18,16 +19,14 @@ public class User {
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private Long id;
-
     @Column(name = "first_name")
     private String firstName;
-
     @Column(name = "last_name")
     private String lastName;
-
     private String email;
-
     private String password;
+    private Long phoneNo;
+    private boolean status;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
@@ -43,14 +42,36 @@ public class User {
 
     }
 
-    public User(String firstName, String lastName, String email, String password, Collection<Role> roles) {
-        super();
+    public User(Long id, String firstName, String lastName, String email, String password, Long phoneNo, boolean status, Collection<Role> roles) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
+        this.phoneNo = phoneNo;
+        this.status = status;
         this.roles = roles;
     }
+
+    public <T> User(String firstName, String lastName, String email, String encode, List<T> role_user) {
+    }
+
+    public Long getPhoneNo() {
+        return phoneNo;
+    }
+
+    public void setPhoneNo(Long phoneNo) {
+        this.phoneNo = phoneNo;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
     public Long getId() {
         return id;
     }
