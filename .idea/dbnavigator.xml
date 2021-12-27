@@ -32,7 +32,7 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="0093bcfd-d359-418f-a24c-d77ae912ebc3">
-      <console name="Connection" type="STANDARD" schema="mysql" session="Main" />
+      <console name="Connection" type="STANDARD" schema="restaurantapp" session="Main"><![CDATA[drop database restaurantapp;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">

@@ -53,8 +53,16 @@ public class User {
         this.roles = roles;
     }
 
-    public <T> User(String firstName, String lastName, String email, String encode, List<T> role_user) {
+    public <T> User(String firstName, String lastName, String email, Long phoneNo, boolean status, String encode, List<T> role_user) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = encode;
+        this.phoneNo = phoneNo;
+        this.status = status;
     }
+
 
     public Long getPhoneNo() {
         return phoneNo;
