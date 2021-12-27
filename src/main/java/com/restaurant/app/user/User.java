@@ -42,6 +42,20 @@ public class User {
 
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", phoneNo=" + phoneNo +
+                ", status=" + status +
+                ", roles=" + roles +
+                '}';
+    }
+
     public User(Long id, String firstName, String lastName, String email, String password, Long phoneNo, boolean status, Collection<Role> roles) {
         this.id = id;
         this.firstName = firstName;
