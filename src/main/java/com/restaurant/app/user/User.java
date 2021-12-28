@@ -42,6 +42,20 @@ public class User {
 
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", phoneNo=" + phoneNo +
+                ", status=" + status +
+                ", roles=" + roles +
+                '}';
+    }
+
     public User(Long id, String firstName, String lastName, String email, String password, Long phoneNo, boolean status, Collection<Role> roles) {
         this.id = id;
         this.firstName = firstName;
@@ -53,7 +67,8 @@ public class User {
         this.roles = roles;
     }
 
-    public <T> User(String firstName, String lastName, String email, Long phoneNo, boolean status, String encode, List<T> role_user) {
+    public <T> User(String firstName, String lastName, String email, Long phoneNo, boolean status, String encode, Collection<Role> roles) {
+        super();
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -61,6 +76,7 @@ public class User {
         this.password = encode;
         this.phoneNo = phoneNo;
         this.status = status;
+        this.roles = roles;
     }
 
 
