@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/registration")
+@RequestMapping("/admin")
 public class UserRegistrationController {
 
 	private UserService userService;
@@ -36,11 +36,11 @@ public class UserRegistrationController {
 		return "registration";
 	}
 	
-	@PostMapping
+	@PostMapping("save")
 	public String registerUserAccount(@ModelAttribute("user") UserRegistrationDto registrationDto) {
 		userService.save(registrationDto);
 		System.out.println(registrationDto);
-		return "redirect:/registration?success";
+		return "redirect:/admin/users?success";
 	}
 	@GetMapping("/users")
 	public String fetchUsers(Model model){

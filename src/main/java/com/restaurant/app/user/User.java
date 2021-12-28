@@ -67,7 +67,8 @@ public class User {
         this.roles = roles;
     }
 
-    public <T> User(String firstName, String lastName, String email, Long phoneNo, boolean status, String encode, List<T> role_user) {
+    public <T> User(String firstName, String lastName, String email, Long phoneNo, boolean status, String encode, Collection<Role> roles) {
+        super();
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -75,6 +76,7 @@ public class User {
         this.password = encode;
         this.phoneNo = phoneNo;
         this.status = status;
+        this.roles = roles;
     }
 
 

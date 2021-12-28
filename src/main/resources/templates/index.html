@@ -45,7 +45,11 @@ margin-bottom: 2px
     <div class="container-fluid">
         <a class="navbar-brand"><img style="height:50px;" th:src="@{\img\RestaurantLogo.png}"></a>
         <form class="d-flex">
+            <div sec:authorize="hasRole('ROLE_ADMIN')">
+            <a href="/admin/users" type="button" class="btn btn-primary float-end">Dashboard</a>
+            </div>
             <a href="/logout" type="button" class="btn btn-primary float-end">Log-out</a>
+
         </form>
     </div>
 </nav>
