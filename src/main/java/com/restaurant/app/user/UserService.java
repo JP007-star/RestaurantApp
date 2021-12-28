@@ -16,4 +16,6 @@ public interface UserService extends UserDetailsService {
     User save(UserRegistrationDto registrationDto);
     List<User> findAll();
     Optional<User> findById(Long id);
+
+    String deleteById(Long id) ;
 }
