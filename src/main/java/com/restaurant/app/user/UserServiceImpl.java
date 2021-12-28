@@ -52,6 +52,11 @@ public class UserServiceImpl implements UserService {
         Optional<User> user = userRepository.findById(id);
         return user;
     }
+    @Override
+    public String deleteById(Long id) throws NumberFormatException{
+        userRepository.deleteById(id);
+        return "success";
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
