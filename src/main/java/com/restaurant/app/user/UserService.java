@@ -14,8 +14,6 @@ import java.util.Optional;
 
 public interface UserService extends UserDetailsService {
     User save(UserRegistrationDto registrationDto);
-
     List<User> findAll();
-
     Optional<User> findById(Long id);
 }
