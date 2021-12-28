@@ -42,6 +42,15 @@ public class User {
 
     }
 
+    public User(Long userId, String firstName, String lastName, String email, Long phoneNo) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNo = phoneNo;
+
+    }
+
     @Override
     public String toString() {
         return "User{" +

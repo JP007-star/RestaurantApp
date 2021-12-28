@@ -18,4 +18,6 @@ public interface UserService extends UserDetailsService {
     Optional<User> findById(Long id);
 
     String deleteById(Long id) ;
+
+    String updateById(User user);
 }

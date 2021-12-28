@@ -50,14 +50,40 @@ public class UserRegistrationController {
 		model.addAttribute("users",userList);
 		return "users";
 	}
-	@GetMapping("/editUser")
-	public String fetchUser(HttpServletRequest request, Model model) throws SQLException, ClassNotFoundException {
+	@PostMapping("/editUser")
+	public  ResponseEntity<?> fetchUser(HttpServletRequest request, Model model) throws SQLException, ClassNotFoundException {
 		Long userId=Long.parseLong(request.getParameter("userId"));
 		System.out.println(userId);
 		Optional<User> user=userService.findById(userId);
 		System.out.println(user);
-		model.addAttribute("user",user);
-		return "redirect:/registration/users/?success";
+		Optional<User> result;
+		if(user==null) {
+			result=null;
+		}
+		else {
+			result = user;
+		}
+		return ResponseEntity.ok(result);
+	}
+	@PostMapping("/updateUser")
+	public  String updateUser(HttpServletRequest request, Model model) throws SQLException, ClassNotFoundException {
+		Long userId=Long.parseLong(request.getParameter("userId"));
+		String firstName=request.getParameter("firstName");
+		String lastName=request.getParameter("lastName");
+		String email=request.getParameter("email");
+		Long phoneNo=Long.parseLong(request.getParameter("phoneNo"));
+		User user =new User(userId,firstName,lastName,email,phoneNo);
+		System.out.println(userId);
+		String msg=userService.updateById(user);
+		System.out.println(msg);
+		String result;
+		if(msg==null) {
+			result=null;
+		}
+		else {
+			result = msg;
+		}
+		return "redirect:/admin/users?success";
 	}
 	@PostMapping("/deleteUser")
 	public String deleteUser(HttpServletRequest request)throws NumberFormatException {

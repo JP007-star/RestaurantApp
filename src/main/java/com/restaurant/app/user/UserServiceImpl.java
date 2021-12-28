@@ -57,6 +57,12 @@ public class UserServiceImpl implements UserService {
         userRepository.deleteById(id);
         return "success";
     }
+    @Override
+    public String updateById(User user){
+        Optional<User> user1=userRepository.findById(user.getId());
+        userRepository.save(user);
+        return "success";
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
