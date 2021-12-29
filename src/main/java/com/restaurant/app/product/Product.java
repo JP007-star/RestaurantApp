@@ -7,15 +7,19 @@
  */
 package com.restaurant.app.product;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name="product")
 public class Product {
     @Id
+    @GeneratedValue(strategy =  GenerationType.IDENTITY)
     Long id;
+    @Column(name="product_name")
     String productName;
+    @Column(name="product_price")
     String productPrice;
+    @Column(name="product_category")
     String productCategory;
     Boolean status;
 
