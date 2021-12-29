@@ -26,7 +26,7 @@
     <show-object-properties value="true" />
     <loaded-nodes>
       <connection connection-id="0093bcfd-d359-418f-a24c-d77ae912ebc3">
-        <schema name="restaurantapp" object-types="table, view, procedure, function, constraint, index, column, dataset trigger" />
+        <schema name="restaurantapp" object-types="table, view" />
       </connection>
     </loaded-nodes>
   </component>
