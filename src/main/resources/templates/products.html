@@ -69,14 +69,14 @@ tr:hover{
             </a>
         </li>
         <li>
-            <a href="#" class="nav-link text-white">
+            <a href="/admin/products" class="nav-link active text-white">
                 <i class="fa fa-cutlery"></i>
                 Products
             </a>
         </li>
         <li>
-            <a href="#" class="nav-link active text-white" aria-current="page">
-                <i class="fa fa-product"></i>
+            <a href="/admin/users" class="nav-link  text-white" aria-current="page">
+                <i class="fa fa-users"></i>
                 Customers
             </a>
         </li>
@@ -157,12 +157,11 @@ tr:hover{
     <table class="table-striped   shadow m-3 p-3" >
         <thead>
         <th>Id</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Email</th>
-        <th>Phone Number</th>
+        <th>Product Name</th>
+        <th>Product Category</th>
+        <th>Product Price</th>
         <th>Status</th>
-        <th>Active</th>
+        <th>Action</th>
         </thead>
         <tbody>
         <th:block th:each="product:${products}">
@@ -171,7 +170,6 @@ tr:hover{
             <td>[[${product.productName}]]</td>
             <td>[[${product.productCategory}]]</td>
             <td>[[${product.productPrice}]]</td>
-            <td>[[${product.status}]]</td>
             <td><div class="form-check form-switch">
                 <input class="form-check-input" type="checkbox" role="switch"   id="status" checked="(${product.status})"   required autofocus="autofocus" />
             </div></td>
