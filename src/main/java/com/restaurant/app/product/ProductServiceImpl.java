@@ -11,7 +11,8 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     private ProductRepository productRepository;
     @Override
-    public List<Product> findAll() {
+    public List<Product> findAll()
+    {
         return  productRepository.findAll();
     }
 
@@ -32,7 +33,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public String updateById(Product product) {
+    public String updateById(String product) {
         return null;
     }
 }

@@ -13,32 +13,36 @@ import javax.persistence.*;
 @Table(name="product")
 public class Product {
     @Id
-    @GeneratedValue(strategy =  GenerationType.IDENTITY)
-    Long id;
-    @Column(name="product_name")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    String id;
+    @Column(name = "product_name")
     String productName;
-    @Column(name="product_price")
+    @Column(name = "product_price")
     String productPrice;
-    @Column(name="product_category")
+    @Column(name = "product_category")
     String productCategory;
+    @Lob
+    @Column(columnDefinition = "BLOB")
+    private String image;
     Boolean status;
 
     public Product() {
     }
 
-    public Product(Long id, String productName, String productPrice, String productCategory, Boolean status) {
+    public Product(String id, String productName, String productPrice, String productCategory, String image) {
         this.id = id;
         this.productName = productName;
         this.productPrice = productPrice;
         this.productCategory = productCategory;
-        this.status = status;
+        this.image = image;
+
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -66,11 +70,31 @@ public class Product {
         this.productCategory = productCategory;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     public Boolean getStatus() {
         return status;
     }
 
     public void setStatus(Boolean status) {
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", productName='" + productName + '\'' +
+                ", productPrice='" + productPrice + '\'' +
+                ", productCategory='" + productCategory + '\'' +
+                ", image='" + image + '\'' +
+                ", status=" + status +
+                '}';
     }
 }

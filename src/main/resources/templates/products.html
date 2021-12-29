@@ -157,6 +157,7 @@ tr:hover{
         <table class="table-striped   shadow m-3 p-3" >
             <thead>
             <th>Id</th>
+            <th>Product Image</th>
             <th>Product Name</th>
             <th>Product Category</th>
             <th>Product Price</th>
@@ -167,6 +168,7 @@ tr:hover{
             <th:block th:each="product:${products}">
                 <tr>
                     <td th:text="${counter.incrementAndGet()}"></td>
+                    <td>[[${product.image}]]</td>
                     <td>[[${product.productName}]]</td>
                     <td>[[${product.productCategory}]]</td>
                     <td>[[${product.productPrice}]]</td>
@@ -219,32 +221,31 @@ tr:hover{
                     <div class="row">
                         <div class="col-md-12 col-md-offset-3">
 
-                            <form th:action="@{/admin/updateproduct}" method="post" >
+                            <form th:action="@{/admin/updateProduct}" method="post" >
                                 <input type="hidden" name="productId" id="productId" class="form-control"
                                        required autofocus="autofocus" />
-                                <div class="form-group">
-                                    <label class="control-label" for="firstName"> Product Id </label>
-                                    <input id="firstName" name="firstName" class="form-control"
-                                           required autofocus="autofocus" />
-                                </div>
 
                                 <div class="form-group">
                                     <label class="control-label" for="lastName"> Product Name </label> <input
-                                        id="lastName" name="lastName" class="form-control"
+                                        id="lastName" name="productName" class="form-control"
                                         required autofocus="autofocus" />
                                 </div>
 
                                 <div class="form-group">
                                     <label class="control-label" for="phoneNo"> Product Category</label> <input
-                                        id="phoneNo" name="phoneNo" class="form-control" type="text"
+                                        id="phoneNo" name="productCategory" class="form-control" type="text"
                                         required autofocus="autofocus" />
                                 </div>
 
                                 <div class="form-group">
                                     <label class="control-label" for="email"> Product Price </label> <input
-                                        id="email" name="email" class="form-control"  required
+                                        id="email" name="productPrice" class="form-control"  required
                                         autofocus="autofocus" />
                                 </div>
+                                <div class="form-group">
+                                    <label class="custom-file-label" for="customFile">Product Image</label><br>
+                                    <input type="file" name="productImage" class="custom-file-input" id="customFile">
+                                </div><br>
 
                                 <div class="form-check form-switch">
                                     <label class="control-label" for="status"> Status </label>
@@ -272,7 +273,7 @@ tr:hover{
                     <div class="row">
                         <div class="col-md-12 col-md-offset-3">
                             <h5>Product</h5>
-                            <form action="#" th:action="@{/admin/product/save}"  method="POST"  >
+                            <form  th:action="@{/admin/product/save}"  method="post" th:object="${product}" >
                                 <div class="form-group">
                                     <label class="control-label" for="productName"> Product Name </label>
                                     <input id="productName" class="form-control" type="text"
@@ -280,7 +281,7 @@ tr:hover{
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label" for="lastName"> Product Category </label> <input
+                                    <label class="control-label" for="productCategory"> Product Category </label> <input
                                         id="productCategory" class="form-control"  type="text"
                                         required autofocus="autofocus" />
                                 </div>
@@ -293,8 +294,14 @@ tr:hover{
 
                                 <div class="form-check form-switch">
                                     <label class="control-label" for="status"> Status </label>
-                                    <input class="form-check-input" type="checkbox" role="switch"   id="status"    autofocus="autofocus" />
+                                    <input class="form-check-input" type="checkbox" role="switch"   id="status"     autofocus="autofocus" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="custom-file-label" for="customFile">Product Image</label><br>
+                                    <input type="file" name="file" class="custom-file-input" id="customFile"  autofocus="autofocus"/>
                                 </div><br>
+
 
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-success text-center">Save</button>
@@ -321,20 +328,20 @@ $(document).on('click','#edit-product' ,function(){
     success: function(result){
       if(result!=""){
         $('#productId').val(result.id);
-        $('#firstName').val(result.firstName);
-        $('#lastName').val(result.lastName);
-        $('#email').val(result.email);
-        $('#phoneNo').val(result.phoneNo);
+        $('#productName').val(result.productName);
+        $('#productCategory').val(result.productCategory);
+        $('#productPrice').val(result.productPrice);
+        $('#productImage').val(result.image);
         if(result.status==true){
         $('#status').prop("checked");
         $('#status').trigger();
         }
      }
      else if(result==""){
-        $('#firstName').val('');
-        $('#lastName').val('');
-        $('#email').val('');
-        $('#phoneNo').val('');
+        $('#productName').val('');
+        $('#productCategory').val('');
+        $('#productPrice').val('');
+        $('#image').val('');
         $('#status').prop('checked',false);
      }
     }
