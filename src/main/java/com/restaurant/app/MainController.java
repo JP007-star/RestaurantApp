@@ -41,7 +41,7 @@ public class MainController {
     }
 
     @PostMapping("/register")
-    public String registerUserAccount(@ModelAttribute("user") UserRegistrationDto registrationDto) {
+    public String registerUser(@ModelAttribute("user") UserRegistrationDto registrationDto) {
         userService.save(registrationDto);
         System.out.println(registrationDto);
         return "redirect:/login?success";
