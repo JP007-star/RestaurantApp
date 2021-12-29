@@ -7,12 +7,15 @@
  */
 package com.restaurant.app.product;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
 public class ProductService implements ProductRepository{
+    @Autowired
+    ProductRepository productRepository;
     @Override
     public <S extends Product> S save(S entity) {
         return null;
@@ -35,7 +38,8 @@ public class ProductService implements ProductRepository{
 
     @Override
     public Iterable<Product> findAll() {
-        return null;
+        Iterable<Product> productList=productRepository.findAll();
+        return productList;
     }
 
     @Override
