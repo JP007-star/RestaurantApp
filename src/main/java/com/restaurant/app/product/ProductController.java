@@ -26,7 +26,7 @@ public class ProductController {
     private ProductService productService;
     @GetMapping("/products")
     public String fetchProducts(Model model){
-        Iterable<Product> productList=productService.findAll();
+      List<Product> productList=productService.findAll();
         model.addAttribute("products",productList);
         model.addAttribute("counter",new Counter());
         return "products";
