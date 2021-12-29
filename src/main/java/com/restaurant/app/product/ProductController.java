@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Scanner;
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/admin/product")
 public class ProductController {
     @Autowired
     ProductService productService;
