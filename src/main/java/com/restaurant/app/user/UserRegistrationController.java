@@ -1,6 +1,7 @@
 package com.restaurant.app.user;
 
 
+import com.restaurant.app.config.Counter;
 import com.restaurant.app.user.UserRegistrationDto;
 import com.restaurant.app.user.UserService;
 import org.springframework.http.ResponseEntity;
@@ -48,6 +49,7 @@ public class UserRegistrationController {
 	public String fetchUsers(Model model){
 		List<User> userList=userService.findAll();
 		model.addAttribute("users",userList);
+		model.addAttribute("counter",new Counter());
 		return "users";
 	}
 	@PostMapping("/editUser")
@@ -67,11 +69,11 @@ public class UserRegistrationController {
 	}
 	@PostMapping("/updateUser")
 	public  String updateUser(HttpServletRequest request, Model model) throws SQLException, ClassNotFoundException {
-		Long userId=Long.parseLong(request.getParameter("userId"));
+		String userId=request.getParameter("userId");
 		String firstName=request.getParameter("firstName");
 		String lastName=request.getParameter("lastName");
 		String email=request.getParameter("email");
-		Long phoneNo=Long.parseLong(request.getParameter("phoneNo"));
+		String  phoneNo=request.getParameter("phoneNo");
 		User user =new User(userId,firstName,lastName,email,phoneNo);
 		System.out.println(userId);
 		String msg=userService.updateById(user);

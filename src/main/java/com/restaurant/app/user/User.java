@@ -42,13 +42,12 @@ public class User {
 
     }
 
-    public User(Long userId, String firstName, String lastName, String email, Long phoneNo) {
-        this.id = id;
+    public User(String userId, String firstName, String lastName, String email, String phoneNo) {
+        this.id =  Long.valueOf(userId);
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.phoneNo = phoneNo;
-
+        this.phoneNo = Long.valueOf(phoneNo);
     }
 
     @Override
