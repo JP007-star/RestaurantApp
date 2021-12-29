@@ -43,7 +43,7 @@ public class UserRegistrationController {
 	public String registerUserAccount(@ModelAttribute("user") UserRegistrationDto registrationDto) {
 		userService.save(registrationDto);
 		System.out.println(registrationDto);
-		return "redirect:/admin/users?success";
+		return "redirect:/admin/user/users";
 	}
 	@GetMapping("/users")
 	public String fetchUsers(Model model){
@@ -85,13 +85,13 @@ public class UserRegistrationController {
 		else {
 			result = msg;
 		}
-		return "redirect:/admin/users?success";
+		return "redirect:/admin/user/users";
 	}
 	@PostMapping("/deleteUser")
 	public String deleteUser(HttpServletRequest request)throws NumberFormatException {
 		Long userId=Long.parseLong(request.getParameter("userId"));
 		String msg=userService.deleteById(userId);
-		return "redirect:/admin/users?success";
+		return "redirect:/admin/user/users";
 	}
 
 

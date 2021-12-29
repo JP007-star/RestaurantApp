@@ -221,7 +221,7 @@ tr:hover{
                     <div class="row">
                         <div class="col-md-12 col-md-offset-3">
 
-                            <form th:action="@{/admin/updateUser}" method="post" >
+                            <form th:action="@{/admin/user/updateUser}" method="post" >
                                 <input type="hidden" name="userId" id="userId" class="form-control"
                                        required autofocus="autofocus" />
                                 <div class="form-group">
@@ -281,15 +281,9 @@ tr:hover{
                     <div class="row">
                         <div class="col-md-12 col-md-offset-3">
 
-                            <!-- success message -->
-                            <div th:if="${param.success}">
-                                <div class="alert alert-info">You've successfully registered
-                                    to our Restaurant ticket booking application!</div>
-                            </div>
-
                             <h5>Registration</h5>
 
-                            <form th:action="@{/admin/save}" method="post" th:object="${user}">
+                            <form th:action="@{/admin/user/save}" method="post" th:object="${user}">
                                 <div class="form-group">
                                     <label class="control-label" for="firstName"> First Name </label>
                                     <input id="firstName" class="form-control" th:field="*{firstName}"
