@@ -1,6 +1,7 @@
 package com.restaurant.app.user;
 
 
+import com.restaurant.app.config.Counter;
 import com.restaurant.app.user.UserRegistrationDto;
 import com.restaurant.app.user.UserService;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/admin/user")
 public class UserRegistrationController {
 
 	private UserService userService;
@@ -42,28 +43,55 @@ public class UserRegistrationController {
 	public String registerUserAccount(@ModelAttribute("user") UserRegistrationDto registrationDto) {
 		userService.save(registrationDto);
 		System.out.println(registrationDto);
-		return "redirect:/admin/users?success";
+		return "redirect:/admin/user/users";
 	}
 	@GetMapping("/users")
 	public String fetchUsers(Model model){
 		List<User> userList=userService.findAll();
 		model.addAttribute("users",userList);
+		model.addAttribute("counter",new Counter());
 		return "users";
 	}
-	@GetMapping("/editUser")
-	public String fetchUser(HttpServletRequest request, Model model) throws SQLException, ClassNotFoundException {
+	@PostMapping("/editUser")
+	public  ResponseEntity<?> fetchUser(HttpServletRequest request, Model model) throws SQLException, ClassNotFoundException {
 		Long userId=Long.parseLong(request.getParameter("userId"));
 		System.out.println(userId);
 		Optional<User> user=userService.findById(userId);
 		System.out.println(user);
-		model.addAttribute("user",user);
-		return "redirect:/registration/users/?success";
+		Optional<User> result;
+		if(user==null) {
+			result=null;
+		}
+		else {
+			result = user;
+		}
+		return ResponseEntity.ok(result);
+	}
+	@PostMapping("/updateUser")
+	public  String updateUser(HttpServletRequest request, Model model) throws SQLException, ClassNotFoundException {
+		String userId=request.getParameter("userId");
+		String firstName=request.getParameter("firstName");
+		String lastName=request.getParameter("lastName");
+		String email=request.getParameter("email");
+		String  phoneNo=request.getParameter("phoneNo");
+		User user =new User(userId,firstName,lastName,email,phoneNo);
+		System.out.println(userId);
+		String msg=userService.updateById(user);
+		System.out.println(msg);
+		String result;
+		if(msg==null) {
+			result=null;
+		}
+		else {
+			result = msg;
+		}
+		return "redirect:/admin/user/users";
 	}
 	@PostMapping("/deleteUser")
 	public String deleteUser(HttpServletRequest request)throws NumberFormatException {
 		Long userId=Long.parseLong(request.getParameter("userId"));
 		String msg=userService.deleteById(userId);
-		return "redirect:/admin/users?success";
+		return "redirect:/admin/user/users";
 	}
 
 

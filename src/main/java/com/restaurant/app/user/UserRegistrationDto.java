@@ -1,6 +1,7 @@
 package com.restaurant.app.user;
 
 public class UserRegistrationDto {
+	private Long id;
 	private String firstName;
 	private String lastName;
 	private String email;
@@ -13,12 +14,13 @@ public class UserRegistrationDto {
 		
 	}
 
-	public UserRegistrationDto(String firstName, String lastName, String email, String password, Long phoneNo, boolean status) {
+	public UserRegistrationDto(String id,String firstName, String lastName, String email, String password, String phoneNo, boolean status) {
+		this.id = Long.valueOf(id);
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
-		this.phoneNo = phoneNo;
+		this.phoneNo = Long.valueOf(phoneNo);
 		this.status = status;
 	}
 

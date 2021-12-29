@@ -42,6 +42,14 @@ public class User {
 
     }
 
+    public User(String userId, String firstName, String lastName, String email, String phoneNo) {
+        this.id =  Long.valueOf(userId);
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNo = Long.valueOf(phoneNo);
+    }
+
     @Override
     public String toString() {
         return "User{" +
