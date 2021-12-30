@@ -167,7 +167,7 @@ tr:hover{
             <th:block th:each="product:${products}">
                 <tr>
                     <td th:text="${counter.incrementAndGet()}"></td>
-                    <th scope="row"><img alt="" th:src="*{'data:image/jpg;base64,'+{product.image}}" style="width: 100px;height: 100px;"></th>
+                    <th scope="row"><img alt="" th:src="*{'data:image/jpeg;base64,'+{product.image}}" style="width: 100px;height: 100px;"></th>
 <!--                    <td>[[${product.image}]]</td>-->
                     <td>[[${product.productName}]]</td>
                     <td>[[${product.productCategory}]]</td>
@@ -244,12 +244,12 @@ tr:hover{
                                 </div>
                                 <div class="form-group">
                                     <label class="custom-file-label" for="customFile">Product Image</label><br>
-                                    <input type="file" name="productImage" class="custom-file-input" id="customFile">
+                                    <input type="file" name="productImage" class="custom-file-input" id="customFile1">
                                 </div><br>
 
                                 <div class="form-check form-switch">
                                     <label class="control-label" for="status"> Status </label>
-                                    <input class="form-check-input" type="checkbox" role="switch"   id="status"   autofocus="autofocus" />
+                                    <input class="form-check-input" type="checkbox" role="switch"   id="status1"   autofocus="autofocus" />
                                 </div><br>
 
                                 <div class="form-group">
@@ -273,35 +273,34 @@ tr:hover{
                     <div class="row">
                         <div class="col-md-12 col-md-offset-3">
                             <h5>Product</h5>
-                            <form  th:action="@{/admin/product/save}"  method="post" th:object="${product}" >
+                            <form  th:action="@{/admin/product/addP}"  method="post"  enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label class="control-label" for="productName"> Product Name </label>
-                                    <input id="productName" class="form-control" type="text"
+                                    <input id="productName" class="form-control" type="text" name="productName"
                                            required autofocus="autofocus" />
                                 </div>
 
                                 <div class="form-group">
                                     <label class="control-label" for="productCategory"> Product Category </label> <input
-                                        id="productCategory" class="form-control"  type="text"
+                                        id="productCategory" class="form-control"  type="text" name="productCategory"
                                         required autofocus="autofocus" />
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label" for="productPrice"> Product Price</label> <input
-                                        id="productPrice" class="form-control" type="text"
+                                        id="productPrice" class="form-control" type="text" name="productPrice"
                                         required autofocus="autofocus" />
                                 </div>
 
 
                                 <div class="form-check form-switch">
                                     <label class="control-label" for="status"> Status </label>
-                                    <input class="form-check-input" type="checkbox" role="switch"   id="status"      autofocus="autofocus" />
+                                    <input class="form-check-input" type="checkbox" role="switch"   id="status2" name="status"     autofocus="autofocus" />
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="custom-file-label" for="customFile">Product Image</label><br>
-                                    <input type="file" name="file" class="custom-file-input" id="customFile"  autofocus="autofocus"/>
+                                <label class="control-label" for="customFile">Product Image</label>
+                                <input type="file" name="file" class="form-control" id="customFile" autofocus="autofocus"/>
                                 </div><br>
-
 
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-success text-center">Save</button>
@@ -322,7 +321,7 @@ $(document).on('click','#edit-product' ,function(){
 
  var productId=$(this).attr('data-product');
   $.ajax({
-    url: "\editproduct",
+    url: "\editProduct",
     type:"POST",
     data:{"productId":productId},
     success: function(result){

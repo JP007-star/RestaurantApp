@@ -15,7 +15,7 @@ public class Product {
     @Id
     //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    String id;
+    Long id;
     @Column(name = "product_name")
     String productName;
     @Column(name = "product_price")
@@ -23,27 +23,36 @@ public class Product {
     @Column(name = "product_category")
     String productCategory;
     @Lob
-    @Column(columnDefinition = "MEDIUMBLOB")
+    @Column(columnDefinition = "LONGBLOB")
     private String image;
     Boolean status;
 
     public Product() {
     }
 
-    public Product(String id, String productName, String productPrice, String productCategory, String image) {
-        this.id = id;
+    public Product(Long id, String productName, String productPrice, String productCategory, String image) {
+        this.id=id;
         this.productName = productName;
         this.productPrice = productPrice;
         this.productCategory = productCategory;
         this.image = image;
-
+        
     }
 
-    public String getId() {
+    public Product(String productId, String productName, String productPrice, String productCategory, String productImage) {
+        this.id=Long.valueOf(productId);
+        this.productName = productName;
+        this.productPrice = productPrice;
+        this.productCategory = productCategory;
+        this.image = productImage;
+    }
+
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -30,13 +30,22 @@ public class ProductController {
     private ProductService productService;
 
 
-    @PostMapping("save")
+    @PostMapping("/save")
     public String saveProduct(@ModelAttribute("product") Product product) {
-        productService.saveProduct(product);
-        System.out.println(product);
+       /// System.out.println(product);
+        productService.save(product);
         return "redirect:/admin/product/products";
     }
-
+    @PostMapping("/addP")
+    public String saveProduct(@RequestParam("file") MultipartFile file,
+                              @RequestParam("productName") String productName,
+                              @RequestParam("productCategory") String productCategory,
+                              @RequestParam("productPrice") String productPrice,
+                              @RequestParam("status") String status)
+    {
+        productService.saveProductToDB(file, productName,productCategory,productPrice,status);
+        return "redirect:/admin/product/products";
+    }
     @GetMapping("/products")
     public String fetchProducts(Model model){
       List<Product> productList=productService.findAll();
@@ -60,30 +69,30 @@ public class ProductController {
         }
         return ResponseEntity.ok(result);
     }
-    @PostMapping("/updateProduct")
-    public  String updateUser(HttpServletRequest request, Model model) throws SQLException, ClassNotFoundException {
-        String productId=request.getParameter("productId");
-        String productName=request.getParameter("productName");
-        String productCategory=request.getParameter("productCategory");
-        String productPrice=request.getParameter("productPrice");
-        String productImage =request.getParameter("productImage");
-        Product product=new Product(productId,productName,productPrice,productCategory,productImage);
-        System.out.println(productId);
-        String msg=productService.updateById(productId);
-        System.out.println(msg);
-        String result;
-        if(msg==null) {
-            result=null;
-        }
-        else {
-            result = msg;
-        }
-        return "redirect:/admin/product/products";
-    }
-    @PostMapping("/deleteProduct")
+//    @PostMapping("/updateProduct")
+//    public  String updateProduct(HttpServletRequest request, Model model) throws SQLException, ClassNotFoundException {
+//        String productId=request.getParameter("productId");
+//        String productName=request.getParameter("productName");
+//        String productCategory=request.getParameter("productCategory");
+//        String productPrice=request.getParameter("productPrice");
+//        String productImage =request.getParameter("productImage");
+//        Product product=new Product(productId,productName,productPrice,productCategory,productImage);
+//        System.out.println(productId);
+//        String msg=productService.updateById(product);
+//        System.out.println(msg);
+//        String result;
+//        if(msg==null) {
+//            result=null;
+//        }
+//        else {
+//            result = msg;
+//        }
+//        return "redirect:/admin/product/products";
+//    }
+    @PostMapping("/deleteproduct")
     public String deleteProduct(HttpServletRequest request)throws NumberFormatException {
         Long productId=Long.parseLong(request.getParameter("productId"));
-        String msg=productService.deleteById(productId);
+        productService.deleteById(productId);
         return "redirect:/admin/product/products";
     }
 
