@@ -13,7 +13,8 @@ import javax.persistence.*;
 @Table(name="product")
 public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     String id;
     @Column(name = "product_name")
     String productName;
@@ -22,7 +23,7 @@ public class Product {
     @Column(name = "product_category")
     String productCategory;
     @Lob
-    @Column(columnDefinition = "BLOB")
+    @Column(columnDefinition = "MEDIUMBLOB")
     private String image;
     Boolean status;
 
