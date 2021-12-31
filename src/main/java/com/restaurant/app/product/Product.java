@@ -7,6 +7,8 @@
  */
 package com.restaurant.app.product;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.persistence.*;
 
 @Entity
@@ -15,13 +17,13 @@ public class Product {
     @Id
     //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
+    private Long id;
     @Column(name = "product_name")
-    String productName;
+    private String productName;
     @Column(name = "product_price")
-    String productPrice;
+    private String productPrice;
     @Column(name = "product_category")
-    String productCategory;
+    private String productCategory;
     @Lob
     @Column(columnDefinition = "LONGBLOB")
     private String image;
@@ -45,6 +47,22 @@ public class Product {
         this.productPrice = productPrice;
         this.productCategory = productCategory;
         this.image = productImage;
+    }
+
+    public Product(String productId, String productName, String productPrice, String productCategory, String file, String status) {
+        this.id=Long.valueOf(productId);
+        this.productName = productName;
+        this.productPrice = productPrice;
+        this.productCategory = productCategory;
+        this.image = file;
+    }
+
+    public Product(MultipartFile file, String productId, String productName, String productCategory, String productPrice, String status) {
+        this.id=Long.valueOf(productId);
+        this.productName = productName;
+        this.productPrice = productPrice;
+        this.productCategory = productCategory;
+        this.image = String.valueOf(file);
     }
 
 
@@ -84,8 +102,9 @@ public class Product {
         return image;
     }
 
-    public void setImage(String image) {
+    public String setImage(String image) {
         this.image = image;
+        return image;
     }
 
     public Boolean getStatus() {

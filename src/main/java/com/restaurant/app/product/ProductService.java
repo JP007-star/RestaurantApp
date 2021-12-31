@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.FluentQuery;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -77,7 +78,7 @@ public class ProductService implements  ProductRepository{
         return productRepository.save(entity);
     }
 
-    public void  saveProductToDB(MultipartFile file,String productName,String productCategory,String productPrice,String status)
+    public void saveProductToDB(MultipartFile file,String productName,String productCategory,String productPrice,String status)
     {
         Product p = new Product();
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
@@ -102,8 +103,9 @@ public class ProductService implements  ProductRepository{
     }
 
     @Override
-    public Optional<Product> findById(Long aLong) {
-        return Optional.empty();
+    public Optional<Product> findById(Long id) throws UsernameNotFoundException {
+            Optional<Product> product = productRepository.findById(id);
+            return product;
     }
 
     @Override
@@ -185,15 +187,23 @@ public class ProductService implements  ProductRepository{
     public <S extends Product, R> R findBy(Example<S> example, Function<FluentQuery.FetchableFluentQuery<S>, R> queryFunction) {
         return null;
     }
-    @Override
-    public String updateById(Product product){
-        Product product1=productRepository.findById(product.getId()).orElse(null);
-        product1.setProductName(product.getProductName());
-        product1.setProductCategory(product.getProductCategory());
-        product1.setProductPrice(product.getProductPrice());
-        product1.setImage(product.getImage());
-        productRepository.save(product);
-        return "success";
 
+    public void updateById(Long id,MultipartFile file,String productName,String productCategory,String productPrice,String status){
+        Product product=new Product();
+        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+        if(fileName.contains(".."))
+        {
+            System.out.println("not a a valid file");
+        }
+        try {
+            product.setImage(Base64.getEncoder().encodeToString(file.getBytes()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        product=productRepository.findById(product.getId()).orElse(null);
+        product.setProductName(productName);
+        product.setProductCategory(productCategory);
+        product.setProductPrice(productPrice);
+        productRepository.save(product);
     }
 }
