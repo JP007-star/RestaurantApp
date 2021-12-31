@@ -185,14 +185,15 @@ public class ProductService implements  ProductRepository{
     public <S extends Product, R> R findBy(Example<S> example, Function<FluentQuery.FetchableFluentQuery<S>, R> queryFunction) {
         return null;
     }
-//    @Override
-//    public String updateById(Product product){
-//        Product product1=productRepository.findById(product.getId()).orElse(null);
-//        product1.setProductName(product.getProductName());
-//        product1.setProductCategory(product.getProductCategory());
-//        product1.setProductPrice(product.getProductPrice());
-//        product1.setImage(product.getImage());
-//        productRepository.save(product);
-//        return "success";
-//    }
+    @Override
+    public String updateById(Product product){
+        Product product1=productRepository.findById(product.getId()).orElse(null);
+        product1.setProductName(product.getProductName());
+        product1.setProductCategory(product.getProductCategory());
+        product1.setProductPrice(product.getProductPrice());
+        product1.setImage(product.getImage());
+        productRepository.save(product);
+        return "success";
+
+    }
 }

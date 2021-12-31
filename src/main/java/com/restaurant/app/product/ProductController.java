@@ -8,8 +8,6 @@
 package com.restaurant.app.product;
 
 import com.restaurant.app.config.Counter;
-import com.restaurant.app.user.User;
-import com.restaurant.app.user.UserRegistrationDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -69,26 +67,26 @@ public class ProductController {
         }
         return ResponseEntity.ok(result);
     }
-//    @PostMapping("/updateProduct")
-//    public  String updateProduct(HttpServletRequest request, Model model) throws SQLException, ClassNotFoundException {
-//        String productId=request.getParameter("productId");
-//        String productName=request.getParameter("productName");
-//        String productCategory=request.getParameter("productCategory");
-//        String productPrice=request.getParameter("productPrice");
-//        String productImage =request.getParameter("productImage");
-//        Product product=new Product(productId,productName,productPrice,productCategory,productImage);
-//        System.out.println(productId);
-//        String msg=productService.updateById(product);
-//        System.out.println(msg);
-//        String result;
-//        if(msg==null) {
-//            result=null;
-//        }
-//        else {
-//            result = msg;
-//        }
-//        return "redirect:/admin/product/products";
-//    }
+    @PostMapping("/updateProduct")
+    public  String updateProduct(HttpServletRequest request, Model model) throws SQLException, ClassNotFoundException {
+        String productId=request.getParameter("productId");
+        String productName=request.getParameter("productName");
+        String productCategory=request.getParameter("productCategory");
+        String productPrice=request.getParameter("productPrice");
+        String productImage =request.getParameter("productImage");
+        Product product=new Product(productId,productName,productPrice,productCategory,productImage);
+        System.out.println(productId);
+        String msg=productService.updateById(product);
+        System.out.println(msg);
+        String result;
+        if(msg==null) {
+            result=null;
+        }
+        else {
+            result = msg;
+        }
+        return "redirect:/admin/product/products";
+    }
     @PostMapping("/deleteproduct")
     public String deleteProduct(HttpServletRequest request)throws NumberFormatException {
         Long productId=Long.parseLong(request.getParameter("productId"));
