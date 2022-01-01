@@ -13,3 +13,4 @@ server.port=8086
 mvn org.springframework.boot:spring-boot-maven-plugin:run
 
 sudo docker run -p 8086:8086 --name restaurant-app --link mysql-standalone:mysql -d restaurant-app
+ mvn jar:jar install:install
