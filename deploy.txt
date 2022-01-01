@@ -14,3 +14,6 @@ mvn org.springframework.boot:spring-boot-maven-plugin:run
 
 sudo docker run -p 8086:8086 --name restaurant-app --link mysql-standalone:mysql -d restaurant-app
  mvn jar:jar install:install
+ 
+ sudo docker run --name mysql-standalone -e MYSQL_ROOT_PASSWORD=Prasad@66 -e MYSQL_DATABASE=restaurantapp -e MYSQL_USER=jp -e MYSQL_PASSWORD=Prasad@66 -d mysql:5.6
+
