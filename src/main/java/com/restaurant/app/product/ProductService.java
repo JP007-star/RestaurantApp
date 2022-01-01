@@ -94,6 +94,7 @@ public class ProductService implements  ProductRepository{
         p.setProductName(productName);
         p.setProductCategory(productCategory);
         p.setProductPrice(productPrice);
+        p.setStatus(Boolean.valueOf(status));
         productRepository.save(p);
     }
 
@@ -188,22 +189,13 @@ public class ProductService implements  ProductRepository{
         return null;
     }
 
-    public void updateById(Long id,MultipartFile file,String productName,String productCategory,String productPrice,String status){
-        Product product=new Product();
-        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-        if(fileName.contains(".."))
-        {
-            System.out.println("not a a valid file");
-        }
-        try {
-            product.setImage(Base64.getEncoder().encodeToString(file.getBytes()));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        product=productRepository.findById(product.getId()).orElse(null);
-        product.setProductName(productName);
-        product.setProductCategory(productCategory);
-        product.setProductPrice(productPrice);
-        productRepository.save(product);
+    public String updateById(Product product){
+        Product product1=productRepository.findById(product.getId()).orElse(null);
+        product1.setProductName(product.getProductName());
+        product1.setProductCategory(product.getProductCategory());
+        product1.setProductPrice(product.getProductPrice());
+
+       productRepository.save(product1);
+        return "success";
     }
 }

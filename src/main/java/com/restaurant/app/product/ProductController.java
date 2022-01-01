@@ -8,6 +8,7 @@
 package com.restaurant.app.product;
 
 import com.restaurant.app.config.Counter;
+import com.restaurant.app.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -68,17 +69,22 @@ public class ProductController {
         return ResponseEntity.ok(result);
     }
     @PostMapping("/updateProduct")
-    public String updateProduct(@RequestParam("file") MultipartFile file,
-                                @RequestParam("productId") String productId,
-                               @RequestParam("productName") String productName,
-                               @RequestParam("productCategory") String productCategory,
-                               @RequestParam("productPrice") String productPrice,
-                               @RequestParam("status") String status){
-        Product product=new Product(file,productId,productName,productCategory,productPrice,status);
-        productService.updateById(Long.valueOf(productId),file,productName,productCategory,productPrice,status);
-        product.setProductName(productName);
-        product.setProductCategory(productCategory);
-        product.setProductPrice(productPrice);
+    public String updateProduct(HttpServletRequest request, Model model) throws SQLException, ClassNotFoundException {
+        String productId=request.getParameter("productId");
+        String productName=request.getParameter("productName");
+        String productCategory=request.getParameter("productCategory");
+        String productPrice=request.getParameter("productPrice");
+        Product product=new Product(productId,productName,productCategory,productPrice);
+        System.out.println(productId);
+        String msg=productService.updateById(product);
+        System.out.println(msg);
+        String result;
+        if(msg==null) {
+            result=null;
+        }
+        else {
+            result = msg;
+        }
         return "redirect:/admin/product/products";
     }
     @PostMapping("/deleteproduct")

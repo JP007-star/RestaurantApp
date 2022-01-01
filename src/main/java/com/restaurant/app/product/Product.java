@@ -49,20 +49,11 @@ public class Product {
         this.image = productImage;
     }
 
-    public Product(String productId, String productName, String productPrice, String productCategory, String file, String status) {
+    public Product(String productId, String productName, String productCategory, String productPrice) {
         this.id=Long.valueOf(productId);
         this.productName = productName;
         this.productPrice = productPrice;
         this.productCategory = productCategory;
-        this.image = file;
-    }
-
-    public Product(MultipartFile file, String productId, String productName, String productCategory, String productPrice, String status) {
-        this.id=Long.valueOf(productId);
-        this.productName = productName;
-        this.productPrice = productPrice;
-        this.productCategory = productCategory;
-        this.image = String.valueOf(file);
     }
 
 
