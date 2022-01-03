@@ -193,7 +193,6 @@ public class ProductService implements  ProductRepository{
         product1.setProductName(product.getProductName());
         product1.setProductCategory(product.getProductCategory());
         product1.setProductPrice(product.getProductPrice());
-
        productRepository.save(product1);
         return "success";
     }

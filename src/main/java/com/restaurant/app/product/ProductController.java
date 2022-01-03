@@ -8,7 +8,7 @@
 package com.restaurant.app.product;
 
 import com.restaurant.app.config.Counter;
-import com.restaurant.app.user.User;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
-import java.util.Scanner;
+
 
 @Controller
 @RequestMapping("/admin/product")
