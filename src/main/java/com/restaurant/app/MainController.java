@@ -7,10 +7,13 @@
  */
 package com.restaurant.app;
 
+import com.restaurant.app.product.Product;
+import com.restaurant.app.product.ProductService;
 import com.restaurant.app.user.User;
 import com.restaurant.app.user.UserRegistrationDto;
 import com.restaurant.app.user.UserRepository;
 import com.restaurant.app.user.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +27,8 @@ import java.util.Properties;
 @Controller
 public class MainController {
     private UserService userService;
+    @Autowired
+    private ProductService productService;
 
     public MainController(UserService userService) {
         super();
@@ -35,8 +40,11 @@ public class MainController {
     }
 
     // This Controller function is for loading the reservation page
-    @GetMapping("/index")
+    @GetMapping("/")
     public String reservation(Model model){
+        List<Product> productList=productService.findAll();
+        model.addAttribute("products",productList);
+        System.out.println(productList);
         return "index";
     }
 

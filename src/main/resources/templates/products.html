@@ -167,7 +167,8 @@ tr:hover{
             <th:block th:each="product:${products}">
                 <tr>
                     <td th:text="${counter.incrementAndGet()}"></td>
-                    <td scope="row"><img alt="" th:src="*{'data:image/jpeg;base64,'+{product.image}}"   style="width: 100px;height: 100px;" ></td>
+                    <td scope="row">
+                        <img alt="" th:src="*{'data:image/jpeg;base64,'+{product.image}}"   style="width: 100px;height: 100px;" ></td>
                     <td>[[${product.productName}]]</td>
                     <td>[[${product.productCategory}]]</td>
                     <td>[[${product.productPrice}]]</td>

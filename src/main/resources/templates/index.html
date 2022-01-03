@@ -72,12 +72,13 @@ margin-bottom: 2px
         </div>
         <div class="carousel-item">
             <div class="row align-items-center">
+                <th:block th:each="product:${products}">
                 <div class="col-2 m-3">
                 <div class="card shadow">
-                    <img th:src="@{\img\dishes\dish-3.jpg}" class="card-img-top" alt="">
+                    <img th:src="*{'data:image/jpeg;base64,'+{product.image}}" class="card-img-top" alt="">
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                          <p class="card-text">$ 45</p>
+                        <h5 class="card-title">[[${product.productName}]]</h5>
+                          <p class="card-text">$ [[${product.productPrice}]]</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="ratings"> <i class="fa fa-star rating-color"></i> <i class="fa fa-star rating-color"></i> <i class="fa fa-star rating-color"></i> <i class="fa fa-star rating-color"></i> <i class="fa fa-star"></i> </div>
                             <h5 class="review-count">12 Reviews</h5>
@@ -87,66 +88,8 @@ margin-bottom: 2px
                 </div>
 
             </div>
-                <div class="col-2 m-3">
-                <div class="card shadow">
-                    <img th:src="@{\img\dishes\dish-3.jpg}" class="card-img-top" alt="">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                          <p class="card-text">$ 45</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="ratings"> <i class="fa fa-star rating-color"></i> <i class="fa fa-star rating-color"></i> <i class="fa fa-star rating-color"></i> <i class="fa fa-star rating-color"></i> <i class="fa fa-star"></i> </div>
-                            <h5 class="review-count">12 Reviews</h5>
-                        </div><br>
-                        <button type="button" class="btn btn-danger">Add to Cart <i class="fa fa-shopping-cart"></i> </button>
-                    </div>
-                </div>
+                </th:block>
 
-            </div>
-                <div class="col-2 m-3">
-                <div class="card shadow">
-                    <img th:src="@{\img\dishes\dish-3.jpg}" class="card-img-top" alt="">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                          <p class="card-text">$ 45</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="ratings"> <i class="fa fa-star rating-color"></i> <i class="fa fa-star rating-color"></i> <i class="fa fa-star rating-color"></i> <i class="fa fa-star rating-color"></i> <i class="fa fa-star"></i> </div>
-                            <h5 class="review-count">12 Reviews</h5>
-                        </div><br>
-                        <button type="button" class="btn btn-danger">Add to Cart <i class="fa fa-shopping-cart"></i> </button>
-                    </div>
-                </div>
-
-            </div>
-                <div class="col-2 m-3">
-                <div class="card shadow">
-                    <img th:src="@{\img\dishes\dish-3.jpg}" class="card-img-top" alt="">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                          <p class="card-text">$ 45</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="ratings"> <i class="fa fa-star rating-color"></i> <i class="fa fa-star rating-color"></i> <i class="fa fa-star rating-color"></i> <i class="fa fa-star rating-color"></i> <i class="fa fa-star"></i> </div>
-                            <h5 class="review-count">12 Reviews</h5>
-                        </div><br>
-                        <button type="button" class="btn btn-danger">Add to Cart <i class="fa fa-shopping-cart"></i> </button>
-                    </div>
-                </div>
-
-            </div>
-                <div class="col-2 m-3">
-                <div class="card shadow">
-                    <img th:src="@{\img\dishes\dish-3.jpg}" class="card-img-top" alt="">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                          <p class="card-text">$ 45</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="ratings"> <i class="fa fa-star rating-color"></i> <i class="fa fa-star rating-color"></i> <i class="fa fa-star rating-color"></i> <i class="fa fa-star rating-color"></i> <i class="fa fa-star"></i> </div>
-                            <h5 class="review-count">12 Reviews</h5>
-                        </div><br>
-                        <button type="button" class="btn btn-danger">Add to Cart <i class="fa fa-shopping-cart"></i> </button>
-                    </div>
-                </div>
-
-            </div>
             </div>
         </div>
         <div class="carousel-item">
