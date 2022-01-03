@@ -7,55 +7,31 @@
  */
 package com.restaurant.app.product;
 
-import org.springframework.web.multipart.MultipartFile;
-
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
-@Table(name="product")
 public class Product {
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    @Column(name = "product_name")
-    private String productName;
-    @Column(name = "product_price")
-    private String productPrice;
-    @Column(name = "product_category")
-    private String productCategory;
-    @Lob
-    @Column(columnDefinition = "LONGBLOB")
-    private String image;
+    @GeneratedValue(strategy =  GenerationType.IDENTITY)
+    Long id;
+    String productName;
+    String productPrice;
+    String productCategory;
     Boolean status;
 
     public Product() {
     }
 
-    public Product(Long id, String productName, String productPrice, String productCategory, String image) {
-        this.id=id;
+    public Product(Long id, String productName, String productPrice, String productCategory, Boolean status) {
+        this.id = id;
         this.productName = productName;
         this.productPrice = productPrice;
         this.productCategory = productCategory;
-        this.image = image;
-        
+        this.status = status;
     }
-
-    public Product(String productId, String productName, String productPrice, String productCategory, String productImage) {
-        this.id=Long.valueOf(productId);
-        this.productName = productName;
-        this.productPrice = productPrice;
-        this.productCategory = productCategory;
-        this.image = productImage;
-    }
-
-    public Product(String productId, String productName, String productCategory, String productPrice) {
-        this.id=Long.valueOf(productId);
-        this.productName = productName;
-        this.productPrice = productPrice;
-        this.productCategory = productCategory;
-    }
-
 
     public Long getId() {
         return id;
@@ -89,32 +65,11 @@ public class Product {
         this.productCategory = productCategory;
     }
 
-    public String getImage() {
-        return image;
-    }
-
-    public String setImage(String image) {
-        this.image = image;
-        return image;
-    }
-
     public Boolean getStatus() {
         return status;
     }
 
     public void setStatus(Boolean status) {
         this.status = status;
-    }
-
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", productName='" + productName + '\'' +
-                ", productPrice='" + productPrice + '\'' +
-                ", productCategory='" + productCategory + '\'' +
-                ", image='" + image + '\'' +
-                ", status=" + status +
-                '}';
     }
 }
