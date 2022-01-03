@@ -1,6 +1,5 @@
 package com.restaurant.app.product;
 
-import com.restaurant.app.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
