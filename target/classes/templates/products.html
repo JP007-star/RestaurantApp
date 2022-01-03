@@ -329,6 +329,7 @@ $(document).on('click','#edit-product' ,function(){
         $('#productName').val(result.productName);
         $('#productCategory').val(result.productCategory);
         $('#productPrice').val(result.productPrice);
+
         if(result.status==true){
         $('#status').prop("checked");
         $('#status').trigger();
