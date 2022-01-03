@@ -7,10 +7,7 @@
  */
 package com.restaurant.app.product;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Product {
@@ -20,17 +17,28 @@ public class Product {
     String productName;
     String productPrice;
     String productCategory;
+    @Lob
+    @Column(columnDefinition = "MEDIUMBLOB")
+    private String image;
     Boolean status;
 
     public Product() {
     }
 
-    public Product(Long id, String productName, String productPrice, String productCategory, Boolean status) {
+    public Product(Long id, String productName, String productPrice, String productCategory, String image, Boolean status) {
         this.id = id;
         this.productName = productName;
         this.productPrice = productPrice;
         this.productCategory = productCategory;
+        this.image = image;
         this.status = status;
+    }
+
+    public Product(String productId, String productName, String productCategory, String productPrice) {
+        this.id = Long.valueOf(productId);
+        this.productName = productName;
+        this.productPrice = productPrice;
+        this.productCategory = productCategory;
     }
 
     public Long getId() {
@@ -63,6 +71,14 @@ public class Product {
 
     public void setProductCategory(String productCategory) {
         this.productCategory = productCategory;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public Boolean getStatus() {
