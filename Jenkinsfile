@@ -2,7 +2,7 @@ pipeline {
     agent any
 
    
-    stages {
+    stages { 
         stage('Build') {
             steps {
                 // Get some code from a GitHub repository
