@@ -64,5 +64,15 @@ public class MainController {
         return "registration";
     }
 
+    @GetMapping("/cart")
+    public String cartPage() {
+        return "cart";
+    }
+
+    @GetMapping("/payment")
+    public String paymentPage() {
+        return "payment";
+    }
+
 
 }
