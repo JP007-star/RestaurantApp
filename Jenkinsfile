@@ -4,7 +4,7 @@
     stages {
         stage('git repo & clean') {
             steps {
-               bat "rmdir  /s /q RestaurantApp"
+             
                 bat "git clonehttps://github.com/JP007-star/RestaurantApp.git"
                 bat "mvn clean -f RestaurantApp"
             }
