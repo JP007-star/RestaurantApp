@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
@@ -46,10 +47,12 @@ public class ProductController {
         return "redirect:/admin/product/products";
     }
     @GetMapping("/products")
-    public String fetchProducts(Model model){
+    public String fetchProducts(Model model, HttpSession session){
       List<Product> productList=productService.findAll();
+        String userName= String.valueOf(session.getAttribute("userName"));
         model.addAttribute("products",productList);
         model.addAttribute("counter",new Counter());
+        model.addAttribute("userName",userName);
         return "products";
     }
 

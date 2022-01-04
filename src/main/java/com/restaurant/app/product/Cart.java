@@ -8,7 +8,6 @@
 package com.restaurant.app.product;
 
 import org.springframework.context.annotation.Scope;
-import org.springframework.security.access.method.P;
 import org.springframework.stereotype.Component;
 
 @Component
