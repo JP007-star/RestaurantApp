@@ -67,7 +67,10 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user1);
         return "success";
     }
-
+    @Override
+    public User loadByEmailId(String email) throws UsernameNotFoundException{
+        return userRepository.findByEmail(email);
+    }
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 

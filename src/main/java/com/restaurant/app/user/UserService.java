@@ -8,6 +8,7 @@
 package com.restaurant.app.user;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,4 +21,6 @@ public interface UserService extends UserDetailsService {
     String deleteById(Long id) ;
 
     String updateById(User user);
+
+    User loadByEmailId(String email) throws UsernameNotFoundException;
 }
