@@ -43,7 +43,7 @@ public class ProductService implements  ProductRepository{
 
     @Override
     public long count() {
-        return 0;
+        return productRepository.count();
     }
 
     @Override
@@ -175,7 +175,7 @@ public class ProductService implements  ProductRepository{
 
     @Override
     public <S extends Product> long count(Example<S> example) {
-        return 0;
+        return productRepository.count();
     }
 
     @Override
