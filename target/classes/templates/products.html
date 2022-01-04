@@ -9,7 +9,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 </head>
 <style>
@@ -41,148 +40,155 @@ tr:hover{
     <div class="container-fluid">
         <a class="navbar-brand"><img style="height:50px;" th:src="@{\img\RestaurantLogo.png}"></a>
         <form class="d-flex">
-            <a href="/logout" type="button" class="btn btn-primary float-end">Log-out</a>
+            <a href="/logout" type="button" class="btn btn-primary float-end"><i class="fa fa-sign-out"></i> [[${userName}]]</a>
         </form>
     </div>
 </nav>
 <div class="row col-12">
-<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
+    <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
 
-    <hr>
-    <ul class="nav nav-pills flex-column mb-auto">
-        <li class="nav-item">
-            <a href="#" class="nav-link text-white" >
-               <i class="fa fa-home"></i>
-                Home
-            </a>
-        </li>
-        <li>
-            <a href="#" class="nav-link text-white">
-               <i class="fa fa-dashboard"></i>
-                Dashboard
-            </a>
-        </li>
-        <li>
-            <a href="#" class="nav-link text-white">
-                <i class="fa fa-tag"></i>
-                Orders
-            </a>
-        </li>
-        <li>
-            <a href="/admin/products/products" class="nav-link active text-white">
-                <i class="fa fa-cutlery"></i>
-                Products
-            </a>
-        </li>
-        <li>
-            <a href="/admin/user/users" class="nav-link  text-white" aria-current="page">
-                <i class="fa fa-users"></i>
-                Customers
-            </a>
-        </li>
-        <li>
-            <a href="#" class="nav-link text-white">
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item">
+                <a href="/admin/dashboard" class="nav-link text-white" >
+                    <i class="fa fa-home"></i>
+                    Home
+                </a>
+            </li>
+            <li>
+                <a href="/admin/order/orders" class="nav-link text-white">
+                    <i class="fa fa-tag"></i>
+                    Orders
+                </a>
+            </li>
+            <li>
+                <a href="/admin/product/products" class="nav-link active text-white">
+                    <i class="fa fa-cutlery"></i>
+                    Products
+                </a>
+            </li>
+            <li>
+                <a href="/admin/user/users" class="nav-link  text-white" aria-current="page">
+                    <i class="fa fa-users"></i>
+                    Customers
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link text-white">
 
-            </a>
-        </li>
-        <li>
-            <a href="#" class="nav-link text-white">
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link text-white">
 
-            </a>
-        </li>
-        <li>
-            <a href="#" class="nav-link text-white">
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link text-white">
 
-            </a>
-        </li>
-        <li>
-            <a href="#" class="nav-link text-white">
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link text-white">
 
-            </a>
-        </li>
-        <li>
-            <a href="#" class="nav-link text-white">
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link text-white">
 
-            </a>
-        </li>
-        <li>
-            <a href="#" class="nav-link text-white">
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link text-white">
 
-            </a>
-        </li>
-        <li>
-            <a href="#" class="nav-link text-white">
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link text-white">
 
-            </a>
-        </li>
-        <li>
-            <a href="#" class="nav-link text-white">
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link text-white">
 
-            </a>
-        </li>
-        <li>
-            <a href="#" class="nav-link text-white">
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link text-white">
 
-            </a>
-        </li>
-        <li>
-            <a href="#" class="nav-link text-white">
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link text-white">
 
-            </a>
-        </li>
-        <li>
-            <a href="#" class="nav-link text-white">
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link text-white">
 
-            </a>
-        </li>
-    </ul>
-    <hr>
-    <div class="dropdown">
-        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownproduct1" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-            <strong>mdo</strong>
-        </a>
-        <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownproduct1">
-            <li><a class="dropdown-item" href="#">New project...</a></li>
-            <li><a class="dropdown-item" href="#">Settings</a></li>
-            <li><a class="dropdown-item" href="#">Profile</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Sign out</a></li>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link text-white">
+
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link text-white">
+
+                </a>
+            </li>
         </ul>
+        <hr>
+        <div class="dropdown">
+            <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownproduct1" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+                <strong>mdo</strong>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownproduct1">
+                <li><a class="dropdown-item" href="#">New project...</a></li>
+                <li><a class="dropdown-item" href="#">Settings</a></li>
+                <li><a class="dropdown-item" href="#">Profile</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Sign out</a></li>
+            </ul>
+        </div>
     </div>
-</div>
 
-<div class="col-9 m-2">
-    <button type="button" data-bs-toggle="modal" data-bs-target="#productRegisterModal" class="btn btn-primary float-end mb-2"><i class="fa fa-plus"></i> Add product</button>
-    <table class="table-striped   shadow m-3 p-3" >
-        <thead>
-        <th>Id</th>
-        <th>Product Name</th>
-        <th>Product Category</th>
-        <th>Product Price</th>
-        <th>Status</th>
-        <th>Action</th>
-        </thead>
-        <tbody>
-        <th:block th:each="product:${products}">
-        <tr>
-            <td th:text="${counter.incrementAndGet()}"></td>
-            <td>[[${product.productName}]]</td>
-            <td>[[${product.productCategory}]]</td>
-            <td>[[${product.productPrice}]]</td>
-            <td><div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" role="switch"   id="status" checked="(${product.status})"   required autofocus="autofocus" />
-            </div></td>
-            <td>
-                <button type="button" th:data-product="(${product.id})" id="edit-product"  class="btn btn-primary"><i class="fa fa-edit"></i> </button>
-                <button type="button" th:data-product="(${product.id})" id="delete-product"   class="btn btn-danger"><i class="fa fa-trash"></i> </button>
-            </td>
-        </tr>
+    <div class="col-9 m-2">
+        <button type="button" data-bs-toggle="modal" data-bs-target="#productRegisterModal" class="btn btn-primary float-end mb-2"><i class="fa fa-plus"></i> Add product</button>
+        <table class="table-striped   shadow m-3 p-3" >
+            <thead>
+            <th>Id</th>
+            <th>Product Image</th>
+            <th>Product Name</th>
+            <th>Product Category</th>
+            <th>Product Price</th>
+            <th>Status</th>
+            <th>Action</th>
+            </thead>
+            <tbody>
+            <th:block th:each="product:${products}">
+                <tr>
+                    <td th:text="${counter.incrementAndGet()}"></td>
+                    <td scope="row">
+                        <img alt="" th:src="*{'data:image/jpeg;base64,'+{product.image}}"   style="width: 100px;height: 100px;" ></td>
+                    <td>[[${product.productName}]]</td>
+                    <td>[[${product.productCategory}]]</td>
+                    <td>[[${product.productPrice}]]</td>
+                    <td><div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch"   id="status" checked="(${product.status})"   required autofocus="autofocus" />
+                    </div></td>
+                    <td>
+                        <button type="button" th:data-product="(${product.id})" id="edit-product"  class="btn btn-primary"><i class="fa fa-edit"></i> </button>
+                        <button type="button" th:data-product="(${product.id})" id="delete-product"   class="btn btn-danger"><i class="fa fa-trash"></i> </button>
+                    </td>
+                </tr>
 
-        </th:block>
-        </tbody>
-    </table>
-</div>
+            </th:block>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 
@@ -207,7 +213,7 @@ tr:hover{
     </div>
 </div>
 <!-- Modal -->
-<div class="modal fade" id="Updateproduct" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="UpdateProduct" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -219,39 +225,31 @@ tr:hover{
                     <div class="row">
                         <div class="col-md-12 col-md-offset-3">
 
-                            <form th:action="@{/admin/updateproduct}" method="post" >
+                            <form th:action="@{/admin/product/updateProduct}" method="post" enctype="multipart/form-data">
                                 <input type="hidden" name="productId" id="productId" class="form-control"
                                        required autofocus="autofocus" />
-                                <div class="form-group">
-                                    <label class="control-label" for="firstName"> First Name </label>
-                                    <input id="firstName" name="firstName" class="form-control"
-                                           required autofocus="autofocus" />
-                                </div>
 
                                 <div class="form-group">
-                                    <label class="control-label" for="lastName"> Last Name </label> <input
-                                        id="lastName" name="lastName" class="form-control"
+                                    <label class="control-label" for="productName"> Product Name </label> <input
+                                        id="productName" name="productName" class="form-control"
                                         required autofocus="autofocus" />
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label" for="phoneNo"> Phone Number</label> <input
-                                        id="phoneNo" name="phoneNo" class="form-control" type="text"
+                                    <label class="control-label" for="productCategory"> Product Category</label> <input
+                                        id="productCategory" name="productCategory" class="form-control" type="text"
                                         required autofocus="autofocus" />
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label" for="email"> Email </label> <input
-                                        id="email" name="email" class="form-control"  required
+                                    <label class="control-label" for="productPrice"> Product Price </label> <input
+                                        id="productPrice" name="productPrice" class="form-control"  required
                                         autofocus="autofocus" />
                                 </div>
-
-
-                                <div class="form-group">
-                                    <label class="control-label" for="password"> Password </label> <input
-                                        id="password" class="form-control" type="password" name="password"
-                                        required autofocus="autofocus" />
-                                </div><br>
+<!--                                <div class="form-group">-->
+<!--                                    <label class="custom-file-label" for="customFile">Product Image</label><br>-->
+<!--                                    <input type="file"  name="productImage" class="custom-file-input" id="customFile">-->
+<!--                                </div><br>-->
 
                                 <div class="form-check form-switch">
                                     <label class="control-label" for="status"> Status </label>
@@ -279,28 +277,32 @@ tr:hover{
                     <div class="row">
                         <div class="col-md-12 col-md-offset-3">
                             <h5>Product</h5>
-                            <form th:action="@{/admin/product/save}" method="post" >
+                            <form  th:action="@{/admin/product/addP}"  method="post"  enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label class="control-label" for="productName"> Product Name </label>
-                                    <input id="productName" class="form-control"
+                                    <input id="productName" class="form-control" type="text" name="productName"
                                            required autofocus="autofocus" />
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label" for="lastName"> Product Category </label> <input
-                                        id="productCategory" class="form-control"
+                                    <label class="control-label" for="productCategory"> Product Category </label> <input
+                                        id="productCategory" class="form-control"  type="text" name="productCategory"
                                         required autofocus="autofocus" />
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label" for="productPrice"> Product Price</label> <input
-                                        id="productPrice" class="form-control" type="text"
+                                        id="productPrice" class="form-control" type="text" name="productPrice"
                                         required autofocus="autofocus" />
                                 </div>
 
-
                                 <div class="form-check form-switch">
                                     <label class="control-label" for="status"> Status </label>
-                                    <input class="form-check-input" type="checkbox" role="switch"   id="status"   autofocus="autofocus" />
+                                    <input class="form-check-input" type="checkbox" role="switch"   id="status" name="status"     autofocus="autofocus" />
+                                </div>
+
+                                <div class="form-group">
+                                <label class="control-label" for="customFile">Product Image</label>
+                                <input type="file" name="file" class="form-control" id="customFile" autofocus="autofocus"/>
                                 </div><br>
 
                                 <div class="form-group">
@@ -322,31 +324,31 @@ $(document).on('click','#edit-product' ,function(){
 
  var productId=$(this).attr('data-product');
   $.ajax({
-    url: "\editproduct",
+    url: "\editProduct",
     type:"POST",
     data:{"productId":productId},
     success: function(result){
       if(result!=""){
         $('#productId').val(result.id);
-        $('#firstName').val(result.firstName);
-        $('#lastName').val(result.lastName);
-        $('#email').val(result.email);
-        $('#phoneNo').val(result.phoneNo);
+        $('#productName').val(result.productName);
+        $('#productCategory').val(result.productCategory);
+        $('#productPrice').val(result.productPrice);
+
         if(result.status==true){
         $('#status').prop("checked");
         $('#status').trigger();
         }
      }
      else if(result==""){
-        $('#firstName').val('');
-        $('#lastName').val('');
-        $('#email').val('');
-        $('#phoneNo').val('');
+        $('#productName').val('');
+        $('#productCategory').val('');
+        $('#productPrice').val('');
+
         $('#status').prop('checked',false);
      }
     }
   });
-$('#Updateproduct').modal('show');
+$('#UpdateProduct').modal('show');
 });
 <!--This function is used to delete product-->
 $(document).on('click','#delete-product' ,function(){

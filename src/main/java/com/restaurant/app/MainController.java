@@ -7,23 +7,31 @@
  */
 package com.restaurant.app;
 
+import com.restaurant.app.product.Product;
+import com.restaurant.app.product.ProductService;
 import com.restaurant.app.user.User;
 import com.restaurant.app.user.UserRegistrationDto;
-import com.restaurant.app.user.UserRepository;
 import com.restaurant.app.user.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.ArrayList;
+import javax.servlet.http.HttpSession;
 import java.util.List;
-import java.util.Properties;
+
 
 @Controller
 public class MainController {
+    @Autowired
     private UserService userService;
+    @Autowired
+    private ProductService productService;
+
 
     public MainController(UserService userService) {
         super();
@@ -35,8 +43,19 @@ public class MainController {
     }
 
     // This Controller function is for loading the reservation page
-    @GetMapping("/index")
-    public String reservation(Model model){
+    @GetMapping("/")
+    public String reservation(Model model, HttpSession session){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String login = authentication.getName();
+        System.out.println(login);
+        User user=userService.loadByEmailId(login);
+        session.setAttribute("userName", user.getFirstName());
+        String userName= String.valueOf(session.getAttribute("userName"));
+        System.out.println(userName);
+        List<Product> productList=productService.findAll();
+        model.addAttribute("products",productList);
+        model.addAttribute("userName",userName);
+        System.out.println(productList);
         return "index";
     }
 
@@ -54,6 +73,16 @@ public class MainController {
     @GetMapping("/registration")
     public String showRegistrationForm() {
         return "registration";
+    }
+
+    @GetMapping("/cart")
+    public String cartPage() {
+        return "cart";
+    }
+
+    @GetMapping("/payment")
+    public String paymentPage() {
+        return "payment";
     }
 
 
