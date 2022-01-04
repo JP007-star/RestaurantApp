@@ -3,30 +3,31 @@ package com.restaurant.app.order;
 import javax.persistence.*;
 
 @Entity
-@Table(name="order")
+@Table(name="orders",schema = "targetSchemaName")
 public class Order{
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
-    private Long orderId;
+    @Column(name = "order_id")
+    Integer orderId;
     @Column(name = "product_ids")
-    private String productIds;
+    String productIds;
     @Column(name = "quantities")
-    private String  quantities;
+    String  quantities;
     @Column(name = "prices")
-    private String prices;
+    String prices;
     @Column(name = "total")
-    private int total;
+    int total;
 
     public Order(){
 
     }
 
-    public Long getOrderId() {
+    public Integer getOrderId() {
         return orderId;
     }
 
     public void setOrderId(Long orderId) {
-        this.orderId = orderId;
+        this.orderId = Math.toIntExact(orderId);
     }
 
     public String getProductIds() {
@@ -61,8 +62,8 @@ public class Order{
         this.total = total;
     }
 
-    public Order(Long orderId, String productIds, String quantities, String prices, int total) {
-        this.orderId = orderId;
+    public Order(Integer orderId, String productIds, String quantities, String prices, int total) {
+        this.orderId = Math.toIntExact(orderId);
         this.productIds = productIds;
         this.quantities = quantities;
         this.prices = prices;

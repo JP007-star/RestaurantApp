@@ -22,9 +22,10 @@ import java.util.function.Function;
 public class OrderService implements OrderRepository{
     @Autowired
     OrderRepository orderRepository;
+
     @Override
     public List<Order> findAll() {
-        return  orderRepository.findAll();
+        return orderRepository.findAll();
     }
 
     @Override
@@ -38,7 +39,7 @@ public class OrderService implements OrderRepository{
     }
 
     @Override
-    public List<Order> findAllById(Iterable<Long> longs) {
+    public List<Order> findAllById(Iterable<Integer> integers) {
         return null;
     }
 
@@ -48,7 +49,7 @@ public class OrderService implements OrderRepository{
     }
 
     @Override
-    public void deleteById(Long aLong) {
+    public void deleteById(Integer integer) {
 
     }
 
@@ -58,7 +59,7 @@ public class OrderService implements OrderRepository{
     }
 
     @Override
-    public void deleteAllById(Iterable<? extends Long> longs) {
+    public void deleteAllById(Iterable<? extends Integer> integers) {
 
     }
 
@@ -83,12 +84,12 @@ public class OrderService implements OrderRepository{
     }
 
     @Override
-    public Optional<Order> findById(Long aLong) {
+    public Optional<Order> findById(Integer integer) {
         return Optional.empty();
     }
 
     @Override
-    public boolean existsById(Long aLong) {
+    public boolean existsById(Integer integer) {
         return false;
     }
 
@@ -108,12 +109,17 @@ public class OrderService implements OrderRepository{
     }
 
     @Override
+    public void deleteInBatch(Iterable<Order> entities) {
+        OrderRepository.super.deleteInBatch(entities);
+    }
+
+    @Override
     public void deleteAllInBatch(Iterable<Order> entities) {
 
     }
 
     @Override
-    public void deleteAllByIdInBatch(Iterable<Long> longs) {
+    public void deleteAllByIdInBatch(Iterable<Integer> integers) {
 
     }
 
@@ -123,12 +129,12 @@ public class OrderService implements OrderRepository{
     }
 
     @Override
-    public Order getOne(Long aLong) {
+    public Order getOne(Integer integer) {
         return null;
     }
 
     @Override
-    public Order getById(Long aLong) {
+    public Order getById(Integer integer) {
         return null;
     }
 
