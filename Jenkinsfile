@@ -1,11 +1,13 @@
+import groovy.sql.Sql
 pipeline {
   //  agent any
-    agent {
-        docker {
-            image 'mysql:latest'
-            args '-p 3307:3306' 
-        }
-    }
+    
+node{
+
+    def sql = Sql.newInstance("jdbc:mysql://mysql:3306/resturant", "root","anil", "com.mysql.jdbc.Driver")
+   // def rows = sql.execute "select count(*) from ;"
+   // echo rows.dump()
+}
     
 
    
