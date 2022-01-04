@@ -1,11 +1,6 @@
 pipeline {
-    //agent any
-    agent {
-        docker {
-            image 'mysql:latest'
-            args '-p 3309:3306' 
-        }
-    }
+    agent any
+    
 
    
     stages { 
