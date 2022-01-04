@@ -3,62 +3,69 @@ package com.restaurant.app.order;
 import javax.persistence.*;
 
 @Entity
+@Table(name="order")
 public class Order{
+    @Id
+    @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private Long orderId;
-    private Long productIds;
-    private Long quantities;
+    @Column(name = "product_ids")
+    private String productIds;
+    @Column(name = "quantities")
+    private String  quantities;
+    @Column(name = "prices")
+    private String prices;
+    @Column(name = "total")
     private int total;
-    private Long prices;
 
     public Order(){
 
     }
 
-    public Order(Long orderId,Long productIds,Long quantities,int total,Long prices){
-        this.orderId=orderId;
-        this.productIds=productIds;
-        this.quantities=quantities;
-        this.total=total;
-        this.prices=prices;
-    }
-
-    public Long getorderid(){
+    public Long getOrderId() {
         return orderId;
     }
 
-    public void setorderid(Long orderId){
-        this.orderId=orderId;
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
     }
 
-    public Long getproductid(){
+    public String getProductIds() {
         return productIds;
     }
 
-    public void setproductid(Long productIds){
-        this.productIds=productIds;
+    public void setProductIds(String productIds) {
+        this.productIds = productIds;
     }
 
-    public Long getquantities(){
+    public String getQuantities() {
         return quantities;
-    } 
-
-    public void setquantities(Long quantities){
-        this.quantities=quantities;
-    } 
-
-    public int gettotal(){
-        return total;
     }
 
-    public void settotal(int total){
-        this.total=total;
+    public void setQuantities(String quantities) {
+        this.quantities = quantities;
     }
 
-    public Long getprices(){
+    public String getPrices() {
         return prices;
     }
 
-    public void setprices(Long prices){
-        this.prices=prices;
+    public void setPrices(String prices) {
+        this.prices = prices;
+    }
+
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
+    }
+
+    public Order(Long orderId, String productIds, String quantities, String prices, int total) {
+        this.orderId = orderId;
+        this.productIds = productIds;
+        this.quantities = quantities;
+        this.prices = prices;
+        this.total = total;
     }
 }
