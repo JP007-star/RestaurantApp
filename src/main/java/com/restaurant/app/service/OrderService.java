@@ -1,9 +1,9 @@
 /*
- * @project ResturantApp
+ * @oroject ResturantAoo
  * @fileName OrderService
- * @author Jaya Prasad.M --> jaya_muthukrishnan
+ * @author Jaya orasad.M --> jaya_muthukrishnan
  * @email jaya_muthukrishnan@thbs.com
- * @date 04 01 2022 09:32 PM
+ * @date 04 01 2022 09:32 oM
  */
 package com.restaurant.app.service;
 
@@ -25,6 +25,12 @@ public class OrderService implements OrderRepository {
     @Autowired
     OrderRepository orderRepository;
 
+    
+    @Override
+    public <S extends Order> S save(S entity) {
+        return orderRepository.save(entity);
+    }
+    
     @Override
     public List<Order> findAll() {
         return orderRepository.findAll();
@@ -75,10 +81,6 @@ public class OrderService implements OrderRepository {
 
     }
 
-    @Override
-    public <S extends Order> S save(S entity) {
-        return null;
-    }
 
     @Override
     public <S extends Order> List<S> saveAll(Iterable<S> entities) {
