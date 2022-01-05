@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8">
     <title>Admin </title>
-<div th:replace="script.html"></div>
+    <div th:replace="script.html"></div>
 </head>
 <style>
  table{
@@ -33,120 +32,7 @@ tr:hover{
 <!--Header Section-->
 <div th:replace="header.html"></div>
 <div class="row col-12">
-    <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
-
-        <hr>
-        <ul class="nav nav-pills flex-column mb-auto">
-            <li class="nav-item">
-                <a href="/admin/dashboard" class="nav-link active text-white" >
-                    <i class="fa fa-home"></i>
-                    Home
-                </a>
-            </li>
-            <li>
-                <a href="/admin/order/orders" class="nav-link text-white">
-                    <i class="fa fa-tag"></i>
-                    Orders
-                </a>
-            </li>
-            <li>
-                <a href="/admin/product/products" class="nav-link text-white">
-                    <i class="fa fa-cutlery"></i>
-                    Products
-                </a>
-            </li>
-            <li>
-                <a href="/admin/user/users" class="nav-link  text-white" aria-current="page">
-                    <i class="fa fa-user"></i>
-                    Customers
-                </a>
-            </li>
-            <li>
-                <a href="#" class="nav-link text-white">
-
-                </a>
-            </li>
-            <li>
-                <a href="#" class="nav-link text-white">
-
-                </a>
-            </li>
-            <li>
-                <a href="#" class="nav-link text-white">
-
-                </a>
-            </li>
-            <li>
-                <a href="#" class="nav-link text-white">
-
-                </a>
-            </li>
-            <li>
-                <a href="#" class="nav-link text-white">
-
-                </a>
-            </li>
-            <li>
-                <a href="#" class="nav-link text-white">
-
-                </a>
-            </li>
-            <li>
-                <a href="#" class="nav-link text-white">
-
-                </a>
-            </li>
-            <li>
-                <a href="#" class="nav-link text-white">
-
-                </a>
-            </li>
-            <li>
-                <a href="#" class="nav-link text-white">
-
-                </a>
-            </li>
-            <li>
-                <a href="#" class="nav-link text-white">
-
-                </a>
-            </li>
-            <li>
-                <a href="#" class="nav-link text-white">
-
-                </a>
-            </li>
-            <li>
-                <a href="#" class="nav-link text-white">
-
-                </a>
-            </li>
-            <li>
-                <a href="#" class="nav-link text-white">
-
-                </a>
-            </li>
-            <li>
-                <a href="#" class="nav-link text-white">
-
-                </a>
-            </li>
-        </ul>
-        <hr>
-        <div class="dropdown">
-            <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-                <strong>mdo</strong>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-                <li><a class="dropdown-item" href="#">New project...</a></li>
-                <li><a class="dropdown-item" href="#">Settings</a></li>
-                <li><a class="dropdown-item" href="#">Profile</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Sign out</a></li>
-            </ul>
-        </div>
-    </div>
+    <div th:replace="sidebar.html"></div>
     <div class="row text-center justify-content-center  col-9">
         <div class="card w-25 h-25 d-inline-block shadow  text-center m-4 p-3">
             <h2>45</h2>
