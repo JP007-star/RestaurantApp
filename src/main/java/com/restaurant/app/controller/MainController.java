@@ -84,5 +84,10 @@ public class MainController {
         return "payment";
     }
 
+    @GetMapping("/confirm")
+    public String confirmation() {
+        return "success";
+    }
+
 
 }
