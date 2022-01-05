@@ -36,6 +36,6 @@ public class OrderController {
         model.addAttribute("orders",orderList);
         model.addAttribute("counter",new Counter());
         model.addAttribute("userName",userName);
-        return "orders";
+        return "orders"; 
     } 
 }
