@@ -167,12 +167,14 @@ tr:hover{
                     <td>[[${product.productName}]]</td>
                     <td>[[${product.productCategory}]]</td>
                     <td>[[${product.productPrice}]]</td>
-                    <td><div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch"   id="status" checked="(${product.status})"   required autofocus="autofocus" />
-                    </div></td>
                     <td>
-                        <button type="button" th:data-product="(${product.id})" id="edit-product"  class="btn btn-primary"><i class="fa fa-edit"></i> </button>
-                        <button type="button" th:data-product="(${product.id})" id="delete-product"   class="btn btn-danger"><i class="fa fa-trash"></i> </button>
+                        <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch"   id="status" checked="(${product.status})"   required autofocus="autofocus" />
+                    </div>
+                    </td>
+                    <td>
+                        <button type="button" th:data-product="(${product.productId})" id="edit-product"  class="btn btn-primary"><i class="fa fa-edit"></i> </button>
+                        <button type="button" th:data-product="(${product.productId})" id="delete-product"   class="btn btn-danger"><i class="fa fa-trash"></i> </button>
                     </td>
                 </tr>
 
@@ -320,7 +322,7 @@ $(document).on('click','#edit-product' ,function(){
     data:{"productId":productId},
     success: function(result){
       if(result!=""){
-        $('#productId').val(result.id);
+        $('#productId').val(result.productId);
         $('#productName').val(result.productName);
         $('#productCategory').val(result.productCategory);
         $('#productPrice').val(result.productPrice);
