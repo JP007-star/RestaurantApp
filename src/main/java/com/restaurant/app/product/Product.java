@@ -27,8 +27,8 @@ public class Product {
     public Product() {
     }
 
-    public Product(Long id, String productName, String productPrice, String productCategory, String image, Boolean status) {
-        this.productId = id;
+    public Product(Long productId, String productName, String productPrice, String productCategory, String image, Boolean status) {
+        this.productId = productId;
         this.productName = productName;
         this.productPrice = productPrice;
         this.productCategory = productCategory;
@@ -43,12 +43,12 @@ public class Product {
         this.productCategory = productCategory;
     }
 
-    public Long getId() {
+    public Long getProductId() {
         return productId;
     }
 
-    public void setId(Long id) {
-        this.productId = id;
+    public void setProductId(Long productId) {
+        this.productId = productId;
     }
 
     public String getProductName() {
