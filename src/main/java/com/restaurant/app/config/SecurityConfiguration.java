@@ -1,7 +1,7 @@
 package com.restaurant.app.config;
 
 
-import com.restaurant.app.user.UserService;
+import com.restaurant.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
