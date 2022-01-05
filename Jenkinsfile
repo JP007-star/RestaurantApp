@@ -2,7 +2,10 @@ import groovy.sql.Sql
 pipeline {
    agent any
     
-
+tools
+   {
+      maven 'M3'
+   }
     
 
    
