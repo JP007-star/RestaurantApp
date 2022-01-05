@@ -7,12 +7,7 @@ tools
       maven 'M3'
       jdk 'jdk'
    }
-   node{
-
-    def sql = Sql.newInstance("jdbc:mysql://mysql:3306/resturant", "anil","Anil958@", "com.mysql.jdbc.Driver")
-    def rows = sql.execute "select count(*) from user;"
-    echo rows.dump()
-}
+   
     
 
    
