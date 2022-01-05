@@ -3,6 +3,7 @@
     <div class="container-fluid">
         <a class="navbar-brand"><img style="height:50px;" th:src="@{\img\RestaurantLogo.png}"></a>
         <form class="d-flex">
+            <a href="/" type="button"  class="btn btn-dark"><i class="fa fa-home fa-lg" ></i></a>
             <button type="button" class="btn btn-dark position-relative">
                 <i class="fa fa-bell" ></i>
                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
@@ -19,9 +20,9 @@
             </button> &emsp;
             <div sec:authorize="hasRole('ROLE_ADMIN')">
                 <a href="/admin/user/users" type="button" class="btn btn-dark float-end"><i class="fa fa-dashboard"></i>
-                    Dashboard</a>
+                    </a>
             </div> &emsp;
-            <a href="/logout" type="button" class="btn btn-dark float-end"><i class="fa fa-sign-out"></i> [[${userName}]]</a>
+            <a href="/logout" type="button" class="btn btn-dark float-end"><i class="fa fa-sign-out"></i>  [[${userName}]] <i class="fa fa-user"></i></a>
 
         </form>
     </div>
