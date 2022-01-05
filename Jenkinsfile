@@ -6,7 +6,7 @@ tools
    {
       maven 'M3'
       jdk 'jdk'
-   }
+   } 
    
     
 
