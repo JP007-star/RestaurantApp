@@ -36,15 +36,7 @@ tr:hover{
 }
 </style>
 <body>
-<!--Header Section-->
-<nav class="navbar navbar-dark bg-dark shadow">
-    <div class="container-fluid">
-        <a class="navbar-brand"><img style="height:50px;" th:src="@{\img\RestaurantLogo.png}"></a>
-        <form class="d-flex">
-            <a href="/logout" type="button" class="btn btn-primary float-end">Log-out</a>
-        </form>
-    </div>
-</nav>
+<div th:replace="header.html"></div>
 <div class="row col-12">
 <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
 

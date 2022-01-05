@@ -42,6 +42,7 @@ public class MainController {
         return "login";
     }
 
+
     // This Controller function is for loading the reservation page
     @GetMapping("/")
     public String reservation(Model model, HttpSession session){

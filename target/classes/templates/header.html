@@ -1,0 +1,28 @@
+<!--Header Section-->
+<nav class="navbar navbar-dark bg-dark shadow">
+    <div class="container-fluid">
+        <a class="navbar-brand"><img style="height:50px;" th:src="@{\img\RestaurantLogo.png}"></a>
+        <form class="d-flex">
+            <button type="button" class="btn btn-dark position-relative">
+                <i class="fa fa-bell" ></i>
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                       9+
+                <span class="visually-hidden">unread messages</span>
+                </span>
+            </button> &emsp;
+            <button type="button"  class="btn btn-dark position-relative">
+                <a href="cart"><i class="fa fa-shopping-cart text-white" ></i></a>
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                       1+
+                <span class="visually-hidden">unread messages</span>
+                </span>
+            </button> &emsp;
+            <div sec:authorize="hasRole('ROLE_ADMIN')">
+                <a href="/admin/user/users" type="button" class="btn btn-dark float-end"><i class="fa fa-dashboard"></i>
+                    Dashboard</a>
+            </div> &emsp;
+            <a href="/logout" type="button" class="btn btn-dark float-end"><i class="fa fa-sign-out"></i> [[${userName}]]</a>
+
+        </form>
+    </div>
+</nav>
