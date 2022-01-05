@@ -7,7 +7,7 @@
  */
 package com.restaurant.app.controller;
 
-import com.restaurant.app.config.Counter;
+import com.restaurant.app.utility.Counter;
 
 import com.restaurant.app.model.Product;
 import com.restaurant.app.service.ProductService;

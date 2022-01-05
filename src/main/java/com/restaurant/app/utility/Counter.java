@@ -5,7 +5,7 @@
  * @email jaya_muthukrishnan@thbs.com
  * @date 29 12 2021 11:04 AM
  */
-package com.restaurant.app.config;
+package com.restaurant.app.utility;
 
 public class Counter {
     private int count;

@@ -1,7 +1,7 @@
 package com.restaurant.app.controller;
 
 
-import com.restaurant.app.config.Counter;
+import com.restaurant.app.utility.Counter;
 import com.restaurant.app.dao.UserRegistrationDto;
 import com.restaurant.app.model.User;
 import com.restaurant.app.service.UserService;

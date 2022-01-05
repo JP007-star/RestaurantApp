@@ -32,7 +32,6 @@ public class MainController {
     @Autowired
     private ProductService productService;
 
-
     public MainController(UserService userService) {
         super();
         this.userService = userService;
@@ -41,7 +40,6 @@ public class MainController {
     public String login() {
         return "login";
     }
-
 
     // This Controller function is for loading the reservation page
     @GetMapping("/")

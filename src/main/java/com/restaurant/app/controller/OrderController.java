@@ -8,7 +8,7 @@
 package com.restaurant.app.controller;
 
 import java.util.List;
-import com.restaurant.app.config.Counter;
+import com.restaurant.app.utility.Counter;
 import com.restaurant.app.model.Order;
 import com.restaurant.app.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
