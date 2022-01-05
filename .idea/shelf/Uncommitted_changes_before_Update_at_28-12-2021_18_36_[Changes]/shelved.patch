@@ -1,0 +1,576 @@
+Index: src/main/java/com/restaurant/app/MainController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>/*\r\n * @project restaurantApp\r\n * @fileName MainController\r\n * @author Jaya Prasad.M --> jaya_muthukrishnan\r\n * @email jaya_muthukrishnan@thbs.com\r\n * @date 24 12 2021 07:04 PM\r\n */\r\npackage com.restaurant.app;\r\n\r\nimport com.restaurant.app.user.User;\r\nimport com.restaurant.app.user.UserRepository;\r\nimport com.restaurant.app.user.UserService;\r\nimport org.springframework.stereotype.Controller;\r\nimport org.springframework.ui.Model;\r\nimport org.springframework.web.bind.annotation.GetMapping;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\n@Controller\r\npublic class MainController {\r\n    @GetMapping(\"/login\")\r\n    public String login() {\r\n        return \"login\";\r\n    }\r\n\r\n    // This Controller function is for loading the reservation page\r\n    @GetMapping(\"/index\")\r\n    public String reservation(Model model){\r\n        return \"index\";\r\n    }\r\n\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/restaurant/app/MainController.java b/src/main/java/com/restaurant/app/MainController.java
+--- a/src/main/java/com/restaurant/app/MainController.java	(revision e6ae5face9b1deda66d259a044fa552c229b4437)
++++ b/src/main/java/com/restaurant/app/MainController.java	(date 1640625077514)
+@@ -10,9 +10,13 @@
+ import com.restaurant.app.user.User;
+ import com.restaurant.app.user.UserRepository;
+ import com.restaurant.app.user.UserService;
++import org.springframework.beans.factory.annotation.Autowired;
+ import org.springframework.stereotype.Controller;
+ import org.springframework.ui.Model;
+ import org.springframework.web.bind.annotation.GetMapping;
++import org.springframework.web.bind.annotation.ModelAttribute;
++import org.springframework.web.bind.annotation.PathVariable;
++import org.springframework.web.bind.annotation.PostMapping;
+ 
+ import java.util.ArrayList;
+ import java.util.List;
+@@ -30,5 +34,4 @@
+         return "index";
+     }
+ 
+-
+ }
+Index: src/main/resources/application.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>spring.datasource.url=jdbc:mysql://localhost:3306/restaurantApp\r\nspring.datasource.username=root\r\nspring.datasource.password=Prasad@66\r\nspring.jpa.hibernate.ddl-auto=update\r\nspring.jpa.properties.hibernate.show_sql=true\r\nspring.main.allow-circular-references=true\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>ISO-8859-1
+===================================================================
+diff --git a/src/main/resources/application.properties b/src/main/resources/application.properties
+--- a/src/main/resources/application.properties	(revision e6ae5face9b1deda66d259a044fa552c229b4437)
++++ b/src/main/resources/application.properties	(date 1640609876885)
+@@ -1,6 +1,6 @@
+-spring.datasource.url=jdbc:mysql://localhost:3306/restaurantApp
++spring.datasource.url=jdbc:mysql://localhost:3306/restaurantdb
+ spring.datasource.username=root
+-spring.datasource.password=Prasad@66
++spring.datasource.password=Welcome@123
+ spring.jpa.hibernate.ddl-auto=update
+ spring.jpa.properties.hibernate.show_sql=true
+ spring.main.allow-circular-references=true
+Index: target/classes/templates/payment.html
+===================================================================
+diff --git a/target/classes/templates/payment.html b/target/classes/templates/payment.html
+deleted file mode 100644
+--- a/target/classes/templates/payment.html	(revision e6ae5face9b1deda66d259a044fa552c229b4437)
++++ /dev/null	(revision e6ae5face9b1deda66d259a044fa552c229b4437)
+@@ -1,107 +0,0 @@
+-<!DOCTYPE html>
+-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+-<head>
+-    <meta charset="ISO-8859-1">
+-    <title>Payment</title>
+-</head>
+-<style>
+-body {
+-    background-color: blue
+-}
+-</style>
+-<body>
+-<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+-<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+-<!------ Include the above in your HEAD tag ---------->
+-
+-<div class="container">
+-    <div class="row">
+-        <div class="span12">
+-            <form class="form-horizontal span6">
+-                <legend>Payment</legend>
+-
+-                <div class="control-group">
+-                    <label class="control-label">Card Holder's Name</label>
+-                    <div class="controls">
+-                        <input type="text" class="input-block-level" pattern="\w+ \w+.*" title="Fill your first and last name" required>
+-                    </div>
+-                </div>
+-
+-                <div class="control-group">
+-                    <label class="control-label">Card Number</label>
+-                    <div class="controls">
+-                        <div class="row-fluid">
+-                            <div class="span3">
+-                                <input type="text" class="input-block-level" autocomplete="off" maxlength="4" pattern="\d{4}" title="First four digits" required>
+-                            </div>
+-                            <div class="span3">
+-                                <input type="text" class="input-block-level" autocomplete="off" maxlength="4" pattern="\d{4}" title="Second four digits" required>
+-                            </div>
+-                            <div class="span3">
+-                                <input type="text" class="input-block-level" autocomplete="off" maxlength="4" pattern="\d{4}" title="Third four digits" required>
+-                            </div>
+-                            <div class="span3">
+-                                <input type="text" class="input-block-level" autocomplete="off" maxlength="4" pattern="\d{4}" title="Fourth four digits" required>
+-                            </div>
+-                        </div>
+-                    </div>
+-                </div>
+-
+-                    <div class="control-group">
+-                        <label class="control-label">Card Expiry Date</label>
+-                        <div class="controls">
+-                            <div class="row-fluid">
+-                                <div class="span9">
+-                                    <select class="input-block-level">
+-                                        <option>January</option>
+-                                        <option>February</option>
+-                                        <option>March</option>
+-                                        <option>April</option>
+-                                        <option>May</option>
+-                                        <option>June</option>
+-                                        <option>July</option>
+-                                        <option>August</option>
+-                                        <option>September</option>
+-                                        <option>October</option>
+-                                        <option>November</option>
+-                                        <option>December</option>
+-                                    </select>
+-                                </div>
+-                                <div class="span3">
+-                                    <select class="input-block-level">
+-                                        <option>2022</option>
+-                                        <option>2023</option>
+-                                        <option>2024</option>
+-                                        <option>2025</option>
+-                                        <option>2026</option>
+-                                    </select>
+-                                </div>
+-                            </div>
+-                        </div>
+-                    </div>
+-
+-                    <div class="control-group">
+-                        <label class="control-label">Card CVV</label>
+-                        <div class="controls">
+-                            <div class="row-fluid">
+-                                <div class="span3">
+-                                    <input type="text" class="input-block-level" autocomplete="off" maxlength="3" pattern="\d{3}" title="Three digits at back of your card" required>
+-                                </div>
+-                                <div class="span8">
+-                                    <!-- screenshot may be here -->
+-                                </div>
+-                            </div>
+-                        </div>
+-                    </div>
+-
+-                    <div class="form-actions">
+-                        <button type="submit" class="btn btn-primary">Submit</button>
+-                        <button type="button" class="btn">Cancel</button>
+-                    </div>
+-            </form>
+-        </div>
+-    </div>
+-</div>
+-</body>
+-</html>
+\ No newline at end of file
+Index: src/main/resources/templates/payment.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>ISO-8859-1
+===================================================================
+diff --git a/src/main/resources/templates/payment.html b/src/main/resources/templates/payment.html
+new file mode 100644
+--- /dev/null	(date 1640695635733)
++++ b/src/main/resources/templates/payment.html	(date 1640695635733)
+@@ -0,0 +1,256 @@
++<!DOCTYPE html>
++<html lang="en"  xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
++<head>
++    <meta charset="ISO-8859-1">
++    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
++    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js">
++    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
++    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
++    <title>Payment</title>
++</head>
++<body><br>
++
++<div class="card">
++    <div class="card-top border-bottom text-center"> <a href="#"> Back to shop</a>  </div>
++    <div class="card-body">
++        <div class="row upper"> <span><i class="fa fa-check-circle-o"></i></span> <span>></i> </span> <span id="payment"><span id="three"></span></span> </div>
++        <div class="row">
++            <div class="col-md-7">
++                <div class="left border">
++                    <div class="row"> <span class="header">Payment</span>
++                        <div class="icons"> <img src="https://img.icons8.com/color/48/000000/visa.png" /> <img src="https://img.icons8.com/color/48/000000/mastercard-logo.png" /> <img src="https://img.icons8.com/color/48/000000/maestro.png" /> </div>
++                    </div>
++                    <form> <span>Cardholder's name:</span> <input placeholder="Linda Williams"> <span>Card Number:</span> <input placeholder="0125 6780 4567 9909">
++                        <div class="row">
++                            <div class="col-4"><span>Expiry date:</span> <input placeholder="YY/MM"> </div>
++                            <div class="col-4"><span>CVV:</span> <input id="cvv"> </div>
++                        </div> <input type="checkbox" id="save_card" class="align-left"> <label for="save_card">Save card details to wallet</label>
++                    </form>
++                </div>
++            </div>
++            <div class="col-md-5">
++                <div class="right border">
++                    <div class="header">Order Summary</div>
++                    <p>2 items</p>
++                    <div class="row item">
++                        <div class="col-4 align-self-center"><img class="img-fluid" src=""></div>
++                        <div class="col-8">
++                            <div class="row"><b>$0.0</b></div>
++                            <div class="row text-muted"></div>
++                            <div class="row">Qty:1</div>
++                        </div>
++                    </div>
++                    <div class="row item">
++                        <div class="col-4 align-self-center"><img class="img-fluid" src=""></div>
++                        <div class="col-8">
++                            <div class="row"><b>$ 0.0</b></div>
++                            <div class="row text-muted"></div>
++                            <div class="row">Qty:1</div>
++                        </div>
++                    </div>
++                    <hr>
++                    <div class="row lower">
++                        <div class="col text-left">Subtotal</div>
++                        <div class="col text-right">$0.0</div>
++                    </div>
++                    <div class="row lower">
++                        <div class="col text-left">Delivery</div>
++                        <div class="col text-right">Free</div>
++                    </div>
++                    <div class="row lower">
++                        <div class="col text-left"><b>Total to pay</b></div>
++                        <div class="col text-right"><b>$ 0.0</b></div>
++                    </div>
++                    <div class="row lower">
++                        <div class="col text-left"><a href="#"><u>Add promo code</u></a></div>
++                    </div> <button class="btn">Place order</button>
++                </div>
++            </div>
++        </div>
++    </div>
++    <div> </div>
++</div>
++</div>
++<style>
++    body {
++    min-height: 100vh;
++    display: flex;
++    align-items: center;
++    justify-content: center;
++    background-color: rgb(0, 0, 34);
++    font-size: 0.8rem
++}
++
++.card {
++    max-width: 1000px;
++    margin: 2vh
++}
++
++.card-top {
++    padding: 0.7rem 5rem
++}
++
++.card-top a {
++    float: left;
++    margin-top: 0.7rem
++}
++
++#logo {
++    font-family: 'Dancing Script';
++    font-weight: bold;
++    font-size: 1.6rem
++}
++
++.card-body {
++    padding: 0 5rem 5rem 5rem;
++    background-image: url("https://i.imgur.com/4bg1e6u.jpg");
++    background-size: cover;
++    background-repeat: no-repeat
++}
++
++@media(max-width:768px) {
++    .card-body {
++        padding: 0 1rem 1rem 1rem;
++        background-image: url("https://i.imgur.com/4bg1e6u.jpg");
++        background-size: cover;
++        background-repeat: no-repeat
++    }
++
++    .card-top {
++        padding: 0.7rem 1rem
++    }
++}
++
++.row {
++    margin: 0
++}
++
++.upper {
++    padding: 1rem 0;
++    justify-content: space-evenly
++}
++
++#three {
++    border-radius: 1rem;
++    width: 22px;
++    height: 22px;
++    margin-right: 3px;
++    border: 1px solid blue;
++    text-align: center;
++    display: inline-block
++}
++
++#payment {
++    margin: 0;
++    color: blue
++}
++
++.icons {
++    margin-left: auto
++}
++
++form span {
++    color: rgb(179, 179, 179)
++}
++
++form {
++    padding: 2vh 0
++}
++
++input {
++    border: 1px solid rgba(0, 0, 0, 0.137);
++    padding: 1vh;
++    margin-bottom: 4vh;
++    outline: none;
++    width: 100%;
++    background-color: rgb(247, 247, 247)
++}
++
++input:focus::-webkit-input-placeholder {
++    color: transparent
++}
++
++.header {
++    font-size: 1.5rem
++}
++
++.left {
++    background-color: #ffffff;
++    padding: 2vh
++}
++
++.left img {
++    width: 2rem
++}
++
++.left .col-4 {
++    padding-left: 0
++}
++
++.right .item {
++    padding: 0.3rem 0
++}
++
++.right {
++    background-color: #ffffff;
++    padding: 2vh
++}
++
++.col-8 {
++    padding: 0 1vh
++}
++
++.lower {
++    line-height: 2
++}
++
++.btn {
++    background-color: rgb(23, 4, 189);
++    border-color: rgb(23, 4, 189);
++    color: white;
++    width: 100%;
++    font-size: 0.7rem;
++    margin: 4vh 0 1.5vh 0;
++    padding: 1.5vh;
++    border-radius: 0
++}
++
++.btn:focus {
++    box-shadow: none;
++    outline: none;
++    box-shadow: none;
++    color: white;
++    -webkit-box-shadow: none;
++    -webkit-user-select: none;
++    transition: none
++}
++
++.btn:hover {
++    color: white
++}
++
++a {
++    color: black
++}
++
++a:hover {
++    color: black;
++    text-decoration: none
++}
++
++input[type=checkbox] {
++    width: unset;
++    margin-bottom: unset
++}
++
++#cvv {
++    background-image: linear-gradient(to left, rgba(255, 255, 255, 0.575), rgba(255, 255, 255, 0.541)), url("https://img.icons8.com/material-outlined/24/000000/help.png");
++    background-repeat: no-repeat;
++    background-position-x: 95%;
++    background-position-y: center
++}
++
++#cvv:hover {}
++</style>
++</body>
++</html>
+\ No newline at end of file
+Index: src/main/resources/templates/dishes.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>ISO-8859-1
+===================================================================
+diff --git a/src/main/resources/templates/dishes.html b/src/main/resources/templates/dishes.html
+new file mode 100644
+--- /dev/null	(date 1640696162480)
++++ b/src/main/resources/templates/dishes.html	(date 1640696162480)
+@@ -0,0 +1,90 @@
++<!DOCTYPE html>
++<html lang="en" xmlns:th="http://www.thymeleaf.org">
++<head>
++    <meta charset="ISO-8859-1">
++
++    <title>Dishes</title>
++    <link rel="stylesheet"
++          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
++          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
++          crossorigin="anonymous">
++    <link type="text/css" rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css}">
++    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
++
++</head>
++<body>
++
++<center>
++
++<!--Header Section-->
++<nav class="navbar navbar-dark bg-dark shadow">
++    <div class="container-fluid">
++        <a class="navbar-brand"><img style="height:50px;" th:src="@{\img\RestaurantLogo.png}"></a>
++        <form class="d-flex">
++            <a href="/logout" type="button" class="btn btn-primary float-end">Log-out</a>
++        </form>
++    </div>
++</nav><br>
++    <h2> Dishes List</h2>
++<div class="container-fluid">
++    <table  class="table-striped   shadow m-5 p-3 col-8">
++        <thead>
++        <tr>
++            <th>
++                <a th:href="">
++                    Dish Name</a>
++            </th>
++            <th>
++                <a th:href="">
++                    Dish Price</a>
++            </th>
++
++            <th>
++                <a th:href="">
++                    Category</a>
++            </th>
++            <th>
++                <a th:href="">
++                    Status</a>
++            </th>
++            <th> Actions </th>
++        </tr>
++        </thead>
++        <tbody>
++        <tr th:each="dish : ${listDishes}">
++            <td th:text="${dish.name}"></td>
++            <td th:text="${dish.price}"></td>
++            <td th:text="${dish.category}"></td>
++            <td th:text="${dish.status}"></td>
++            <td> <a th:href="" type="button" class="btn btn-primary"><i class="fa fa-edit"></i> </a>
++                <a th:href="" type="button" class="btn btn-danger"><i class="fa fa-trash"></i> </a>
++                <a th:href = ""  type="button" class="btn btn-primary "><i class="fa fa-plus-square"></i> </a>
++            </td>
++        </tr>
++        </tbody>
++    </table>
++
++</div>
++</center>
++</body>
++</html>
++<style>
++ table{
++  width:100%;
++}
++th{
++  background-color: #dc3545;
++  color: white;
++}
++th, td {
++  padding: 12px;
++  text-align: left;
++  border-radius:5px;
++  border-color:  #2f2f2f;
++}
++
++tr:hover{
++  color: green;
++  cursor:pointer;
++}
++</style>
+\ No newline at end of file
+Index: target/classes/application.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>spring.datasource.url=jdbc:mysql://localhost:3306/restaurantApp\r\nspring.datasource.username=root\r\nspring.datasource.password=Prasad@66\r\nspring.jpa.hibernate.ddl-auto=update\r\nspring.jpa.properties.hibernate.show_sql=true\r\nspring.main.allow-circular-references=true\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>ISO-8859-1
+===================================================================
+diff --git a/target/classes/application.properties b/target/classes/application.properties
+--- a/target/classes/application.properties	(revision e6ae5face9b1deda66d259a044fa552c229b4437)
++++ b/target/classes/application.properties	(date 1640622290305)
+@@ -1,6 +1,6 @@
+-spring.datasource.url=jdbc:mysql://localhost:3306/restaurantApp
++spring.datasource.url=jdbc:mysql://localhost:3306/restaurantdb
+ spring.datasource.username=root
+-spring.datasource.password=Prasad@66
++spring.datasource.password=Welcome@123
+ spring.jpa.hibernate.ddl-auto=update
+ spring.jpa.properties.hibernate.show_sql=true
+ spring.main.allow-circular-references=true
+Index: .idea/compiler.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"CompilerConfiguration\">\r\n    <annotationProcessing>\r\n      <profile name=\"Maven default annotation processors profile\" enabled=\"true\">\r\n        <sourceOutputDir name=\"target/generated-sources/annotations\" />\r\n        <sourceTestOutputDir name=\"target/generated-test-sources/test-annotations\" />\r\n        <outputRelativeToContentRoot value=\"true\" />\r\n        <module name=\"restaurantApp\" />\r\n      </profile>\r\n    </annotationProcessing>\r\n  </component>\r\n  <component name=\"JavacSettings\">\r\n    <option name=\"ADDITIONAL_OPTIONS_OVERRIDE\">\r\n      <module name=\"restaurantApp\" options=\"-parameters\" />\r\n    </option>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/compiler.xml b/.idea/compiler.xml
+--- a/.idea/compiler.xml	(revision e6ae5face9b1deda66d259a044fa552c229b4437)
++++ b/.idea/compiler.xml	(date 1640694223932)
+@@ -6,12 +6,14 @@
+         <sourceOutputDir name="target/generated-sources/annotations" />
+         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+         <outputRelativeToContentRoot value="true" />
++        <module name="RestaurantApp" />
+         <module name="restaurantApp" />
+       </profile>
+     </annotationProcessing>
+   </component>
+   <component name="JavacSettings">
+     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
++      <module name="RestaurantApp" options="-parameters" />
+       <module name="restaurantApp" options="-parameters" />
+     </option>
+   </component>
