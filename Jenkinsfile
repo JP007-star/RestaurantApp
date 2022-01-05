@@ -8,7 +8,9 @@ tools
       jdk 'jdk'
    } 
    
-    
+    node
+   {
+   }
 
    
     stages { 
