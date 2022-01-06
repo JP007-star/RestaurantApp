@@ -32,7 +32,6 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-
     @PostMapping("/save")
     public String saveProduct(@ModelAttribute("product") Product product) {
        /// System.out.println(product);
