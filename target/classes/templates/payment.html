@@ -4,10 +4,6 @@
     <meta charset="ISO-8859-1">
     <div th:replace="script.html"> ></div>
     <title>My Cart🛒</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital@1&display=swap" rel="stylesheet">
-
 </head>
 <body>
 <!--Header Section-->
@@ -168,7 +164,7 @@
                         </div>
                     </div>
                     <hr class="my-4">
-                    <a id="confirm-order" class="w-100 btn btn-primary btn-lg" type="button">Continue to checkout</a>
+                    <a href="/confirm" class="w-100 btn btn-primary btn-lg" type="button">Continue to checkout</a>
                 </form>
             </div>
         </div>
@@ -176,18 +172,4 @@
 
 </div>
 </body>
-<script>
-
-$(document).on('click','#confirm-order' ,function(){
- var productId=$(this).attr('data-productId');
-  $.ajax({
-    url: "removeQuantityToCart",
-    type:"POST",
-    data:{"productId":productId},
-    success: function(result){
-       location.reload();
-    }
-  })
-
- })</script>
 </html>

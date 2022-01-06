@@ -55,7 +55,7 @@ public class MainController {
         Product product=productService.findById(productId).orElse(null);
         System.out.println(product);
         System.out.println(productId);
-        Cart cart=new Cart(productId,product.getProductName(),product.getProductPrice(),product.getProductCategory(),product.getImage(),product.getStatus());
+        Cart cart=new Cart(productId,product.getProductName(),product.getProductPrice(),product.getProductCategory(),product.getImage(),product.getStatus(),1);
         cartService.save(cart);
         return ResponseEntity.ok("success");
     }
@@ -64,6 +64,22 @@ public class MainController {
         Long productId=Long.parseLong(request.getParameter("productId"));
         cartService.deleteById(productId);
         return ResponseEntity.ok("success");
+    }
+    @PostMapping("/addQuantityToCart")
+    public ResponseEntity<?> addQuantityToCart(HttpServletRequest httpServletRequest,Model model) {
+         Long productId = Long.parseLong(httpServletRequest.getParameter("productId"));
+         Product productInDb=productService.findById(productId).orElse(null);
+         Cart productInCart= cartService.findById(productId).orElse(null);
+         int quantityOfProductInDb=productInDb.getQuantity();
+
+         int quantityOfCart=productInCart.getProductQuantity();
+         productInDb.setQuantity(quantityOfProductInDb-1);
+         productInCart.setProductQuantity(quantityOfCart+1);
+         productService.save(productInDb);
+        System.out.println(productInDb);
+        System.out.println(productInCart);
+         cartService.save(productInCart);
+         return ResponseEntity.ok("success");
     }
 
     // This Controller function is for loading the reservation page
