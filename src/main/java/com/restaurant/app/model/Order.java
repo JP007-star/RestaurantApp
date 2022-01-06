@@ -6,7 +6,8 @@ import javax.persistence.*;
 @Table(name="orders",schema = "targetSchemaName")
 public class Order{
     @Id
-    @GeneratedValue(strategy =  GenerationType.IDENTITY)
+    //@GeneratedValue(strategy =  GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "order_id")
     Integer orderId;
     @Column(name = "product_ids")
@@ -21,6 +22,7 @@ public class Order{
     public Order(){
 
     }
+
 
     public Integer getOrderId() {
         return orderId;
@@ -62,11 +64,12 @@ public class Order{
         this.total = total;
     }
 
-    public Order(Integer orderId, String productIds, String quantities, String prices, int total) {
+    public Order(Integer orderId, String productNames, String quantities, String prices, int total) {
         this.orderId = Math.toIntExact(orderId);
-        this.productIds = productIds;
+        this.productIds = productNames;
         this.quantities = quantities;
         this.prices = prices;
         this.total = total;
     }
+
 }
