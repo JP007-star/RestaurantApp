@@ -5,17 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="557acc45-a09b-46d1-a2ce-0cb696132ff0" name="Changes" comment="cart delete sweet alert added">
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05-01-2022_09_51__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05-01-2022_09_51__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_28-12-2021_18_36__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_28-12-2021_18_36__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/restaurant/app/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/restaurant/app/controller/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/restaurant/app/service/CartService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/restaurant/app/service/CartService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/cart.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/payment.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/payment.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/restaurant/app/controller/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/restaurant/app/controller/MainController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/restaurant/app/service/CartService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/restaurant/app/service/CartService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/cart.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/payment.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/payment.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +64,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Code/RestaurantApp" />
   </component>
   <component name="Push.Settings">
     <option name="SHOW_DETAILS_PANEL" value="false" />
