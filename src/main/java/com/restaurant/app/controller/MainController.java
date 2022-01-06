@@ -73,15 +73,12 @@ public class MainController {
     public String reservation(Model model, HttpSession session){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String login = authentication.getName();
-        System.out.println(login);
         User user=userService.loadByEmailId(login);
         session.setAttribute("userName", user.getFirstName());
         String userName= String.valueOf(session.getAttribute("userName"));
-        System.out.println(userName);
         List<Product> productList=productService.findAll();
         model.addAttribute("products",productList);
         model.addAttribute("userName",userName);
-        System.out.println(productList);
         return "index";
     }
 
