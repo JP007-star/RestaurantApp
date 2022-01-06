@@ -4,7 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5077aaf4-7ce1-4443-aa5c-66128ab006b2" name="Changes" comment="commit product module" />
+    <list default="true" id="5077aaf4-7ce1-4443-aa5c-66128ab006b2" name="Changes" comment="commit product module">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/restaurant/app/RestaurantAppApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/restaurant/app/RestaurantAppApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/restaurant/app/RestaurantAppApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/restaurant/app/RestaurantAppApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/restaurant/app/controller/ProductController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/restaurant/app/controller/ProductController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/restaurant/app/dao/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/restaurant/app/dao/UserServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/restaurant/app/model/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/restaurant/app/model/Product.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/restaurant/app/service/ProductService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/restaurant/app/service/ProductService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/cart.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/dashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/orders.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/orders.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/products.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/products.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/users.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/users.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -50,8 +67,10 @@
   </component>
   <component name="RunManager">
     <configuration name="RestaurantAppApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="com.restaurant.app.RestaurantAppApplication" />
-      <module name="RestaurantApp" />
+      <module name="restaurantApp" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.restaurant.app.*" />
@@ -210,7 +229,21 @@
       <option name="project" value="LOCAL" />
       <updated>1641357441666</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="commit product module">
+      <created>1641367004098</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1641367004098</updated>
+    </task>
+    <task id="LOCAL-00021" summary="commit product module">
+      <created>1641378308520</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1641378308520</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
