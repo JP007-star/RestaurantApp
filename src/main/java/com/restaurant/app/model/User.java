@@ -37,15 +37,17 @@ public class User {
     private Collection<Role> roles;
 
     public User() {
-
     }
 
-    public User(String userId, String firstName, String lastName, String email, String phoneNo) {
+
+
+    public User(String userId, String firstName, String lastName, String email, String phoneNo,boolean status) {
         this.id =  Long.valueOf(userId);
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phoneNo = Long.valueOf(phoneNo);
+        this.status = status;
     }
 
     @Override

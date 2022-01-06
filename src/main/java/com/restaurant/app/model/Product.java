@@ -27,8 +27,8 @@ public class Product {
     public Product() {
     }
 
-    public Product(Long productId, String productName, String productPrice, String productCategory, String image, Boolean status) {
-        this.productId = productId;
+    public Product(Long id, String productName, String productPrice, String productCategory, String image, Boolean status) {
+        this.productId = id;
         this.productName = productName;
         this.productPrice = productPrice;
         this.productCategory = productCategory;
@@ -43,12 +43,14 @@ public class Product {
         this.productCategory = productCategory;
     }
 
-    public Long getProductId() {
+
+
+    public Long getId() {
         return productId;
     }
 
-    public void setProductId(Long productId) {
-        this.productId = productId;
+    public void setId(Long id) {
+        this.productId = id;
     }
 
     public String getProductName() {
@@ -89,5 +91,17 @@ public class Product {
 
     public void setStatus(Boolean status) {
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "productId=" + productId +
+                ", productName='" + productName + '\'' +
+                ", productPrice='" + productPrice + '\'' +
+                ", productCategory='" + productCategory + '\'' +
+                ", image='" + image + '\'' +
+                ", status=" + status +
+                '}';
     }
 }

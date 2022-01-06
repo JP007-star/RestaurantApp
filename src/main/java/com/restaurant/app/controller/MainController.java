@@ -7,12 +7,15 @@
  */
 package com.restaurant.app.controller;
 
+import com.restaurant.app.model.Cart;
 import com.restaurant.app.model.Product;
+import com.restaurant.app.service.CartService;
 import com.restaurant.app.service.ProductService;
 import com.restaurant.app.model.User;
 import com.restaurant.app.dao.UserRegistrationDto;
 import com.restaurant.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -21,7 +24,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.jws.soap.SOAPBinding;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -31,6 +38,9 @@ public class MainController {
     private UserService userService;
     @Autowired
     private ProductService productService;
+    @Autowired
+    private CartService cartService;
+
 
     public MainController(UserService userService) {
         super();
@@ -39,6 +49,17 @@ public class MainController {
     @GetMapping("/login")
     public String login() {
         return "login";
+    }
+
+    @PostMapping("/addToCart")
+    public ResponseEntity<?> addToCart(HttpServletRequest request, Model model) throws SQLException, ClassNotFoundException {
+        Long productId=Long.parseLong(request.getParameter("productId"));
+        Product product=productService.findById(productId).orElse(null);
+        System.out.println(product);
+        System.out.println(productId);
+        Cart cart=new Cart(productId,product.getProductName(),product.getProductPrice(),product.getProductCategory(),product.getImage(),product.getStatus());
+        cartService.save(cart);
+        return ResponseEntity.ok("success");
     }
 
     // This Controller function is for loading the reservation page
@@ -75,7 +96,10 @@ public class MainController {
     }
 
     @GetMapping("/cart")
-    public String cartPage() {
+    public String cartPage(Model model) {
+        List<Cart> cartList=cartService.findAll();
+        System.out.println(cartList);
+        model.addAttribute("products",cartList);
         return "cart";
     }
 
