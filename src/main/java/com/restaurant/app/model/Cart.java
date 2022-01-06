@@ -20,6 +20,7 @@ public class Cart {
     String productPrice;
     String productCategory;
     int productQuantity;
+    Double totalPrice;
     @Lob
     @Column(columnDefinition = "MEDIUMBLOB")
     private String image;
@@ -28,7 +29,7 @@ public class Cart {
     public Cart() {
     }
 
-    public Cart(Long productId, String productName, String productPrice, String productCategory, String image, Boolean status,int productQuantity) {
+    public Cart(Long productId, String productName, String productPrice, String productCategory, String image, Boolean status,int productQuantity,Double totalPrice) {
 
         this.productId = productId;
         this.productName = productName;
@@ -37,6 +38,7 @@ public class Cart {
         this.image = image;
         this.status = status;
         this.productQuantity=productQuantity;
+        this.totalPrice=totalPrice;
     }
 
     public Long getCartId() {
@@ -101,5 +103,13 @@ public class Cart {
 
     public void setProductQuantity(int productQuantity) {
         this.productQuantity = productQuantity;
+    }
+
+    public Double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 }

@@ -33,6 +33,7 @@
                 <a id="delete-cart-product"  th:data-cartId="(${product.cartId})" type="button" class="text-center" ><i class="fa fa-times"></i> </a>
             </div>
             <span class="text-muted">$[[${product.productPrice}]]</span>
+            <span class="text-muted">$[[${product.totalPrice}]]</span>
         </li>
         </th:block>
         <li class="list-group-item d-flex justify-content-between bg-light">
@@ -44,7 +45,7 @@
         </li>
         <li class="list-group-item d-flex justify-content-between">
             <span>Total (USD)</span>
-            <strong>$20</strong>
+            <strong>$<p id="grandTotal"></p></strong>
         </li>
     </ul>
     <form class="card p-2">
@@ -95,6 +96,7 @@ $(document).on('click','#add-cart-quantity' ,function(){
     data:{"cartId":cartId},
     success: function(result){
        location.reload();
+       $('#grandTotal').html(result)
     }
   })
 
@@ -107,6 +109,7 @@ $(document).on('click','#add-cart-quantity' ,function(){
     data:{"cartId":cartId},
     success: function(result){
        location.reload();
+       $('#grandTotal').html(result)
     }
   })
 

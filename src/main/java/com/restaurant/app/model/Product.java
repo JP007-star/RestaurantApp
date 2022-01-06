@@ -31,7 +31,7 @@ public class Product {
     public Product(Long productId, String productName, String productPrice, String productCategory, String image, int quantity, Boolean status) {
         this.productId = productId;
         this.productName = productName;
-        this.productPrice = productPrice;
+        this.productPrice =productPrice;
         this.productCategory = productCategory;
         this.image = image;
         this.quantity = quantity;

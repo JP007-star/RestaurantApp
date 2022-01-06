@@ -55,7 +55,7 @@ public class MainController {
         Product product=productService.findById(productId).orElse(null);
         System.out.println(product);
         System.out.println(productId);
-        Cart cart=new Cart(productId,product.getProductName(),product.getProductPrice(),product.getProductCategory(),product.getImage(),product.getStatus(),1);
+        Cart cart=new Cart(productId,product.getProductName(),product.getProductPrice(),product.getProductCategory(),product.getImage(),product.getStatus(),1,Double.parseDouble(product.getProductPrice()));
         cartService.save(cart);
         return ResponseEntity.ok("success");
     }
@@ -76,9 +76,19 @@ public class MainController {
         System.out.println(productInCart);
         productInDb.setQuantity(quantityOfProductInDb-1);
         productInCart.setProductQuantity(quantityOfCart+1);
+        int newQuantityOfCart=productInCart.getProductQuantity();
+        double totalPrice=newQuantityOfCart*Double.parseDouble(productInDb.getProductPrice());
+        productInCart.setTotalPrice(totalPrice);
         productService.save(productInDb);
          cartService.save(productInCart);
-         return ResponseEntity.ok("success");
+      List<Cart> cartList= cartService.findAll();
+      Double grandTotal=0.0;
+        for (Cart cartItems:cartList
+             ) {
+           grandTotal+= cartItems.getTotalPrice();
+
+        }
+         return ResponseEntity.ok(grandTotal);
     }
     @PostMapping("/removeQuantityToCart")
     public ResponseEntity<?> removeQuantityToCart(HttpServletRequest httpServletRequest,Model model) {
@@ -91,10 +101,23 @@ public class MainController {
         System.out.println(productInCart);
         productInDb.setQuantity(quantityOfProductInDb+1);
         productInCart.setProductQuantity(quantityOfCart-1);
+        int newQuantityOfCart=productInCart.getProductQuantity();
+        double totalPrice=newQuantityOfCart*Double.parseDouble(productInDb.getProductPrice());
+        productInCart.setTotalPrice(totalPrice);
         productService.save(productInDb);
         cartService.save(productInCart);
-        return ResponseEntity.ok("success");
+        List<Cart> cartList= cartService.findAll();
+        Double grandTotal=0.0;
+        for (Cart cartItems:cartList
+        ) {
+            grandTotal+= cartItems.getTotalPrice();
+
+        }
+        return ResponseEntity.ok(grandTotal);
+
     }
+
+
 
     // This Controller function is for loading the reservation page
     @GetMapping("/")
