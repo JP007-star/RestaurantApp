@@ -1,14 +1,14 @@
 import groovy.sql.Sql
 pipeline {
-  //  agent any
+   agent any
     
-node{
-
-    def sql = Sql.newInstance("jdbc:mysql://mysql:3306/resturant", "root","anil123", "com.mysql.jdbc.Driver")
-   // def rows = sql.execute "select count(*) from ;"
-   // echo rows.dump()
-}
-    
+tools
+   {
+      maven 'M3'
+      jdk 'jdk'
+   } 
+   
+   
 
    
     stages { 
