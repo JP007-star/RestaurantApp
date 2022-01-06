@@ -38,7 +38,7 @@ public class ProductController {
         productService.save(product);
         return "redirect:/admin/product/products";
     }
-    @PostMapping("/addP")
+    @PostMapping("/addProduct")
     public String saveProduct(@RequestParam("file") MultipartFile file,
                               @RequestParam("productName") String productName,
                               @RequestParam("productCategory") String productCategory,
@@ -74,6 +74,7 @@ public class ProductController {
         }
         return ResponseEntity.ok(result);
     }
+
     @PostMapping("/updateProduct")
     public String updateProduct(HttpServletRequest request, Model model) throws SQLException, ClassNotFoundException {
         String productId=request.getParameter("productId");
@@ -94,7 +95,7 @@ public class ProductController {
         }
         return "redirect:/admin/product/products";
     }
-    @PostMapping("/deleteproduct")
+    @PostMapping("/deleteProduct")
     public String deleteProduct(HttpServletRequest request)throws NumberFormatException {
         Long productId=Long.parseLong(request.getParameter("productId"));
         productService.deleteById(productId);

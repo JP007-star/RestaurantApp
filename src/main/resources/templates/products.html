@@ -162,7 +162,7 @@ tr:hover{
                     <div class="row">
                         <div class="col-md-12 col-md-offset-3">
                             <h5>Product</h5>
-                            <form  th:action="@{/admin/product/addP}"  method="post"  enctype="multipart/form-data">
+                            <form  th:action="@{/admin/product/addProduct}"  method="post"  enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label class="control-label" for="productName"> Product Name </label>
                                     <input id="productName" class="form-control" type="text" name="productName"
@@ -249,7 +249,7 @@ $(document).on('click','#delete-product' ,function(){
 $(document).on('click','#delete-product-button' ,function(){
  var productId=$(this).attr('data-product');
   $.ajax({
-    url: "deleteproduct",
+    url: "deleteProduct",
     type:"POST",
     data:{"productId":productId},
     success: function(result){

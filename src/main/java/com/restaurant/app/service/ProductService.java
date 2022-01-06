@@ -28,6 +28,53 @@ public class ProductService implements ProductRepository {
        return  productRepository.findAll();
     }
 
+    public void saveProductToDB(MultipartFile file,String productName,String productCategory,String productPrice,int quantity,String status)
+    {
+        Product p = new Product();
+        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+        if(fileName.contains(".."))
+        {
+            System.out.println("not a a valid file");
+        }
+        try {
+            p.setImage(Base64.getEncoder().encodeToString(file.getBytes()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        p.setProductName(productName);
+        p.setProductCategory(productCategory);
+        p.setProductPrice(productPrice);
+        p.setQuantity(quantity);
+        p.setStatus(Boolean.valueOf(status));
+        productRepository.save(p);
+    }
+
+    @Override
+    public Optional<Product> findById(Long id) throws UsernameNotFoundException {
+        Optional<Product> product = productRepository.findById(id);
+        return product;
+    }
+
+    public String updateById(Product product){
+        Product product1=productRepository.findById(product.getId()).orElse(null);
+        product1.setProductName(product.getProductName());
+        product1.setProductCategory(product.getProductCategory());
+        product1.setProductPrice(product.getProductPrice());
+        product1.setQuantity(product.getQuantity());
+        productRepository.save(product1);
+        return "success";
+    }
+
+    @Override
+    public long count() {
+        return productRepository.count();
+    }
+
+    @Override
+    public void deleteById(Long aLong) {
+        productRepository.deleteById(aLong);
+
+    }
     @Override
     public List<Product> findAll(Sort sort) {
         return null;
@@ -42,18 +89,6 @@ public class ProductService implements ProductRepository {
     public List<Product> findAllById(Iterable<Long> longs) {
         return null;
     }
-
-    @Override
-    public long count() {
-        return productRepository.count();
-    }
-
-    @Override
-    public void deleteById(Long aLong) {
-        productRepository.deleteById(aLong);
-
-    }
-
     @Override
     public void delete(Product entity) {
 
@@ -79,37 +114,13 @@ public class ProductService implements ProductRepository {
         return productRepository.save(entity);
     }
 
-    public void saveProductToDB(MultipartFile file,String productName,String productCategory,String productPrice,int quantity,String status)
-    {
-        Product p = new Product();
-        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-        if(fileName.contains(".."))
-        {
-            System.out.println("not a a valid file");
-        }
-        try {
-            p.setImage(Base64.getEncoder().encodeToString(file.getBytes()));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        p.setProductName(productName);
-        p.setProductCategory(productCategory);
-        p.setProductPrice(productPrice);
-        p.setQuantity(quantity);
-        p.setStatus(Boolean.valueOf(status));
-        productRepository.save(p);
-    }
+
 
     @Override
     public <S extends Product> List<S> saveAll(Iterable<S> entities) {
         return null;
     }
 
-    @Override
-    public Optional<Product> findById(Long id) throws UsernameNotFoundException {
-            Optional<Product> product = productRepository.findById(id);
-            return product;
-    }
 
     @Override
     public boolean existsById(Long aLong) {
@@ -191,13 +202,5 @@ public class ProductService implements ProductRepository {
         return null;
     }
 
-    public String updateById(Product product){
-        Product product1=productRepository.findById(product.getId()).orElse(null);
-        product1.setProductName(product.getProductName());
-        product1.setProductCategory(product.getProductCategory());
-        product1.setProductPrice(product.getProductPrice());
-        product1.setQuantity(product.getQuantity());
-        productRepository.save(product1);
-        return "success";
-    }
+
 }
