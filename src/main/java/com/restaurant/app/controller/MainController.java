@@ -101,12 +101,18 @@ public class MainController {
     @GetMapping("/cart")
     public String cartPage(Model model) {
         List<Cart> cartList=cartService.findAll();
+        long cartCount=cartService.count();
         model.addAttribute("products",cartList);
+        model.addAttribute("cartCount",cartCount);
         return "cart";
     }
 
     @GetMapping("/payment")
-    public String paymentPage() {
+    public String paymentPage(Model model) {
+        List<Cart> cartList=cartService.findAll();
+        long cartCount=cartService.count();
+        model.addAttribute("products",cartList);
+        model.addAttribute("cartCount",cartCount);
         return "payment";
     }
 
