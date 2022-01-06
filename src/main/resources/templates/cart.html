@@ -63,6 +63,15 @@
 <script>
 $(document).on('click','#delete-cart-product' ,function(){
  var productId=$(this).attr('data-productId');
+swal({
+  title: "Are you sure?",
+  text: "you wanted to remove the product from Cart!",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+})
+.then((willDelete) => {
+  if (willDelete) {
   $.ajax({
     url: "deleteToCart",
     type:"POST",
@@ -70,6 +79,13 @@ $(document).on('click','#delete-cart-product' ,function(){
     success: function(result){
        location.reload();
     }
+  });
+    swal("Poof! Your product has been removed from Cart!", {
+      icon: "success",
+    });
+  } else {
+    swal("Your Cart  is safe!");
+  }
   });
 });
 </script>
