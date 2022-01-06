@@ -10,6 +10,7 @@ package com.restaurant.app.controller;
 import com.restaurant.app.model.Cart;
 import com.restaurant.app.model.Product;
 import com.restaurant.app.service.CartService;
+import com.restaurant.app.service.OrderService;
 import com.restaurant.app.service.ProductService;
 import com.restaurant.app.model.User;
 import com.restaurant.app.dao.UserRegistrationDto;
@@ -47,6 +48,14 @@ public class MainController {
     @GetMapping("/login")
     public String login() {
         return "login";
+    }
+    @PostMapping("/confirmOrder")
+    public ResponseEntity<?> confirmOrder(HttpServletRequest request, Model model) throws SQLException, ClassNotFoundException {
+        List<Cart> cartList=cartService.findAll();
+
+
+        return ResponseEntity.ok("success");
+
     }
 
     @PostMapping("/addToCart")
@@ -148,6 +157,8 @@ public class MainController {
     public String confirmation() {
         return "success";
     }
+
+
 
 
 }

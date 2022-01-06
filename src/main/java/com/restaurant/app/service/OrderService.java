@@ -8,6 +8,7 @@
 package com.restaurant.app.service;
 
 import com.restaurant.app.model.Order;
+import com.restaurant.app.model.Product;
 import com.restaurant.app.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -15,6 +16,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.FluentQuery;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,14 +27,19 @@ public class OrderService implements OrderRepository {
     @Autowired
     OrderRepository orderRepository;
 
-    
+    public Order saveOrder(Order order) {
+        return orderRepository.save(order);
+    }
+
     @Override
     public <S extends Order> S save(S entity) {
+
         return orderRepository.save(entity);
     }
     
     @Override
     public List<Order> findAll() {
+
         return orderRepository.findAll();
     }
 
@@ -48,6 +55,7 @@ public class OrderService implements OrderRepository {
 
     @Override
     public List<Order> findAllById(Iterable<Integer> integers) {
+
         return null;
     }
 
@@ -88,8 +96,9 @@ public class OrderService implements OrderRepository {
     }
 
     @Override
-    public Optional<Order> findById(Integer integer) {
-        return Optional.empty();
+    public Optional<Order> findById(Integer orderId)throws UsernameNotFoundException {
+        Optional<Order>order = orderRepository.findById(orderId);
+        return order;
     }
 
     @Override
@@ -112,10 +121,6 @@ public class OrderService implements OrderRepository {
         return null;
     }
 
-    @Override
-    public void deleteInBatch(Iterable<Order> entities) {
-        OrderRepository.super.deleteInBatch(entities);
-    }
 
     @Override
     public void deleteAllInBatch(Iterable<Order> entities) {

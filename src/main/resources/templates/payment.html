@@ -164,7 +164,7 @@
                         </div>
                     </div>
                     <hr class="my-4">
-                    <a href="/confirm" class="w-100 btn btn-primary btn-lg" type="button">Continue to checkout</a>
+                    <a id="confirmOrder" class="w-100 btn btn-primary btn-lg" type="button">Continue to checkout</a>
                 </form>
             </div>
         </div>
@@ -172,4 +172,16 @@
 
 </div>
 </body>
+<script>
+$(document).on('click','#confirmOrder' ,function(){
+ var cartId=$(this).attr('data-cartId');
+  $.ajax({
+    url: "confirmOrder",
+    type:"POST",
+    data:{"cartId":cartId},
+    success: function(result){
+       location.reload();
+    }
+  })
+</script>
 </html>
