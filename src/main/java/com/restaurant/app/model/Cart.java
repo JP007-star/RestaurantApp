@@ -21,9 +21,20 @@ public class Cart {
     @Lob
     @Column(columnDefinition = "MEDIUMBLOB")
     private String image;
+    private int quantity;
     Boolean status;
 
     public Cart() {
+    }
+
+    public Cart(Long productId, String productName, String productPrice, String productCategory, String image, int quantity, Boolean status) {
+        this.productId = productId;
+        this.productName = productName;
+        this.productPrice = productPrice;
+        this.productCategory = productCategory;
+        this.image = image;
+        this.quantity = quantity;
+        this.status = status;
     }
 
     public Cart(Long productId, String productName, String productPrice, String productCategory, String image, Boolean status) {
@@ -73,6 +84,14 @@ public class Cart {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public Boolean getStatus() {
