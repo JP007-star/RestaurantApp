@@ -14,10 +14,12 @@ public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     // @GeneratedValue(strategy =  GenerationType.IDENTITY)
+    Long cartId;
     Long productId;
     String productName;
     String productPrice;
     String productCategory;
+    int productQuantity;
     @Lob
     @Column(columnDefinition = "MEDIUMBLOB")
     private String image;
@@ -26,13 +28,23 @@ public class Cart {
     public Cart() {
     }
 
-    public Cart(Long productId, String productName, String productPrice, String productCategory, String image, Boolean status) {
+    public Cart(Long productId, String productName, String productPrice, String productCategory, String image, Boolean status,int productQuantity) {
+
         this.productId = productId;
         this.productName = productName;
         this.productPrice = productPrice;
         this.productCategory = productCategory;
         this.image = image;
         this.status = status;
+        this.productQuantity=productQuantity;
+    }
+
+    public Long getCartId() {
+        return cartId;
+    }
+
+    public void setCartId(Long cartId) {
+        this.cartId = cartId;
     }
 
     public Long getProductId() {
@@ -83,4 +95,11 @@ public class Cart {
         this.status = status;
     }
 
+    public int getProductQuantity() {
+        return productQuantity;
+    }
+
+    public void setProductQuantity(int productQuantity) {
+        this.productQuantity = productQuantity;
+    }
 }

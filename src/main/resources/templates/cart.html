@@ -10,53 +10,53 @@
 <div th:replace="header.html"></div>
 <!--Header Section-->
 <div class="card shadow m-5 p-5">
-<div class="col-md-12 col-lg-12 order-md-last">
-    <h4 class="d-flex justify-content-between align-items-center mb-3">
-        <span class="text-primary">Your cart</span>
-        <span class="badge bg-primary rounded-pill">[[${cartCount}]]</span>
-    </h4>
-    <ul class="list-group mb-3">
-        <th:block th:each="product:${products}">
-        <li class="list-group-item d-flex justify-content-between lh-sm">
-            <div class="d-flex justify-content-between col-10">
-                <img alt="" th:src="*{'data:image/jpeg;base64,'+{product.image}}"   style="width: 100px;height: 100px;" >
-                <h6 class="my-0 p-5">[[${product.productName}]]</h6> <br>
-                <small class="text-muted p-5">[[${product.productCategory}]]</small>
-                <div class="row d-flex m-2 justify-content-center">
-                    <h6 class="p-2 text-center">Quantity</h6>
-                    <div class="d-flex  justify-content-between">
-                    <a id="add-cart-quantity" type="button" th:data-productId="(${product.productId})" class="text-center p-2" ><i class="fa fa-plus"></i> </a>
-                    <p class="text-center p-2">1</p>
-                    <a id="remove-cart-quantity" type="button" th:data-productId="(${product.productId})" class="text-center p-2" ><i class="fa fa-minus"></i> </a>
+    <div class="col-md-12 col-lg-12 order-md-last">
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-primary">Your cart</span>
+            <span class="badge bg-primary rounded-pill">[[${cartCount}]]</span>
+        </h4>
+        <ul class="list-group mb-3">
+            <th:block th:each="product:${products}">
+                <li class="list-group-item d-flex justify-content-between lh-sm">
+                    <div class="d-flex justify-content-between col-10">
+                        <img alt="" th:src="*{'data:image/jpeg;base64,'+{product.image}}"   style="width: 100px;height: 100px;" >
+                        <h6 class="my-0 p-5">[[${product.productName}]]</h6> <br>
+                        <small class="text-muted p-5">[[${product.productCategory}]]</small>
+                        <div class="row d-flex m-2 justify-content-center">
+                            <h6 class="p-2 text-center">Quantity</h6>
+                            <div class="d-flex  justify-content-between">
+                                <a id="add-cart-quantity" type="button" th:data-productId="(${product.productId})" class="text-center p-2" ><i class="fa fa-plus"></i> </a>
+                                <p class="text-center p-2">[[${product.productQuantity}]]</p>
+                                <a id="remove-cart-quantity" type="button" th:data-productId="(${product.productId})" class="text-center p-2" ><i class="fa fa-minus"></i> </a>
+                            </div>
+                        </div>
+                        <a id="delete-cart-product"  th:data-productId="(${product.productId})" type="button" class="text-center" ><i class="fa fa-times"></i> </a>
                     </div>
+                    <span class="text-muted">$[[${product.productPrice}]]</span>
+                </li>
+            </th:block>
+            <li class="list-group-item d-flex justify-content-between bg-light">
+                <div class="text-success">
+                    <h6 class="my-0">Promo code</h6>
+                    <small>EXAMPLECODE</small>
                 </div>
-                <a id="delete-cart-product"  th:data-productId="(${product.productId})" type="button" class="text-center" ><i class="fa fa-times"></i> </a>
-            </div>
-            <span class="text-muted">$[[${product.productPrice}]]</span>
-        </li>
-        </th:block>
-        <li class="list-group-item d-flex justify-content-between bg-light">
-            <div class="text-success">
-                <h6 class="my-0">Promo code</h6>
-                <small>EXAMPLECODE</small>
-            </div>
-            <span class="text-success">?$5</span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between">
-            <span>Total (USD)</span>
-            <strong>$20</strong>
-        </li>
-    </ul>
+                <span class="text-success">?$5</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+                <span>Total (USD)</span>
+                <strong>$20</strong>
+            </li>
+        </ul>
 
-    <form class="card p-2">
-        <div class="input-group">
-            <input type="text" class="form-control" placeholder="Promo code">
-            <button type="submit" class="btn btn-secondary">Redeem</button>
-        </div>
-    </form> <br> <br>
-    <a href="payment"><button type="button" class="btn btn-warning col-12">Check out <i class="fa fa-shopping-cart"></i> </button>
-    </a>
-</div>
+        <form class="card p-2">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Promo code">
+                <button type="submit" class="btn btn-secondary">Redeem</button>
+            </div>
+        </form> <br> <br>
+        <a href="payment"><button type="button" class="btn btn-warning col-12">Check out <i class="fa fa-shopping-cart"></i> </button>
+        </a>
+    </div>
 
 </div>
 </body>
@@ -114,5 +114,4 @@ $(document).on('click','#add-cart-quantity' ,function(){
  })
 </script>
 </html>
-
 

@@ -7,6 +7,7 @@
  */
 package com.restaurant.app.controller;
 
+import com.restaurant.app.model.Cart;
 import com.restaurant.app.utility.Counter;
 
 import com.restaurant.app.model.Product;
@@ -101,6 +102,11 @@ public class ProductController {
         productService.deleteById(productId);
         return "redirect:/admin/product/products";
     }
+   /* @PostMapping("/addQuantity")
+    public Cart addQuantity(HttpServletRequest httpServletRequest)
+    {
+
+    }*/
 
 
 
