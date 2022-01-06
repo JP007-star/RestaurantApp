@@ -25,12 +25,12 @@
                 <div class="row d-flex m-2 justify-content-center">
                     <h6 class="p-2 text-center">Quantity</h6>
                     <div class="d-flex  justify-content-between">
-                    <a id="add-cart-quantity" type="button" th:data-productId="(${product.productId})" class="text-center p-2" ><i class="fa fa-plus"></i> </a>
-                    <p class="text-center p-2">1</p>
-                    <a id="remove-cart-quantity" type="button" th:data-productId="(${product.productId})" class="text-center p-2" ><i class="fa fa-minus"></i> </a>
+                    <a id="add-cart-quantity" type="button" th:data-cartId="(${product.cartId})" class="text-center p-2" ><i class="fa fa-plus"></i> </a>
+                    <p class="text-center p-2">[[${product.productQuantity}]]</p>
+                    <a id="remove-cart-quantity" type="button" th:data-cartId="(${product.cartId})" class="text-center p-2" ><i class="fa fa-minus"></i> </a>
                     </div>
                 </div>
-                <a id="delete-cart-product"  th:data-productId="(${product.productId})" type="button" class="text-center" ><i class="fa fa-times"></i> </a>
+                <a id="delete-cart-product"  th:data-cartId="(${product.cartId})" type="button" class="text-center" ><i class="fa fa-times"></i> </a>
             </div>
             <span class="text-muted">$[[${product.productPrice}]]</span>
         </li>
@@ -47,7 +47,6 @@
             <strong>$20</strong>
         </li>
     </ul>
-
     <form class="card p-2">
         <div class="input-group">
             <input type="text" class="form-control" placeholder="Promo code">
@@ -62,7 +61,7 @@
 </body>
 <script>
 $(document).on('click','#delete-cart-product' ,function(){
- var productId=$(this).attr('data-productId');
+ var cartId=$(this).attr('data-cartId');
 swal({
   title: "Are you sure?",
   text: "you wanted to remove the product from Cart!",
@@ -75,7 +74,7 @@ swal({
   $.ajax({
     url: "deleteToCart",
     type:"POST",
-    data:{"productId":productId},
+    data:{"cartId":cartId},
     success: function(result){
        location.reload();
     }
@@ -89,11 +88,11 @@ swal({
   });
 });
 $(document).on('click','#add-cart-quantity' ,function(){
- var productId=$(this).attr('data-productId');
+ var cartId=$(this).attr('data-cartId');
   $.ajax({
     url: "addQuantityToCart",
     type:"POST",
-    data:{"productId":productId},
+    data:{"cartId":cartId},
     success: function(result){
        location.reload();
     }
@@ -101,11 +100,11 @@ $(document).on('click','#add-cart-quantity' ,function(){
 
  })
  $(document).on('click','#remove-cart-quantity' ,function(){
- var productId=$(this).attr('data-productId');
+ var cartId=$(this).attr('data-cartId');
   $.ajax({
     url: "removeQuantityToCart",
     type:"POST",
-    data:{"productId":productId},
+    data:{"cartId":cartId},
     success: function(result){
        location.reload();
     }

@@ -61,25 +61,39 @@ public class MainController {
     }
     @PostMapping("/deleteToCart")
     public ResponseEntity<?> deleteToCart(HttpServletRequest request, Model model) throws SQLException, ClassNotFoundException {
-        Long productId=Long.parseLong(request.getParameter("productId"));
+        Long productId=Long.parseLong(request.getParameter("cartId"));
         cartService.deleteById(productId);
         return ResponseEntity.ok("success");
     }
     @PostMapping("/addQuantityToCart")
     public ResponseEntity<?> addQuantityToCart(HttpServletRequest httpServletRequest,Model model) {
-         Long productId = Long.parseLong(httpServletRequest.getParameter("productId"));
-         Product productInDb=productService.findById(productId).orElse(null);
-         Cart productInCart= cartService.findById(productId).orElse(null);
-         int quantityOfProductInDb=productInDb.getQuantity();
-
-         int quantityOfCart=productInCart.getProductQuantity();
-         productInDb.setQuantity(quantityOfProductInDb-1);
-         productInCart.setProductQuantity(quantityOfCart+1);
-         productService.save(productInDb);
-        System.out.println(productInDb);
+        Long cartId = Long.parseLong(httpServletRequest.getParameter("cartId"));
+        Cart productInCart= cartService.findById(cartId).orElse(null);
         System.out.println(productInCart);
+        Product productInDb=productService.findById(productInCart.getProductId()).orElse(null);
+        int quantityOfProductInDb=productInDb.getQuantity();
+        int quantityOfCart=productInCart.getProductQuantity();
+        System.out.println(productInCart);
+        productInDb.setQuantity(quantityOfProductInDb-1);
+        productInCart.setProductQuantity(quantityOfCart+1);
+        productService.save(productInDb);
          cartService.save(productInCart);
          return ResponseEntity.ok("success");
+    }
+    @PostMapping("/removeQuantityToCart")
+    public ResponseEntity<?> removeQuantityToCart(HttpServletRequest httpServletRequest,Model model) {
+        Long cartId = Long.parseLong(httpServletRequest.getParameter("cartId"));
+        Cart productInCart= cartService.findById(cartId).orElse(null);
+        System.out.println(productInCart);
+        Product productInDb=productService.findById(productInCart.getProductId()).orElse(null);
+        int quantityOfProductInDb=productInDb.getQuantity();
+        int quantityOfCart=productInCart.getProductQuantity();
+        System.out.println(productInCart);
+        productInDb.setQuantity(quantityOfProductInDb+1);
+        productInCart.setProductQuantity(quantityOfCart-1);
+        productService.save(productInDb);
+        cartService.save(productInCart);
+        return ResponseEntity.ok("success");
     }
 
     // This Controller function is for loading the reservation page
