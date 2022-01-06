@@ -43,6 +43,8 @@ public class Product {
         this.productCategory = productCategory;
     }
 
+
+
     public Long getId() {
         return productId;
     }
@@ -89,5 +91,17 @@ public class Product {
 
     public void setStatus(Boolean status) {
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "productId=" + productId +
+                ", productName='" + productName + '\'' +
+                ", productPrice='" + productPrice + '\'' +
+                ", productCategory='" + productCategory + '\'' +
+                ", image='" + image + '\'' +
+                ", status=" + status +
+                '}';
     }
 }

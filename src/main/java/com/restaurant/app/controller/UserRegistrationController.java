@@ -74,8 +74,9 @@ public class UserRegistrationController {
 		String lastName=request.getParameter("lastName");
 		String email=request.getParameter("email");
 		String  phoneNo=request.getParameter("phoneNo");
-		User user =new User(userId,firstName,lastName,email,phoneNo);
-		System.out.println(userId);
+		boolean  status= Boolean.parseBoolean(request.getParameter("status"));
+		User user =new User(userId,firstName,lastName,email,phoneNo,status);
+		System.out.println(user);
 		String msg=userService.updateById(user);
 		System.out.println(msg);
 		String result;
