@@ -8,6 +8,7 @@
 package com.restaurant.app.controller;
 
 import com.restaurant.app.model.Cart;
+import com.restaurant.app.model.Order;
 import com.restaurant.app.model.Product;
 import com.restaurant.app.service.CartService;
 import com.restaurant.app.service.OrderService;
@@ -19,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,6 +41,9 @@ public class MainController {
     private ProductService productService;
     @Autowired
     private CartService cartService;
+    @Autowired
+    private OrderService orderService;
+    Double grandTotal=0.0;
 
 
     public MainController(UserService userService) {
@@ -52,8 +57,22 @@ public class MainController {
     @PostMapping("/confirmOrder")
     public ResponseEntity<?> confirmOrder(HttpServletRequest request, Model model) throws SQLException, ClassNotFoundException {
         List<Cart> cartList=cartService.findAll();
+        ArrayList<String> productIdsList=new ArrayList<>();
+        ArrayList<String> quantitiesList=new ArrayList<>();
+        ArrayList<String> pricesList=new ArrayList<>();
+        ArrayList<String> totalsList=new ArrayList<>();
+        for (Cart cartItems:
+             cartList) {
+            productIdsList.add(String.valueOf(cartItems.getProductId()));
+            quantitiesList.add(String.valueOf(cartItems.getProductQuantity()));
+            pricesList.add(cartItems.getProductPrice());
+            totalsList.add(String.valueOf(cartItems.getTotalPrice()));
 
-
+        }
+        grandTotal=calculateGrandTotal();
+        Order order=new Order(productIdsList.toString(),quantitiesList.toString(),pricesList.toString(),totalsList.toString(),grandTotal);
+        orderService.save(order);
+        cartService.deleteAll();
         return ResponseEntity.ok("success");
 
     }
@@ -89,15 +108,9 @@ public class MainController {
         double totalPrice=newQuantityOfCart*Double.parseDouble(productInDb.getProductPrice());
         productInCart.setTotalPrice(totalPrice);
         productService.save(productInDb);
-         cartService.save(productInCart);
-      List<Cart> cartList= cartService.findAll();
-      Double grandTotal=0.0;
-        for (Cart cartItems:cartList
-             ) {
-           grandTotal+= cartItems.getTotalPrice();
-
-        }
-         return ResponseEntity.ok(grandTotal);
+        cartService.save(productInCart);
+        grandTotal=calculateGrandTotal();
+        return ResponseEntity.ok(grandTotal);
     }
     @PostMapping("/removeQuantityToCart")
     public ResponseEntity<?> removeQuantityToCart(HttpServletRequest httpServletRequest,Model model) {
@@ -115,19 +128,19 @@ public class MainController {
         productInCart.setTotalPrice(totalPrice);
         productService.save(productInDb);
         cartService.save(productInCart);
-        List<Cart> cartList= cartService.findAll();
-        Double grandTotal=0.0;
-        for (Cart cartItems:cartList
-        ) {
-            grandTotal+= cartItems.getTotalPrice();
-
-        }
+        grandTotal=calculateGrandTotal();
         return ResponseEntity.ok(grandTotal);
-
     }
 
 
-
+    public Double calculateGrandTotal(){
+        List<Cart> cartList= cartService.findAll();
+        grandTotal=0.0;
+        for (Cart cartItems:cartList) {
+            grandTotal+= cartItems.getTotalPrice();
+        }
+        return grandTotal;
+    }
     // This Controller function is for loading the reservation page
     @GetMapping("/")
     public String reservation(Model model, HttpSession session){
@@ -162,8 +175,10 @@ public class MainController {
     public String cartPage(Model model) {
         List<Cart> cartList=cartService.findAll();
         long cartCount=cartService.count();
+        grandTotal=calculateGrandTotal();
         model.addAttribute("products",cartList);
         model.addAttribute("cartCount",cartCount);
+        model.addAttribute("grandTotal",grandTotal);
         return "cart";
     }
 
@@ -171,8 +186,10 @@ public class MainController {
     public String paymentPage(Model model) {
         List<Cart> cartList=cartService.findAll();
         long cartCount=cartService.count();
+        grandTotal=calculateGrandTotal();
         model.addAttribute("products",cartList);
         model.addAttribute("cartCount",cartCount);
+        model.addAttribute("grandTotal",grandTotal);
         return "payment";
     }
 

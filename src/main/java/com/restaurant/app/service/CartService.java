@@ -72,7 +72,7 @@ public class CartService implements CartRepository {
 
     @Override
     public void deleteAll() {
-
+        cartRepository.deleteAll();
     }
 
 

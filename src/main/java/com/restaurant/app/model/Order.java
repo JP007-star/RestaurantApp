@@ -6,30 +6,21 @@ import javax.persistence.*;
 @Table(name="orders",schema = "targetSchemaName")
 public class Order{
     @Id
-    //@GeneratedValue(strategy =  GenerationType.IDENTITY)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_id")
-    Integer orderId;
+    public Integer orderId;
     @Column(name = "product_ids")
-    String productIds;
+    public String productIds;
     @Column(name = "quantities")
-    String  quantities;
+    public String  quantities;
     @Column(name = "prices")
-    String prices;
-    @Column(name = "total")
-    int total;
+    public String prices;
+    @Column(name = "totals")
+    public String totals;
+    public Double grandTotal;
 
     public Order(){
 
-    }
-
-
-    public Integer getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(Long orderId) {
-        this.orderId = Math.toIntExact(orderId);
     }
 
     public String getProductIds() {
@@ -56,20 +47,31 @@ public class Order{
         this.prices = prices;
     }
 
-    public int getTotal() {
-        return total;
+    public String getTotal() {
+        return totals;
     }
 
-    public void setTotal(int total) {
-        this.total = total;
+    public void setTotal(String totals) {
+        this.totals = totals;
     }
 
-    public Order(Integer orderId, String productNames, String quantities, String prices, int total) {
-        this.orderId = Math.toIntExact(orderId);
-        this.productIds = productNames;
+    public Order(String productIds, String quantities, String prices, String totals,Double grandTotal) {
+        this.productIds = productIds;
         this.quantities = quantities;
         this.prices = prices;
-        this.total = total;
+        this.totals = totals;
+        this.grandTotal=grandTotal;
     }
 
+    @Override
+    public String toString() {
+        return "Order{" +
+                "orderId=" + orderId +
+                ", productIds='" + productIds + '\'' +
+                ", quantities='" + quantities + '\'' +
+                ", prices='" + prices + '\'' +
+                ", totals='" + totals + '\'' +
+                ", grandTotal=" + grandTotal +
+                '}';
+    }
 }

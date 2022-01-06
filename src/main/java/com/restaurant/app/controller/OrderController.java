@@ -35,6 +35,7 @@ public class OrderController {
     @GetMapping("/orders")
     public String index(Model model, HttpSession session) {
         List<Order> orderList = orderService.findAll();
+        System.out.println(orderList);
         String userName = String.valueOf(session.getAttribute("userName"));
         model.addAttribute("orders", orderList);
         model.addAttribute("counter", new Counter());

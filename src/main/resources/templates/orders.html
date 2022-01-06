@@ -20,25 +20,21 @@
             <th>Quantities</th>
             <th>Prices</th>
             <th>Total</th>
+            <th>Grand Total</th>
             <th>Action</th>
             </thead>
             <tbody>
             <th:block th:each="order:${orders}">
                 <tr>
-                    <td th:text="${counter.incrementAndGet()}"></td>
-                    <td scope="row">
-                        <img alt="" th:src="*{'data:image/jpeg;base64,'+{order.image}}"   style="width: 100px;height: 100px;" ></td>
                     <td>[[${order.orderId}]]</td>
                     <td>[[${order.productIds}]]</td>
                     <td>[[${order.quantities}]]</td>
                     <td>[[${order.prices}]]</td>
-                    <td>[[${order.total}]]</td>
-                    <td><div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch"   id="status" checked="(${order.status})"   required autofocus="autofocus" />
-                    </div></td>
+                    <td>[[${order.totals}]]</td>
+                    <td>[[${order.grandTotal}]]</td>
                     <td>
-                        <button type="button" th:data-order="(${order.id})" id="edit-order"  class="btn btn-primary"><i class="fa fa-edit"></i> </button>
-                        <button type="button" th:data-order="(${order.id})" id="delete-order"   class="btn btn-danger"><i class="fa fa-trash"></i> </button>
+                        <button type="button" th:data-order="(${order.orderId})" id="edit-order"  class="btn btn-primary"><i class="fa fa-edit"></i> </button>
+                        <button type="button" th:data-order="(${order.orderId})" id="delete-order"   class="btn btn-danger"><i class="fa fa-trash"></i> </button>
                     </td>
                 </tr>
 

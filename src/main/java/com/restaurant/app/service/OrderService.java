@@ -61,7 +61,7 @@ public class OrderService implements OrderRepository {
 
     @Override
     public long count() {
-        return 0;
+        return orderRepository.count();
     }
 
     @Override

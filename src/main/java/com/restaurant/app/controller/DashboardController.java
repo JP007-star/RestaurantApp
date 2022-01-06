@@ -7,6 +7,7 @@
  */
 package com.restaurant.app.controller;
 
+import com.restaurant.app.service.OrderService;
 import com.restaurant.app.service.ProductService;
 import com.restaurant.app.dao.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +23,16 @@ public class DashboardController {
     ProductService productService;
     @Autowired
     UserServiceImpl userService;
+    @Autowired
+    OrderService orderService;
     @GetMapping
     public  String index(Model model){
         long productCount=productService.count();
         long userCount=userService.userRepository.count();
+        long orderCount=orderService.count();
         model.addAttribute("productCount",productCount);
         model.addAttribute("userCount",userCount);
+        model.addAttribute("orderCount",orderCount);
         return "dashboard";
     }
 }

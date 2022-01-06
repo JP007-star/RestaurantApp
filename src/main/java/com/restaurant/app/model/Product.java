@@ -14,7 +14,6 @@ import javax.persistence.*;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    //@GeneratedValue(strategy =  GenerationType.IDENTITY)
     Long productId;
     String productName;
     String productPrice;
