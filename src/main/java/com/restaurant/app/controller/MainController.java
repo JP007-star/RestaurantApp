@@ -55,14 +55,44 @@ public class MainController {
         Product product=productService.findById(productId).orElse(null);
         System.out.println(product);
         System.out.println(productId);
-        Cart cart=new Cart(productId,product.getProductName(),product.getProductPrice(),product.getProductCategory(),product.getImage(),product.getStatus());
+        Cart cart=new Cart(productId,product.getProductName(),product.getProductPrice(),product.getProductCategory(),product.getImage(),product.getStatus(),1);
         cartService.save(cart);
         return ResponseEntity.ok("success");
     }
     @PostMapping("/deleteToCart")
     public ResponseEntity<?> deleteToCart(HttpServletRequest request, Model model) throws SQLException, ClassNotFoundException {
-        Long productId=Long.parseLong(request.getParameter("productId"));
+        Long productId=Long.parseLong(request.getParameter("cartId"));
         cartService.deleteById(productId);
+        return ResponseEntity.ok("success");
+    }
+    @PostMapping("/addQuantityToCart")
+    public ResponseEntity<?> addQuantityToCart(HttpServletRequest httpServletRequest,Model model) {
+        Long cartId = Long.parseLong(httpServletRequest.getParameter("cartId"));
+        Cart productInCart= cartService.findById(cartId).orElse(null);
+        System.out.println(productInCart);
+        Product productInDb=productService.findById(productInCart.getProductId()).orElse(null);
+        int quantityOfProductInDb=productInDb.getQuantity();
+        int quantityOfCart=productInCart.getProductQuantity();
+        System.out.println(productInCart);
+        productInDb.setQuantity(quantityOfProductInDb-1);
+        productInCart.setProductQuantity(quantityOfCart+1);
+        productService.save(productInDb);
+         cartService.save(productInCart);
+         return ResponseEntity.ok("success");
+    }
+    @PostMapping("/removeQuantityToCart")
+    public ResponseEntity<?> removeQuantityToCart(HttpServletRequest httpServletRequest,Model model) {
+        Long cartId = Long.parseLong(httpServletRequest.getParameter("cartId"));
+        Cart productInCart= cartService.findById(cartId).orElse(null);
+        System.out.println(productInCart);
+        Product productInDb=productService.findById(productInCart.getProductId()).orElse(null);
+        int quantityOfProductInDb=productInDb.getQuantity();
+        int quantityOfCart=productInCart.getProductQuantity();
+        System.out.println(productInCart);
+        productInDb.setQuantity(quantityOfProductInDb+1);
+        productInCart.setProductQuantity(quantityOfCart-1);
+        productService.save(productInDb);
+        cartService.save(productInCart);
         return ResponseEntity.ok("success");
     }
 

@@ -88,7 +88,7 @@ public class CartService implements CartRepository {
 
     @Override
     public Optional<Cart> findById(Long aLong) {
-        return Optional.empty();
+        return cartRepository.findById(aLong);
     }
 
     @Override
@@ -172,5 +172,8 @@ public class CartService implements CartRepository {
     }
 
 
-
+    @Override
+    public Cart findByProductId(Long productId) {
+        return cartRepository.findByProductId(productId);
+    }
 }

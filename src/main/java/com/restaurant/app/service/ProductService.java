@@ -1,6 +1,8 @@
 package com.restaurant.app.service;
 
+import com.restaurant.app.model.Cart;
 import com.restaurant.app.model.Product;
+import com.restaurant.app.repository.CartRepository;
 import com.restaurant.app.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -23,6 +25,8 @@ import java.util.function.Function;
 public class ProductService implements ProductRepository {
     @Autowired
     public ProductRepository productRepository;
+    @Autowired
+    public CartRepository cartRepository;
     @Override
     public List<Product> findAll() {
        return  productRepository.findAll();
@@ -64,6 +68,7 @@ public class ProductService implements ProductRepository {
         productRepository.save(product1);
         return "success";
     }
+
 
     @Override
     public long count() {
@@ -201,6 +206,7 @@ public class ProductService implements ProductRepository {
     public <S extends Product, R> R findBy(Example<S> example, Function<FluentQuery.FetchableFluentQuery<S>, R> queryFunction) {
         return null;
     }
+
 
 
 }

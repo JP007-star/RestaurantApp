@@ -7,6 +7,7 @@
  */
 package com.restaurant.app.controller;
 
+import com.restaurant.app.model.Cart;
 import com.restaurant.app.utility.Counter;
 
 import com.restaurant.app.model.Product;
@@ -30,7 +31,6 @@ import java.util.Optional;
 public class ProductController {
     @Autowired
     private ProductService productService;
-
 
     @PostMapping("/save")
     public String saveProduct(@ModelAttribute("product") Product product) {
@@ -101,6 +101,11 @@ public class ProductController {
         productService.deleteById(productId);
         return "redirect:/admin/product/products";
     }
+   /* @PostMapping("/addQuantity")
+    public Cart addQuantity(HttpServletRequest httpServletRequest)
+    {
+
+    }*/
 
 
 

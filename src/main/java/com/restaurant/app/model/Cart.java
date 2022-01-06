@@ -14,36 +14,37 @@ public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     // @GeneratedValue(strategy =  GenerationType.IDENTITY)
+    Long cartId;
     Long productId;
     String productName;
     String productPrice;
     String productCategory;
+    int productQuantity;
     @Lob
     @Column(columnDefinition = "MEDIUMBLOB")
     private String image;
-    private int quantity;
     Boolean status;
 
     public Cart() {
     }
 
-    public Cart(Long productId, String productName, String productPrice, String productCategory, String image, int quantity, Boolean status) {
+    public Cart(Long productId, String productName, String productPrice, String productCategory, String image, Boolean status,int productQuantity) {
+
         this.productId = productId;
         this.productName = productName;
         this.productPrice = productPrice;
         this.productCategory = productCategory;
         this.image = image;
-        this.quantity = quantity;
         this.status = status;
+        this.productQuantity=productQuantity;
     }
 
-    public Cart(Long productId, String productName, String productPrice, String productCategory, String image, Boolean status) {
-        this.productId = productId;
-        this.productName = productName;
-        this.productPrice = productPrice;
-        this.productCategory = productCategory;
-        this.image = image;
-        this.status = status;
+    public Long getCartId() {
+        return cartId;
+    }
+
+    public void setCartId(Long cartId) {
+        this.cartId = cartId;
     }
 
     public Long getProductId() {
@@ -86,14 +87,6 @@ public class Cart {
         this.image = image;
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
     public Boolean getStatus() {
         return status;
     }
@@ -102,4 +95,11 @@ public class Cart {
         this.status = status;
     }
 
+    public int getProductQuantity() {
+        return productQuantity;
+    }
+
+    public void setProductQuantity(int productQuantity) {
+        this.productQuantity = productQuantity;
+    }
 }
