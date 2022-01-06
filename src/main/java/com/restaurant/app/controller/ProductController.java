@@ -43,9 +43,10 @@ public class ProductController {
                               @RequestParam("productName") String productName,
                               @RequestParam("productCategory") String productCategory,
                               @RequestParam("productPrice") String productPrice,
+                              @RequestParam("quantity") int quantity,
                               @RequestParam("status") String status)
     {
-        productService.saveProductToDB(file, productName,productCategory,productPrice,status);
+        productService.saveProductToDB(file, productName,productCategory,productPrice,quantity,status);
         return "redirect:/admin/product/products";
     }
     @GetMapping("/products")
@@ -79,7 +80,8 @@ public class ProductController {
         String productName=request.getParameter("productName");
         String productCategory=request.getParameter("productCategory");
         String productPrice=request.getParameter("productPrice");
-        Product product=new Product(productId,productName,productCategory,productPrice);
+        String quantity=request.getParameter("quantity");
+        Product product=new Product(productId,productName,productCategory,productPrice,quantity);
         System.out.println(productId);
         String msg=productService.updateById(product);
         System.out.println(msg);

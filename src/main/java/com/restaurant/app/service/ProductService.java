@@ -79,7 +79,7 @@ public class ProductService implements ProductRepository {
         return productRepository.save(entity);
     }
 
-    public void saveProductToDB(MultipartFile file,String productName,String productCategory,String productPrice,String status)
+    public void saveProductToDB(MultipartFile file,String productName,String productCategory,String productPrice,int quantity,String status)
     {
         Product p = new Product();
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
@@ -95,6 +95,7 @@ public class ProductService implements ProductRepository {
         p.setProductName(productName);
         p.setProductCategory(productCategory);
         p.setProductPrice(productPrice);
+        p.setQuantity(quantity);
         p.setStatus(Boolean.valueOf(status));
         productRepository.save(p);
     }
@@ -191,11 +192,12 @@ public class ProductService implements ProductRepository {
     }
 
     public String updateById(Product product){
-        Product product1=productRepository.findById(product.getProductId()).orElse(null);
+        Product product1=productRepository.findById(product.getId()).orElse(null);
         product1.setProductName(product.getProductName());
         product1.setProductCategory(product.getProductCategory());
         product1.setProductPrice(product.getProductPrice());
-       productRepository.save(product1);
+        product1.setQuantity(product.getQuantity());
+        productRepository.save(product1);
         return "success";
     }
 }

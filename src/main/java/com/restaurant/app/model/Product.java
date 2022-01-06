@@ -22,28 +22,29 @@ public class Product {
     @Lob
     @Column(columnDefinition = "MEDIUMBLOB")
     private String image;
+    private int quantity;
     Boolean status;
 
     public Product() {
     }
 
-    public Product(Long id, String productName, String productPrice, String productCategory, String image, Boolean status) {
-        this.productId = id;
+    public Product(Long productId, String productName, String productPrice, String productCategory, String image, int quantity, Boolean status) {
+        this.productId = productId;
         this.productName = productName;
         this.productPrice = productPrice;
         this.productCategory = productCategory;
         this.image = image;
+        this.quantity = quantity;
         this.status = status;
     }
 
-    public Product(String productId, String productName, String productCategory, String productPrice) {
+    public Product(String productId, String productName, String productCategory, String productPrice, String quantity) {
         this.productId = Long.valueOf(productId);
         this.productName = productName;
         this.productPrice = productPrice;
         this.productCategory = productCategory;
+        this.quantity=Integer.valueOf(quantity);
     }
-
-
 
     public Long getId() {
         return productId;
@@ -85,6 +86,14 @@ public class Product {
         this.image = image;
     }
 
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
     public Boolean getStatus() {
         return status;
     }
@@ -101,6 +110,7 @@ public class Product {
                 ", productPrice='" + productPrice + '\'' +
                 ", productCategory='" + productCategory + '\'' +
                 ", image='" + image + '\'' +
+                ", quantity=" + quantity +
                 ", status=" + status +
                 '}';
     }
