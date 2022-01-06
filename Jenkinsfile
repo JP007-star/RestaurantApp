@@ -2,8 +2,13 @@ import groovy.sql.Sql
 pipeline {
    agent any
     
-
-    
+tools
+   {
+      maven 'M3'
+      jdk 'jdk'
+   } 
+   
+   
 
    
     stages { 
