@@ -23,8 +23,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import javax.jws.soap.SOAPBinding;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
@@ -101,12 +99,18 @@ public class MainController {
     @GetMapping("/cart")
     public String cartPage(Model model) {
         List<Cart> cartList=cartService.findAll();
+        long cartCount=cartService.count();
         model.addAttribute("products",cartList);
+        model.addAttribute("cartCount",cartCount);
         return "cart";
     }
 
     @GetMapping("/payment")
-    public String paymentPage() {
+    public String paymentPage(Model model) {
+        List<Cart> cartList=cartService.findAll();
+        long cartCount=cartService.count();
+        model.addAttribute("products",cartList);
+        model.addAttribute("cartCount",cartCount);
         return "payment";
     }
 

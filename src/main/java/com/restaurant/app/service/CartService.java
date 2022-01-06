@@ -47,7 +47,7 @@ public class CartService implements CartRepository {
 
     @Override
     public long count() {
-        return 0;
+        return cartRepository.count();
     }
 
     @Override
