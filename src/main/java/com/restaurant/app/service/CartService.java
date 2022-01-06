@@ -52,7 +52,7 @@ public class CartService implements CartRepository {
 
     @Override
     public void deleteById(Long aLong) {
-
+        cartRepository.deleteById(aLong);
     }
 
     @Override

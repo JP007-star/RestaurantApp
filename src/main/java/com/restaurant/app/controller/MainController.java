@@ -61,6 +61,12 @@ public class MainController {
         cartService.save(cart);
         return ResponseEntity.ok("success");
     }
+    @PostMapping("/deleteToCart")
+    public ResponseEntity<?> deleteToCart(HttpServletRequest request, Model model) throws SQLException, ClassNotFoundException {
+        Long productId=Long.parseLong(request.getParameter("productId"));
+        cartService.deleteById(productId);
+        return ResponseEntity.ok("success");
+    }
 
     // This Controller function is for loading the reservation page
     @GetMapping("/")
@@ -98,7 +104,6 @@ public class MainController {
     @GetMapping("/cart")
     public String cartPage(Model model) {
         List<Cart> cartList=cartService.findAll();
-        System.out.println(cartList);
         model.addAttribute("products",cartList);
         return "cart";
     }
