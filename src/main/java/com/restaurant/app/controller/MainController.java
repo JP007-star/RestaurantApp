@@ -7,27 +7,26 @@
  */
 package com.restaurant.app.controller;
 
-import com.restaurant.app.model.Cart;
-import com.restaurant.app.model.Order;
-import com.restaurant.app.model.Product;
+import com.restaurant.app.model.*;
 import com.restaurant.app.service.CartService;
 import com.restaurant.app.service.OrderService;
 import com.restaurant.app.service.ProductService;
-import com.restaurant.app.model.User;
 import com.restaurant.app.dao.UserRegistrationDto;
 import com.restaurant.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.awt.*;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -130,6 +129,15 @@ public class MainController {
         cartService.save(productInCart);
         grandTotal=calculateGrandTotal();
         return ResponseEntity.ok(grandTotal);
+    }
+    //This controller function is for generating orderBill as PDF
+    @GetMapping("/billGenerator")
+    public void  billGenerator(HttpServletResponse response,HttpServletRequest request) throws IOException {
+        BillGenerator billGenerator=new BillGenerator();
+        Integer orderId=Integer.parseInt(request.getParameter("orderId"));
+        Order order=orderService.findById(orderId).orElse(null);
+        User user=new User();
+        billGenerator.generateBill(response,order,user);
     }
 
 
