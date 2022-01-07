@@ -7,6 +7,8 @@
  */
 package com.restaurant.app.controller;
 
+import com.restaurant.app.model.Order;
+import com.restaurant.app.service.CartService;
 import com.restaurant.app.service.OrderService;
 import com.restaurant.app.service.ProductService;
 import com.restaurant.app.dao.UserServiceImpl;
@@ -15,6 +17,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/admin/dashboard")
@@ -25,6 +29,9 @@ public class DashboardController {
     UserServiceImpl userService;
     @Autowired
     OrderService orderService;
+    @Autowired
+    CartService cartService;
+    Double totalRevenue=0.0;
     @GetMapping
     public  String index(Model model){
         long productCount=productService.count();
@@ -33,6 +40,17 @@ public class DashboardController {
         model.addAttribute("productCount",productCount);
         model.addAttribute("userCount",userCount);
         model.addAttribute("orderCount",orderCount);
+        model.addAttribute("totalRevenue",revenueCalculator());
         return "dashboard";
+    }
+
+    public Double revenueCalculator(){
+        totalRevenue=0.0;
+        List<Order> orderList=orderService.findAll();
+        for (Order orderItems:
+             orderList) {
+            totalRevenue+=orderItems.getGrandTotal();
+        }
+        return totalRevenue;
     }
 }

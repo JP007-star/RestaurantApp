@@ -55,7 +55,31 @@ public class Order{
         this.totals = totals;
     }
 
-    public Order(String productIds, String quantities, String prices, String totals,Double grandTotal) {
+    public Integer getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
+    }
+
+    public String getTotals() {
+        return totals;
+    }
+
+    public void setTotals(String totals) {
+        this.totals = totals;
+    }
+
+    public Double getGrandTotal() {
+        return grandTotal;
+    }
+
+    public void setGrandTotal(Double grandTotal) {
+        this.grandTotal = grandTotal;
+    }
+
+    public Order(String productIds, String quantities, String prices, String totals, Double grandTotal) {
         this.productIds = productIds;
         this.quantities = quantities;
         this.prices = prices;
