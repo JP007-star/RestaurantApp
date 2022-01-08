@@ -14,8 +14,8 @@
             <button type="button"  class="btn btn-dark position-relative">
                 <a href="cart"><i class="fa fa-shopping-cart text-white" ></i></a>
                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                       1+
-                <span class="visually-hidden">unread messages</span>
+                       [[${cartCount}]]
+              <span class="visually-hidden">unread messages</span>
                 </span>
             </button> &emsp;
             <div sec:authorize="hasRole('ROLE_ADMIN')">
