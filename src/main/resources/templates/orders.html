@@ -16,22 +16,28 @@
         <table class="table-striped   shadow m-3 p-3" >
             <thead>
             <th>OrderId</th>
-            <th>ProductIds</th>
-            <th>Quantities</th>
-            <th>Prices</th>
-            <th>Total</th>
+            <th>ProductNames</th>
+            <th>UserId</th>
+            <th>ShippingAddress</th>
+            <th>Country</th>
+            <th>State</th>
+            <th>Zipcode</th>
             <th>Grand Total</th>
+            <th>OrderDate</th>
             <th>Action</th>
             </thead>
             <tbody>
             <th:block th:each="order:${orders}">
                 <tr>
                     <td>[[${order.orderId}]]</td>
-                    <td>[[${order.productIds}]]</td>
-                    <td>[[${order.quantities}]]</td>
-                    <td>[[${order.prices}]]</td>
-                    <td>[[${order.totals}]]</td>
+                    <td>[[${order.productNames}]]</td>
+                    <td>1</td>
+                    <td>[[${order.shippingAddress}]]</td>
+                    <td>[[${order.country}]]</td>
+                    <td>[[${order.state}]]</td>
+                    <td>[[${order.zip}]]</td>
                     <td>[[${order.grandTotal}]]</td>
+                    <td>23/11/2000</td>
                     <td>
                         <button type="button" th:data-order="(${order.orderId})" id="view-order"  class="btn btn-light"><i class="fa fa-eye"></i> </button>
                     </td>

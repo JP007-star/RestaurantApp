@@ -11,24 +11,53 @@ public class Order{
     public Integer orderId;
     @Column(name = "product_ids")
     public String productIds;
+    @Column(name = "product_names")
+    public String productNames;
     @Column(name = "quantities")
     public String  quantities;
     @Column(name = "prices")
     public String prices;
     @Column(name = "totals")
-    public String totals;
+    public String total;
+    public String shippingAddress;
+    public String country;
+    public String state;
+    public int zip;
     public Double grandTotal;
 
     public Order(){
 
     }
 
-    public String getProductIds() {
-        return productIds;
+    public Order(Integer orderId, String productIds, String productNames, String quantities, String prices, String total, String shippingAddress, String country, String state, int zip, Double grandTotal) {
+        this.orderId = orderId;
+        this.productIds = productIds;
+        this.productNames = productNames;
+        this.quantities = quantities;
+        this.prices = prices;
+        this.total = total;
+        this.shippingAddress = shippingAddress;
+        this.country = country;
+        this.state = state;
+        this.zip = zip;
+        this.grandTotal = grandTotal;
     }
 
-    public void setProductIds(String productIds) {
-        this.productIds = productIds;
+    public Order(String toString, String address, String country, String state, String zip, Double grandTotal) {
+        this.productNames = toString;
+        this.shippingAddress = address;
+        this.country = country;
+        this.state = state;
+        this.zip = Integer.valueOf(zip);
+        this.grandTotal = grandTotal;
+    }
+
+    public String getProductNames() {
+        return productNames;
+    }
+
+    public void setProductNames(String productNames) {
+        this.productNames = productNames;
     }
 
     public String getQuantities() {
@@ -48,11 +77,11 @@ public class Order{
     }
 
     public String getTotal() {
-        return totals;
+        return total;
     }
 
-    public void setTotal(String totals) {
-        this.totals = totals;
+    public void setTotal(String total) {
+        this.total = total;
     }
 
     public Integer getOrderId() {
@@ -63,12 +92,44 @@ public class Order{
         this.orderId = orderId;
     }
 
-    public String getTotals() {
-        return totals;
+    public String getProductIds() {
+        return productIds;
     }
 
-    public void setTotals(String totals) {
-        this.totals = totals;
+    public void setProductIds(String productIds) {
+        this.productIds = productIds;
+    }
+
+    public String getShippingAddress() {
+        return shippingAddress;
+    }
+
+    public void setShippingAddress(String shippingAddress) {
+        this.shippingAddress = shippingAddress;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public int getZip() {
+        return zip;
+    }
+
+    public void setZip(int zip) {
+        this.zip = zip;
     }
 
     public Double getGrandTotal() {
@@ -79,22 +140,15 @@ public class Order{
         this.grandTotal = grandTotal;
     }
 
-    public Order(String productIds, String quantities, String prices, String totals, Double grandTotal) {
-        this.productIds = productIds;
-        this.quantities = quantities;
-        this.prices = prices;
-        this.totals = totals;
-        this.grandTotal=grandTotal;
-    }
-
     @Override
     public String toString() {
         return "Order{" +
                 "orderId=" + orderId +
                 ", productIds='" + productIds + '\'' +
-                ", quantities='" + quantities + '\'' +
-                ", prices='" + prices + '\'' +
-                ", totals='" + totals + '\'' +
+                ", shippingAddress='" + shippingAddress + '\'' +
+                ", country='" + country + '\'' +
+                ", state='" + state + '\'' +
+                ", zip=" + zip +
                 ", grandTotal=" + grandTotal +
                 '}';
     }

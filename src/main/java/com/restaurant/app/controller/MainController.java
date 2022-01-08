@@ -56,21 +56,24 @@ public class MainController {
     @PostMapping("/confirmOrder")
     public ResponseEntity<?> confirmOrder(HttpServletRequest request, Model model) throws SQLException, ClassNotFoundException {
         String address=request.getParameter("address");
+        String country=request.getParameter("country");
+        String state=request.getParameter("state");
+        String zip=request.getParameter("zip");
         List<Cart> cartList=cartService.findAll();
-        ArrayList<String> productIdsList=new ArrayList<>();
+        ArrayList<String> productNamesList=new ArrayList<>();
         ArrayList<String> quantitiesList=new ArrayList<>();
         ArrayList<String> pricesList=new ArrayList<>();
         ArrayList<String> totalsList=new ArrayList<>();
         for (Cart cartItems:
              cartList) {
-            productIdsList.add(String.valueOf(cartItems.getProductId()));
+            productNamesList.add(String.valueOf(cartItems.getProductName()));
             quantitiesList.add(String.valueOf(cartItems.getProductQuantity()));
             pricesList.add(cartItems.getProductPrice());
             totalsList.add(String.valueOf(cartItems.getTotalPrice()));
 
         }
         grandTotal=calculateGrandTotal();
-        Order order=new Order(productIdsList.toString(),quantitiesList.toString(),pricesList.toString(),totalsList.toString(),grandTotal);
+        Order order=new Order(productNamesList.toString(),address,country,state,zip,grandTotal);
         orderService.save(order);
         cartService.deleteAll();
         return ResponseEntity.ok("success");
