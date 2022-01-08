@@ -55,6 +55,7 @@ public class MainController {
     }
     @PostMapping("/confirmOrder")
     public ResponseEntity<?> confirmOrder(HttpServletRequest request, Model model) throws SQLException, ClassNotFoundException {
+        String address=request.getParameter("address");
         List<Cart> cartList=cartService.findAll();
         ArrayList<String> productIdsList=new ArrayList<>();
         ArrayList<String> quantitiesList=new ArrayList<>();

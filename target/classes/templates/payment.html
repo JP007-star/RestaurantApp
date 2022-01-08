@@ -175,10 +175,20 @@
 <script>
 $(document).on('click','#confirmOrder' ,function(){
  var cartId=$(this).attr('data-cartId');
+ var address=$('#address').val();
+ var address2=$('#address2').val();
+ var country=$('#country').val();
+ var state=$('#state').val();
+ var zip=$('#zip').val();
   $.ajax({
     url: "confirmOrder",
     type:"POST",
-    data:{"cartId":cartId},
+    data:{"cartId":cartId,
+          "address":address+' , '+address2,
+          "country":country,
+          "state":state,
+          "zip":zip
+    },
     success: function(result){
        window.location.replace("/confirm");
     }
