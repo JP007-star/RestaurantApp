@@ -7,7 +7,11 @@
     <div th:replace="script.html"></div>
 <body>
 
-<div th:replace="header.html"> ></div>
+<div th:replace="header.html">
+
+</div>
+
+
 
 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
@@ -31,7 +35,7 @@
                     <img th:src="*{'data:image/jpeg;base64,'+{product.image}}" class="card-img-top" alt="">
                     <div class="card-body">
                         <h5 class="card-title">[[${product.productName}]]</h5>
-                          <p class="card-text">$ [[${product.productPrice}]]</p>
+                        <p class="card-text"><i class="fa fa-rupee"></i> [[${product.productPrice}]]</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="ratings"> <i class="fa fa-star rating-color"></i> <i class="fa fa-star rating-color"></i> <i class="fa fa-star rating-color"></i> <i class="fa fa-star rating-color"></i> <i class="fa fa-star"></i> </div>
                             <h5 class="review-count">12 Reviews</h5>
