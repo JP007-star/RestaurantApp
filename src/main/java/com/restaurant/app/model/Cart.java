@@ -13,7 +13,6 @@ import javax.persistence.*;
 public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    // @GeneratedValue(strategy =  GenerationType.IDENTITY)
     Long cartId;
     Long productId;
     String productName;

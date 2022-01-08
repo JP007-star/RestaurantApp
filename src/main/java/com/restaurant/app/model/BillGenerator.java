@@ -12,8 +12,6 @@ import com.lowagie.text.PageSize;
 import com.lowagie.text.Paragraph;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
-
-
 import javax.servlet.http.HttpServletResponse;
 import java.awt.*;
 import java.io.IOException;
