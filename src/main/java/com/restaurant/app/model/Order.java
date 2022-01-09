@@ -1,6 +1,8 @@
 package com.restaurant.app.model;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Table(name="orders",schema = "targetSchemaName")
@@ -11,6 +13,8 @@ public class Order{
     public Integer orderId;
     @Column(name = "product_ids")
     public String productIds;
+    @Column(name = "user_id")
+    public String userId;
     @Column(name = "product_names")
     public String productNames;
     @Column(name = "quantities")
@@ -24,14 +28,17 @@ public class Order{
     public String state;
     public int zip;
     public Double grandTotal;
+    public LocalDate orderDate;
 
     public Order(){
 
     }
 
-    public Order(Integer orderId, String productIds, String productNames, String quantities, String prices, String total, String shippingAddress, String country, String state, int zip, Double grandTotal) {
+
+    public Order(Integer orderId, String productIds, String userId, String productNames, String quantities, String prices, String total, String shippingAddress, String country, String state, int zip, Double grandTotal, LocalDate orderDate) {
         this.orderId = orderId;
         this.productIds = productIds;
+        this.userId = userId;
         this.productNames = productNames;
         this.quantities = quantities;
         this.prices = prices;
@@ -41,15 +48,41 @@ public class Order{
         this.state = state;
         this.zip = zip;
         this.grandTotal = grandTotal;
+        this.orderDate = orderDate;
     }
 
-    public Order(String toString, String address, String country, String state, String zip, Double grandTotal) {
-        this.productNames = toString;
+
+    public Order(String toString,String userId, String toString1, String toString2, String toString3, String toString4, String address, String country, String state, String zip, Double grandTotal, LocalDate orderDate) {
+        this.productIds = toString;
+        this.userId=userId;
+        this.productNames = toString1;
+        this.quantities = toString2;
+        this.prices = toString3;
+        this.total = toString4;
         this.shippingAddress = address;
         this.country = country;
         this.state = state;
         this.zip = Integer.valueOf(zip);
         this.grandTotal = grandTotal;
+        this.orderDate = orderDate;
+    }
+
+
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public LocalDate getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(LocalDate orderDate) {
+        this.orderDate = orderDate;
     }
 
     public String getProductNames() {
@@ -145,11 +178,17 @@ public class Order{
         return "Order{" +
                 "orderId=" + orderId +
                 ", productIds='" + productIds + '\'' +
+                ", userId='" + userId + '\'' +
+                ", productNames='" + productNames + '\'' +
+                ", quantities='" + quantities + '\'' +
+                ", prices='" + prices + '\'' +
+                ", total='" + total + '\'' +
                 ", shippingAddress='" + shippingAddress + '\'' +
                 ", country='" + country + '\'' +
                 ", state='" + state + '\'' +
                 ", zip=" + zip +
                 ", grandTotal=" + grandTotal +
+                ", orderDate=" + orderDate +
                 '}';
     }
 }

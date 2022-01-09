@@ -28,8 +28,12 @@ import javax.servlet.http.HttpSession;
 import java.awt.*;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 
 @Controller
@@ -43,7 +47,7 @@ public class MainController {
     @Autowired
     private OrderService orderService;
     Double grandTotal=0.0;
-
+    LocalDate orderDate= LocalDate.now();
 
     public MainController(UserService userService) {
         super();
@@ -59,25 +63,31 @@ public class MainController {
    //This function is used to confirm the order
     @PostMapping("/confirmOrder")
     public ResponseEntity<?> confirmOrder(HttpServletRequest request, Model model) throws SQLException, ClassNotFoundException {
+        List<User> userList=userService.findAll();
         String address=request.getParameter("address");
         String country=request.getParameter("country");
         String state=request.getParameter("state");
         String zip=request.getParameter("zip");
         List<Cart> cartList=cartService.findAll();
+        ArrayList<String> userIdList=new ArrayList<>();
+        ArrayList<String> productIdsList=new ArrayList<>();
         ArrayList<String> productNamesList=new ArrayList<>();
         ArrayList<String> quantitiesList=new ArrayList<>();
         ArrayList<String> pricesList=new ArrayList<>();
         ArrayList<String> totalsList=new ArrayList<>();
         for (Cart cartItems:
              cartList) {
+            productIdsList.add(String.valueOf(cartItems.getProductId()));
             productNamesList.add(String.valueOf(cartItems.getProductName()));
             quantitiesList.add(String.valueOf(cartItems.getProductQuantity()));
             pricesList.add(cartItems.getProductPrice());
             totalsList.add(String.valueOf(cartItems.getTotalPrice()));
-
+        }
+        for (User userItems:userList){
+            userIdList.add(String.valueOf(userItems.getId()));
         }
         grandTotal=calculateGrandTotal();
-        Order order=new Order(productNamesList.toString(),address,country,state,zip,grandTotal);
+        Order order=new Order(productIdsList.toString(), userIdList.toString(),productNamesList.toString(),quantitiesList.toString(),pricesList.toString(),totalsList.toString(),address,country,state,zip,grandTotal,orderDate);
         orderService.save(order);
         cartService.deleteAll();
         return ResponseEntity.ok("success");
@@ -158,6 +168,8 @@ public class MainController {
         }
         return grandTotal;
     }
+
+
     // This Controller function is for loading the reservation page
     @GetMapping("/")
     public String reservation(Model model, HttpSession session){

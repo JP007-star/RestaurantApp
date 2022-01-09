@@ -62,7 +62,7 @@ public class ProductService implements ProductRepository {
     }
 
     public String updateById(Product product){
-        Product product1=productRepository.findById(product.getId()).orElse(null);
+        Product product1=productRepository.findById(product.getProductId()).orElse(null);
         product1.setProductName(product.getProductName());
         product1.setProductCategory(product.getProductCategory());
         product1.setProductPrice(product.getProductPrice());
