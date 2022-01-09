@@ -49,10 +49,14 @@ public class MainController {
         super();
         this.userService = userService;
     }
+
+    //this function will render login page
     @GetMapping("/login")
     public String login() {
         return "login";
     }
+
+   //This function is used to confirm the order
     @PostMapping("/confirmOrder")
     public ResponseEntity<?> confirmOrder(HttpServletRequest request, Model model) throws SQLException, ClassNotFoundException {
         String address=request.getParameter("address");
@@ -134,6 +138,7 @@ public class MainController {
         grandTotal=calculateGrandTotal();
         return ResponseEntity.ok(grandTotal);
     }
+
     //This controller function is for generating orderBill as PDF
     @GetMapping("/billGenerator")
     public void  billGenerator(HttpServletResponse response,HttpServletRequest request) throws IOException {
@@ -144,7 +149,7 @@ public class MainController {
         billGenerator.generateBill(response,order,user);
     }
 
-
+   //This function is used to calculate GrandTotal
     public Double calculateGrandTotal(){
         List<Cart> cartList= cartService.findAll();
         grandTotal=0.0;
@@ -167,22 +172,21 @@ public class MainController {
         return "index";
     }
 
+    //This function is used to register a user
     @PostMapping("/register")
     public String registerUser(@ModelAttribute("user") UserRegistrationDto registrationDto) {
         userService.save(registrationDto);
         System.out.println(registrationDto);
         return "redirect:/login?success";
     }
+
+
     @ModelAttribute("user")
     public UserRegistrationDto userRegistrationDto() {
         return new UserRegistrationDto();
     }
 
-    @GetMapping("/registration")
-    public String showRegistrationForm() {
-        return "registration";
-    }
-
+    //this function will render cart page
     @GetMapping("/cart")
     public String cartPage(Model model) {
         List<Cart> cartList=cartService.findAll();
@@ -194,6 +198,7 @@ public class MainController {
         return "cart";
     }
 
+    //this function will render cart page
     @GetMapping("/payment")
     public String paymentPage(Model model) {
         List<Cart> cartList=cartService.findAll();
@@ -205,6 +210,7 @@ public class MainController {
         return "payment";
     }
 
+    //this function will render confirmation page
     @GetMapping("/confirm")
     public String confirmation() {
         return "success";

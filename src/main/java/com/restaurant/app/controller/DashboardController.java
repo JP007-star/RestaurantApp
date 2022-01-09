@@ -7,6 +7,7 @@
  */
 package com.restaurant.app.controller;
 
+import com.google.gson.Gson;
 import com.restaurant.app.model.Order;
 import com.restaurant.app.service.CartService;
 import com.restaurant.app.service.OrderService;
@@ -35,12 +36,16 @@ public class DashboardController {
     @GetMapping
     public  String index(Model model){
         long productCount=productService.count();
+        List<String> productQuantityStockList=productService.findAllQuantity();
+        List<String> productNameStockList=productService.findAllProductName();
         long userCount=userService.userRepository.count();
         long orderCount=orderService.count();
         model.addAttribute("productCount",productCount);
         model.addAttribute("userCount",userCount);
         model.addAttribute("orderCount",orderCount);
         model.addAttribute("totalRevenue",revenueCalculator());
+        model.addAttribute("productQuantityStockList",productQuantityStockList);
+        model.addAttribute("productNameStockList",productNameStockList);
         return "dashboard";
     }
 
