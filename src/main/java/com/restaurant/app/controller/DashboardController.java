@@ -35,6 +35,7 @@ public class DashboardController {
     Double totalRevenue=0.0;
     @GetMapping
     public  String index(Model model){
+        long cartCount=cartService.count();
         long productCount=productService.count();
         List<String> productQuantityStockList=productService.findAllQuantity();
         List<String> productNameStockList=productService.findAllProductName();
@@ -42,6 +43,7 @@ public class DashboardController {
         long orderCount=orderService.count();
         model.addAttribute("productCount",productCount);
         model.addAttribute("userCount",userCount);
+        model.addAttribute("cartCount",cartCount);
         model.addAttribute("orderCount",orderCount);
         model.addAttribute("totalRevenue",revenueCalculator());
         model.addAttribute("productQuantityStockList",productQuantityStockList);
