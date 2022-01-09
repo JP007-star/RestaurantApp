@@ -158,12 +158,14 @@ public class MainController {
     // This Controller function is for loading the reservation page
     @GetMapping("/")
     public String reservation(Model model, HttpSession session){
+        long cartCount=cartService.count();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String login = authentication.getName();
         User user=userService.loadByEmailId(login);
         session.setAttribute("userName", user.getFirstName());
         String userName= String.valueOf(session.getAttribute("userName"));
         List<Product> productList=productService.findAll();
+        model.addAttribute("cartCount",cartCount);
         model.addAttribute("products",productList);
         model.addAttribute("userName",userName);
         return "index";

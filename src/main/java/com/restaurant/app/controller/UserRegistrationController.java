@@ -1,10 +1,12 @@
 package com.restaurant.app.controller;
 
 
+import com.restaurant.app.service.CartService;
 import com.restaurant.app.utility.Counter;
 import com.restaurant.app.dao.UserRegistrationDto;
 import com.restaurant.app.model.User;
 import com.restaurant.app.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +25,8 @@ import java.util.Optional;
 public class UserRegistrationController {
 
 	private UserService userService;
+	@Autowired
+	CartService cartService;
 
 	public UserRegistrationController(UserService userService) {
 		super();
@@ -48,6 +52,8 @@ public class UserRegistrationController {
 	@GetMapping("/users")
 	public String fetchUsers(Model model){
 		List<User> userList=userService.findAll();
+		long cartCount=cartService.count();
+		model.addAttribute("cartCount",cartCount);
 		model.addAttribute("users",userList);
 		model.addAttribute("counter",new Counter());
 		return "users";
