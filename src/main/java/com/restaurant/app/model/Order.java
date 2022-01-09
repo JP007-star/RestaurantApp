@@ -2,6 +2,7 @@ package com.restaurant.app.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -13,8 +14,8 @@ public class Order{
     public Integer orderId;
     @Column(name = "product_ids")
     public String productIds;
-    @Column(name = "user_id")
-    public String userId;
+    @Column(name = "user_name")
+    public String userName;
     @Column(name = "product_names")
     public String productNames;
     @Column(name = "quantities")
@@ -28,17 +29,17 @@ public class Order{
     public String state;
     public int zip;
     public Double grandTotal;
-    public LocalDate orderDate;
+    public LocalDateTime orderDate;
 
     public Order(){
 
     }
 
 
-    public Order(Integer orderId, String productIds, String userId, String productNames, String quantities, String prices, String total, String shippingAddress, String country, String state, int zip, Double grandTotal, LocalDate orderDate) {
+    public Order(Integer orderId, String productIds, String userName, String productNames, String quantities, String prices, String total, String shippingAddress, String country, String state, int zip, Double grandTotal, LocalDateTime orderDate) {
         this.orderId = orderId;
         this.productIds = productIds;
-        this.userId = userId;
+        this.userName = userName;
         this.productNames = productNames;
         this.quantities = quantities;
         this.prices = prices;
@@ -52,9 +53,9 @@ public class Order{
     }
 
 
-    public Order(String toString,String userId, String toString1, String toString2, String toString3, String toString4, String address, String country, String state, String zip, Double grandTotal, LocalDate orderDate) {
+    public Order(String toString,String userId, String toString1, String toString2, String toString3, String toString4, String address, String country, String state, String zip, Double grandTotal, LocalDateTime orderDate) {
         this.productIds = toString;
-        this.userId=userId;
+        this.userName=userId;
         this.productNames = toString1;
         this.quantities = toString2;
         this.prices = toString3;
@@ -68,20 +69,19 @@ public class Order{
     }
 
 
-
-    public String getUserId() {
-        return userId;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public LocalDate getOrderDate() {
+    public LocalDateTime getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(LocalDate orderDate) {
+    public void setOrderDate(LocalDateTime orderDate) {
         this.orderDate = orderDate;
     }
 
@@ -178,7 +178,7 @@ public class Order{
         return "Order{" +
                 "orderId=" + orderId +
                 ", productIds='" + productIds + '\'' +
-                ", userId='" + userId + '\'' +
+                ", userId='" + userName + '\'' +
                 ", productNames='" + productNames + '\'' +
                 ", quantities='" + quantities + '\'' +
                 ", prices='" + prices + '\'' +

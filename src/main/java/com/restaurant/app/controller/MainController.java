@@ -28,10 +28,13 @@ import javax.servlet.http.HttpSession;
 import java.awt.*;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.Clock;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
@@ -47,7 +50,7 @@ public class MainController {
     @Autowired
     private OrderService orderService;
     Double grandTotal=0.0;
-    LocalDate orderDate= LocalDate.now();
+    LocalDateTime orderDate= LocalDateTime.now();
 
     public MainController(UserService userService) {
         super();
@@ -69,7 +72,7 @@ public class MainController {
         String state=request.getParameter("state");
         String zip=request.getParameter("zip");
         List<Cart> cartList=cartService.findAll();
-        ArrayList<String> userIdList=new ArrayList<>();
+        ArrayList<String> userNameList=new ArrayList<>();
         ArrayList<String> productIdsList=new ArrayList<>();
         ArrayList<String> productNamesList=new ArrayList<>();
         ArrayList<String> quantitiesList=new ArrayList<>();
@@ -84,10 +87,10 @@ public class MainController {
             totalsList.add(String.valueOf(cartItems.getTotalPrice()));
         }
         for (User userItems:userList){
-            userIdList.add(String.valueOf(userItems.getId()));
+            userNameList.add(String.valueOf(userItems.getFirstName()));
         }
         grandTotal=calculateGrandTotal();
-        Order order=new Order(productIdsList.toString(), userIdList.toString(),productNamesList.toString(),quantitiesList.toString(),pricesList.toString(),totalsList.toString(),address,country,state,zip,grandTotal,orderDate);
+        Order order=new Order(productIdsList.toString(), userNameList.toString(),productNamesList.toString(),quantitiesList.toString(),pricesList.toString(),totalsList.toString(),address,country,state,zip,grandTotal,orderDate);
         orderService.save(order);
         cartService.deleteAll();
         return ResponseEntity.ok("success");

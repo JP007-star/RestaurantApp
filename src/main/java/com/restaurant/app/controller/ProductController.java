@@ -80,7 +80,7 @@ public class ProductController {
 
     @PostMapping("/updateProduct")
     public String updateProduct(HttpServletRequest request, Model model) throws SQLException, ClassNotFoundException {
-        productId= generateProductId();
+        productId = generateProductId();
         String productName=request.getParameter("productName");
         String productCategory=request.getParameter("productCategory");
         String productPrice=request.getParameter("productPrice");
@@ -105,6 +105,7 @@ public class ProductController {
         return "redirect:/admin/product/products";
     }
 
+    //This function is used to generate productId
     public String generateProductId(){
         char productName=product.getProductName().charAt(0);
         char productName1=product.getProductName().charAt(1);
