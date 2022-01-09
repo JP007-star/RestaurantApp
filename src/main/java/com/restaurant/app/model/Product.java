@@ -45,12 +45,12 @@ public class Product {
         this.quantity=Integer.valueOf(quantity);
     }
 
-    public Long getId() {
+    public Long getProductId() {
         return productId;
     }
 
-    public void setId(Long id) {
-        this.productId = id;
+    public void setProductId(Long productId) {
+        this.productId = productId;
     }
 
     public String getProductName() {

@@ -10,6 +10,7 @@ package com.restaurant.app.controller;
 import java.util.List;
 
 import com.restaurant.app.model.Product;
+import com.restaurant.app.service.CartService;
 import com.restaurant.app.utility.Counter;
 import com.restaurant.app.model.Order;
 import com.restaurant.app.service.OrderService;
@@ -31,10 +32,14 @@ import java.util.Optional;
 public class OrderController {
     @Autowired
     OrderService orderService;
+    @Autowired
+    CartService cartService;
 
     @GetMapping("/orders")
     public String index(Model model, HttpSession session) {
         List<Order> orderList = orderService.findAll();
+        long cartCount=cartService.count();
+        model.addAttribute("cartCount",cartCount);
         System.out.println(orderList);
         String userName = String.valueOf(session.getAttribute("userName"));
         model.addAttribute("orders", orderList);
