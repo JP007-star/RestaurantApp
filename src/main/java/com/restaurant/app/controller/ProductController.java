@@ -59,6 +59,7 @@ public class ProductController {
         model.addAttribute("products",productList);
         model.addAttribute("counter",new Counter());
         model.addAttribute("userName",userName);
+
         return "products";
     }
 
@@ -117,7 +118,7 @@ public class ProductController {
     //This function is used to update counter
     public static int updateCounter()
     {
-        String counterFileName="counter.txt";
+        String counterFileName="img/counter.txt";
         int counter=99;
         File counterFile=new File(counterFileName);
         if(counterFile.isFile())

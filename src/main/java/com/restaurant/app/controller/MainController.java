@@ -31,6 +31,7 @@ import java.sql.SQLException;
 import java.time.Clock;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
@@ -50,7 +51,7 @@ public class MainController {
     @Autowired
     private OrderService orderService;
     Double grandTotal=0.0;
-    LocalDateTime orderDate= LocalDateTime.now();
+    LocalDateTime orderDate= LocalDateTime.now(ZoneId.of("Asia/Kolkata"));
 
     public MainController(UserService userService) {
         super();
