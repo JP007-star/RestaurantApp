@@ -5,7 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="557acc45-a09b-46d1-a2ce-0cb696132ff0" name="Changes" comment="application properties changes">
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurantApp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/restaurantApp.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/restaurant/app/controller/DashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/restaurant/app/controller/DashboardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/dashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/script.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/script.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/sidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/sidebar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/restaurant/app/controller/DashboardController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/restaurant/app/controller/DashboardController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/restaurant/app/controller/ProductController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/restaurant/app/controller/ProductController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/restaurant/app/controller/UserRegistrationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/restaurant/app/controller/UserRegistrationController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/restaurant/app/dao/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/restaurant/app/dao/UserServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/dashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/script.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/script.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/sidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/sidebar.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -293,7 +306,28 @@
       <option name="project" value="LOCAL" />
       <updated>1641738329826</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="application properties changes">
+      <created>1641738374056</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1641738374056</updated>
+    </task>
+    <task id="LOCAL-00030" summary="application properties changes">
+      <created>1641738399964</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1641738399964</updated>
+    </task>
+    <task id="LOCAL-00031" summary="application properties changes">
+      <created>1641738426015</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1641738426015</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">

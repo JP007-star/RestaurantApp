@@ -13,6 +13,7 @@
     <div class="row col-10">
         <div  id="product-quantity-stock" th:data-product-quantity-stock-list="${productQuantityStockList}"></div>
         <div  id="product-name-stock" th:data-product-name-stock-list="${productNameStockList}"></div>
+        <div  id="product-array" th:data-product-array="${productArray}"></div>
         <div class="d-flex  h-25 col-12" >
             <div class="card w-25 h-75 d-inline-block m-3 p-3 shadow text-center">
                 <h2 id='orders' class="fs-2 text-dark">0</h2>
@@ -41,12 +42,15 @@
             </div>
         </div>
     </div>
-
 </div>
 </body>
+</html>
+
 <script>
+
 var productQuantityStock=JSON.parse($('#product-quantity-stock').attr('data-product-quantity-stock-list'));
 var productNameStock=$('#product-name-stock').attr('data-product-name-stock-list').slice(1, -1).split(",");
+var productArray=JSON.parse($('#product-array').attr('data-product-array'));
 var options = {
   dataLabels: {
     enabled: true,
@@ -147,24 +151,7 @@ var chart = new ApexCharts(document.querySelector("#product-chart"), options);
 chart.render();
 
 var options = {
-     series: [
-     {
-       name: "Pizza",
-       data: [78, 29, 13, 56, 62, 62, 33]
-     },
-     {
-       name: "Burger",
-       data: [62, 11, 34, 58, 37, 23, 13]
-     },
-     {
-       name: "Veg Role",
-       data: [28, 20, 31, 46, 12, 42, 43]
-     },
-     {
-       name: "Salad",
-       data: [42, 21, 34, 68, 37, 43, 13]
-     }
-        ],
+     series: productArray,
      chart: {
        height: 350,
        type: 'line',
@@ -273,4 +260,3 @@ const load = () =>{
     animate(text4, 0, [[${totalRevenue}]], 1000);
 }
 </script>
-</html>
