@@ -71,18 +71,6 @@ body {
         <span class="text-primary">Your cart</span>
         <span class="badge bg-primary rounded-pill">[[${cartCount}]]</span>
     </h4>
-
-    <!-- IF CUSTOMER IS ANONYMOUS
-    <div th:if="${customer.anonymous}">
-        <div>Welcome, Guest</div>
-    </div>
-     ELSE
-    <div th:unless="${customer.anonymous}">
-        <div th:text=" 'Hi,' + ${customer.name}">Hi, User</div>
-    </div>-->
-
-
-
     <ul class="list-group mb-3">
         <th:block th:each="product:${products}">
         <li class="list-group-item d-flex justify-content-between lh-sm">
