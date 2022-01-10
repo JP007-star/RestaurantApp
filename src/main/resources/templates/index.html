@@ -76,6 +76,13 @@
     type:"POST",
     data:{"productId":productId},
     success: function(result){
+    swal({
+    title: "Added to cart!",
+    text: "Successfully added to the cart!",
+    icon: "success",
+    button: "Yes!",
+    });
+    location.reload()
     }
   });
 });
