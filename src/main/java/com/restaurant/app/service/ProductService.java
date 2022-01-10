@@ -34,7 +34,7 @@ public class ProductService implements ProductRepository {
        return  productRepository.findAll();
     }
 
-    public void saveProductToDB(MultipartFile file,String productName,String productCategory,String productPrice,int quantity,String status)
+    public void saveProductToDB(MultipartFile file,String productId,String productName,String productCategory,String productPrice,int quantity,String status)
     {
         Product p = new Product();
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
@@ -47,6 +47,7 @@ public class ProductService implements ProductRepository {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        p.setProductId(productId);
         p.setProductName(productName);
         p.setProductCategory(productCategory);
         p.setProductPrice(productPrice);
@@ -55,11 +56,11 @@ public class ProductService implements ProductRepository {
         productRepository.save(p);
     }
 
-    @Override
-    public Optional<Product> findById(Long id) throws UsernameNotFoundException {
-        Optional<Product> product = productRepository.findById(id);
-        return product;
-    }
+//    @Override
+//    public Optional<Product> findById(Long id) throws UsernameNotFoundException {
+//        Optional<Product> product = productRepository.findById(id);
+//        return product;
+//    }
 
     public String updateById(Product product){
         Product product1=productRepository.findById(product.getProductId()).orElse(null);
@@ -78,12 +79,23 @@ public class ProductService implements ProductRepository {
     }
 
     @Override
-    public void deleteById(Long aLong) {
-        productRepository.deleteById(aLong);
+    public void deleteById(String s) {
+        productRepository.deleteById(s);
 
     }
+
+    //    @Override
+//    public void deleteById(Long aLong) {
+//        productRepository.deleteById(aLong);
+//
+//    }
     @Override
     public List<Product> findAll(Sort sort) {
+        return null;
+    }
+
+    @Override
+    public List<Product> findAllById(Iterable<String> strings) {
         return null;
     }
 
@@ -92,19 +104,24 @@ public class ProductService implements ProductRepository {
         return null;
     }
 
-    @Override
-    public List<Product> findAllById(Iterable<Long> longs) {
-        return null;
-    }
+//    @Override
+//    public List<Product> findAllById(Iterable<Long> longs) {
+//        return null;
+//    }
     @Override
     public void delete(Product entity) {
 
     }
 
     @Override
-    public void deleteAllById(Iterable<? extends Long> longs) {
+    public void deleteAllById(Iterable<? extends String> strings) {
 
     }
+
+//    @Override
+//    public void deleteAllById(Iterable<? extends Long> longs) {
+//
+//    }
 
     @Override
     public void deleteAll(Iterable<? extends Product> entities) {
@@ -128,11 +145,22 @@ public class ProductService implements ProductRepository {
         return null;
     }
 
+    @Override
+    public Optional<Product> findById(String s) {
+        Optional<Product> product = productRepository.findById(s);
+        return product;
+    }
 
     @Override
-    public boolean existsById(Long aLong) {
+    public boolean existsById(String s) {
         return false;
     }
+
+
+//    @Override
+//    public boolean existsById(Long aLong) {
+//        return false;
+//    }
 
     @Override
     public void flush() {
@@ -155,9 +183,14 @@ public class ProductService implements ProductRepository {
     }
 
     @Override
-    public void deleteAllByIdInBatch(Iterable<Long> longs) {
+    public void deleteAllByIdInBatch(Iterable<String> strings) {
 
     }
+
+//    @Override
+//    public void deleteAllByIdInBatch(Iterable<Long> longs) {
+//
+//    }
 
     @Override
     public void deleteAllInBatch() {
@@ -165,14 +198,24 @@ public class ProductService implements ProductRepository {
     }
 
     @Override
-    public Product getOne(Long aLong) {
+    public Product getOne(String s) {
         return null;
     }
 
     @Override
-    public Product getById(Long aLong) {
+    public Product getById(String s) {
         return null;
     }
+
+//    @Override
+//    public Product getOne(Long aLong) {
+//        return null;
+//    }
+//
+//    @Override
+//    public Product getById(Long aLong) {
+//        return null;
+//    }
 
     @Override
     public <S extends Product> Optional<S> findOne(Example<S> example) {

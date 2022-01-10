@@ -14,7 +14,7 @@ public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long cartId;
-    Long productId;
+    String productId;
     String productName;
     String productPrice;
     String productCategory;
@@ -28,7 +28,7 @@ public class Cart {
     public Cart() {
     }
 
-    public Cart(Long productId, String productName, String productPrice, String productCategory, String image, Boolean status,int productQuantity,Double totalPrice) {
+    public Cart(String productId, String productName, String productPrice, String productCategory, String image, Boolean status,int productQuantity,Double totalPrice) {
 
         this.productId = productId;
         this.productName = productName;
@@ -40,6 +40,7 @@ public class Cart {
         this.totalPrice=totalPrice;
     }
 
+
     public Long getCartId() {
         return cartId;
     }
@@ -48,13 +49,21 @@ public class Cart {
         this.cartId = cartId;
     }
 
-    public Long getProductId() {
+    public String getProductId() {
         return productId;
     }
 
-    public void setProductId(Long productId) {
+    public void setProductId(String productId) {
         this.productId = productId;
     }
+
+//    public Long getProductId() {
+//        return productId;
+//    }
+//
+//    public void setProductId(Long productId) {
+//        this.productId = productId;
+//    }
 
     public String getProductName() {
         return productName;

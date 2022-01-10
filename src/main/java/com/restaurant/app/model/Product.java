@@ -7,14 +7,18 @@
  */
 package com.restaurant.app.model;
 
+
 import javax.persistence.*;
 
 @Entity
 @Table(name="products")
 public class Product {
+
+   // @GeneratedValue(strategy = GenerationType.AUTO)
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_generator")
+//    @SequenceGenerator(name="product_generator", sequenceName = "product_seq", allocationSize=50)
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    Long productId;
+    String productId;
     String productName;
     String productPrice;
     String productCategory;
@@ -27,7 +31,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(Long productId, String productName, String productPrice, String productCategory, String image, int quantity, Boolean status) {
+    public Product(String productId, String productName, String productPrice, String productCategory, String image, int quantity, Boolean status) {
         this.productId = productId;
         this.productName = productName;
         this.productPrice =productPrice;
@@ -38,27 +42,28 @@ public class Product {
     }
 
     public Product(String productId, String productName, String productCategory, String productPrice, String quantity) {
-        this.productId = Long.valueOf(productId);
+        this.productId = productId;
         this.productName = productName;
         this.productPrice = productPrice;
         this.productCategory = productCategory;
         this.quantity=Integer.valueOf(quantity);
     }
 
-    public Product(String productName, String productCategory, String productPrice, String quantity) {
-        this.productName = productName;
-        this.productPrice = productPrice;
-        this.productCategory = productCategory;
-        this.quantity=Integer.valueOf(quantity);
-    }
-
-    public Long getProductId() {
+    public String getProductId() {
         return productId;
     }
 
-    public void setProductId(Long productId) {
+    public void setProductId(String productId) {
         this.productId = productId;
     }
+//
+//    public Long getProductId() {
+//        return productId;
+//    }
+//
+//    public void setProductId(Long productId) {
+//        this.productId = productId;
+//    }
 
     public String getProductName() {
         return productName;

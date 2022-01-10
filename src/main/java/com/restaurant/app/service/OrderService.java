@@ -49,13 +49,12 @@ public class OrderService implements OrderRepository {
     }
 
     @Override
-    public Page<Order> findAll(Pageable pageable) {
+    public List<Order> findAllById(Iterable<String> strings) {
         return null;
     }
 
     @Override
-    public List<Order> findAllById(Iterable<Integer> integers) {
-
+    public Page<Order> findAll(Pageable pageable) {
         return null;
     }
 
@@ -65,7 +64,7 @@ public class OrderService implements OrderRepository {
     }
 
     @Override
-    public void deleteById(Integer integer) {
+    public void deleteById(String s) {
 
     }
 
@@ -75,9 +74,10 @@ public class OrderService implements OrderRepository {
     }
 
     @Override
-    public void deleteAllById(Iterable<? extends Integer> integers) {
+    public void deleteAllById(Iterable<? extends String> strings) {
 
     }
+
 
     @Override
     public void deleteAll(Iterable<? extends Order> entities) {
@@ -96,15 +96,16 @@ public class OrderService implements OrderRepository {
     }
 
     @Override
-    public Optional<Order> findById(Integer orderId)throws UsernameNotFoundException {
-        Optional<Order>order = orderRepository.findById(orderId);
+    public Optional<Order> findById(String s) {
+        Optional<Order>order = orderRepository.findById(s);
         return order;
     }
 
     @Override
-    public boolean existsById(Integer integer) {
+    public boolean existsById(String s) {
         return false;
     }
+
 
     @Override
     public void flush() {
@@ -128,7 +129,7 @@ public class OrderService implements OrderRepository {
     }
 
     @Override
-    public void deleteAllByIdInBatch(Iterable<Integer> integers) {
+    public void deleteAllByIdInBatch(Iterable<String> strings) {
 
     }
 
@@ -138,12 +139,12 @@ public class OrderService implements OrderRepository {
     }
 
     @Override
-    public Order getOne(Integer integer) {
+    public Order getOne(String s) {
         return null;
     }
 
     @Override
-    public Order getById(Integer integer) {
+    public Order getById(String s) {
         return null;
     }
 
