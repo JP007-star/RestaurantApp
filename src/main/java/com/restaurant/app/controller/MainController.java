@@ -97,7 +97,6 @@ public class MainController {
         return ResponseEntity.ok("success");
 
     }
-
     @PostMapping("/addToCart")
     public ResponseEntity<?> addToCart(HttpServletRequest request, Model model) throws SQLException, ClassNotFoundException {
         Long productId=Long.parseLong(request.getParameter("productId"));
@@ -106,7 +105,15 @@ public class MainController {
         System.out.println(productId);
         Cart cart=new Cart(productId,product.getProductName(),product.getProductPrice(),product.getProductCategory(),product.getImage(),product.getStatus(),1,Double.parseDouble(product.getProductPrice()));
         cartService.save(cart);
-        return ResponseEntity.ok("success");
+        String cartCount= String.valueOf(cartService.count());
+        String result="";
+        if(cartCount!=null){
+            result=cartCount;
+        }
+        else {
+            result="It is already there in cart";
+        }
+        return ResponseEntity.ok(cartCount);
     }
     @PostMapping("/deleteToCart")
     public ResponseEntity<?> deleteToCart(HttpServletRequest request, Model model) throws SQLException, ClassNotFoundException {
