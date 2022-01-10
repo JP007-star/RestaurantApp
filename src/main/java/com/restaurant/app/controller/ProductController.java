@@ -32,8 +32,8 @@ import java.util.Optional;
 public class ProductController {
     @Autowired
     private ProductService productService;
-    Product product;
-    String productId;
+//    Product product;
+//    String productId;
 
     @PostMapping("/save")
     public String saveProduct(@ModelAttribute("product") Product product) {
@@ -65,7 +65,7 @@ public class ProductController {
 
     @PostMapping("/editProduct")
     public ResponseEntity<?> fetchProduct(HttpServletRequest request, Model model) throws SQLException, ClassNotFoundException {
-        productId= generateProductId();
+        String productId=request.getParameter("productId");
         System.out.println(productId);
         Optional<Product> product=productService.findById(Long.valueOf(productId));
         System.out.println(product);
@@ -81,7 +81,7 @@ public class ProductController {
 
     @PostMapping("/updateProduct")
     public String updateProduct(HttpServletRequest request, Model model) throws SQLException, ClassNotFoundException {
-        productId = generateProductId();
+        String productId=request.getParameter("productId");
         String productName=request.getParameter("productName");
         String productCategory=request.getParameter("productCategory");
         String productPrice=request.getParameter("productPrice");
@@ -106,45 +106,45 @@ public class ProductController {
         return "redirect:/admin/product/products";
     }
 
-    //This function is used to generate productId
-    public String generateProductId(){
-        char productName=product.getProductName().charAt(0);
-        char productName1=product.getProductName().charAt(1);
-        String productId = productName+""+productName1+""+"_"+ updateCounter();
-        System.out.println(productId);
-        return productId;
-    }
-
-    //This function is used to update counter
-    public static int updateCounter()
-    {
-        String counterFileName="img/counter.txt";
-        int counter=99;
-        File counterFile=new File(counterFileName);
-        if(counterFile.isFile())
-        {
-            try (BufferedReader reader = new BufferedReader(new FileReader(counterFileName)))
-            {
-                counter=Integer.parseInt(reader.readLine());
-            }
-            catch(IOException e)
-            {
-                e.printStackTrace();
-                return 0;
-            }
-        }
-        try(FileWriter writer = new FileWriter(counterFileName))
-        {
-            writer.write(String.valueOf(++counter));
-        } catch(IOException e){
-            e.printStackTrace();
-            return 0;
-        }
-        return counter;
-    }
+//
    /* @PostMapping("/addQuantity")
     public Cart addQuantity(HttpServletRequest httpServletRequest)
-    {
+    {  //This function is used to generate productId
+//    public String generateProductId(){
+//        char productName=product.getProductName().charAt(0);
+//        char productName1=product.getProductName().charAt(1);
+//        String productId = productName+""+productName1+""+"_"+ updateCounter();
+//        System.out.println(productId);
+//        return productId;
+//    }
+//
+//    //This function is used to update counter
+//    public static int updateCounter()
+//    {
+//        String counterFileName="img/counter.txt";
+//        int counter=99;
+//        File counterFile=new File(counterFileName);
+//        if(counterFile.isFile())
+//        {
+//            try (BufferedReader reader = new BufferedReader(new FileReader(counterFileName)))
+//            {
+//                counter=Integer.parseInt(reader.readLine());
+//            }
+//            catch(IOException e)
+//            {
+//                e.printStackTrace();
+//                return 0;
+//            }
+//        }
+//        try(FileWriter writer = new FileWriter(counterFileName))
+//        {
+//            writer.write(String.valueOf(++counter));
+//        } catch(IOException e){
+//            e.printStackTrace();
+//            return 0;
+//        }
+//        return counter;
+//    }
 
     }*/
 

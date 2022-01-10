@@ -45,6 +45,13 @@ public class Product {
         this.quantity=Integer.valueOf(quantity);
     }
 
+    public Product(String productName, String productCategory, String productPrice, String quantity) {
+        this.productName = productName;
+        this.productPrice = productPrice;
+        this.productCategory = productCategory;
+        this.quantity=Integer.valueOf(quantity);
+    }
+
     public Long getProductId() {
         return productId;
     }
