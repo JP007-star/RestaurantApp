@@ -8,11 +8,8 @@
 package com.restaurant.app.controller;
 
 import com.restaurant.app.model.*;
-import com.restaurant.app.service.CartService;
-import com.restaurant.app.service.OrderService;
-import com.restaurant.app.service.ProductService;
+import com.restaurant.app.service.*;
 import com.restaurant.app.dao.UserRegistrationDto;
-import com.restaurant.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -28,6 +25,7 @@ import javax.servlet.http.HttpSession;
 import java.awt.*;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.time.Clock;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -50,8 +48,10 @@ public class MainController {
     private CartService cartService;
     @Autowired
     private OrderService orderService;
+    @Autowired
+    private SaleService saleService;
     Double grandTotal=0.0;
-    LocalDateTime orderDate= LocalDateTime.now(ZoneId.of("Asia/Kolkata"));
+    LocalDate orderDate=  LocalDate.now();
 
     public MainController(UserService userService) {
         super();
@@ -86,6 +86,8 @@ public class MainController {
             quantitiesList.add(String.valueOf(cartItems.getProductQuantity()));
             pricesList.add(cartItems.getProductPrice());
             totalsList.add(String.valueOf(cartItems.getTotalPrice()));
+            Sale sale=new Sale(cartItems.getProductId(),cartItems.getProductName(),cartItems.getProductQuantity(),orderDate);
+            saleService.save(sale);
         }
         for (User userItems:userList){
             userNameList.add(String.valueOf(userItems.getFirstName()));
@@ -98,7 +100,7 @@ public class MainController {
 
     }
     @PostMapping("/addToCart")
-    public ResponseEntity<?> addToCart(HttpServletRequest request, Model model) throws SQLException, ClassNotFoundException {
+    public ResponseEntity<?> addToCart(HttpServletRequest request, Model model)  {
         Long productId=Long.parseLong(request.getParameter("productId"));
         Product product=productService.findById(productId).orElse(null);
         System.out.println(product);
@@ -109,6 +111,7 @@ public class MainController {
         String result="";
         if(cartCount!=null){
             result=cartCount;
+
         }
         else {
             result="It is already there in cart";

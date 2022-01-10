@@ -7,26 +7,22 @@
  */
 package com.restaurant.app.controller;
 
-import com.google.gson.Gson;
 import com.restaurant.app.model.Order;
 import com.restaurant.app.service.CartService;
 import com.restaurant.app.service.OrderService;
 import com.restaurant.app.service.ProductService;
 import com.restaurant.app.dao.UserServiceImpl;
+import com.restaurant.app.service.SaleService;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 @Controller
 @RequestMapping("/admin/dashboard/")
@@ -39,6 +35,8 @@ public class DashboardController {
     OrderService orderService;
     @Autowired
     CartService cartService;
+    @Autowired
+    SaleService saleService;
     Double totalRevenue=0.0;
     @GetMapping("/")
     public  String index(Model model) throws JSONException {
@@ -48,20 +46,7 @@ public class DashboardController {
         List<String> productNameStockList=productService.findAllProductName();
         long userCount=userService.userRepository.count();
         long orderCount=orderService.count();
-        JSONArray productArray = new JSONArray();
-        JSONArray mJSONArray = new JSONArray();
-
-        for(int value : getThreeValues())
-        {
-            mJSONArray.put(value);
-        }
-        for(String productName : productNameStockList) {
-            JSONObject data= new JSONObject();
-            data.put("name", productName);
-            data.put("data", mJSONArray);
-            productArray.put(data);
-        }
-        System.out.println(productArray);
+        JSONArray productArray=quantityCount();
         model.addAttribute("productCount",productCount);
         model.addAttribute("userCount",userCount);
         model.addAttribute("cartCount",cartCount);
@@ -72,9 +57,37 @@ public class DashboardController {
         model.addAttribute("productArray",productArray);
         return "dashboard";
     }
-    public int[] getThreeValues() {
-        Random r = new Random();
-        return new int[] { r.nextInt(100),r.nextInt(100),r.nextInt(100),r.nextInt(100),r.nextInt(100), r.nextInt(100), r.nextInt(100) };
+
+    public JSONArray quantityCount() throws JSONException {
+        List<String> productNameStockList = productService.findAllProductName();
+        String week[] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+        JSONArray productArray = new JSONArray();
+        int quantityArray[] = new int[week.length];
+        for (String productName : productNameStockList) {
+            for (int i = 0; i < week.length; i++) {
+                Integer quantity = saleService.orderQuantityDetails(productName, week[i]);
+                System.out.println(quantity);
+                if (quantity != null) {
+                    quantityArray[i] = quantity;
+
+                } else {
+                    quantityArray[i] = 0;
+                }
+            }
+            JSONArray mJSONArray = new JSONArray();
+            for(int value : quantityArray)
+            {
+                mJSONArray.put(value);
+            }
+            JSONObject data= new JSONObject();
+            data.put("name", productName);
+            data.put("data", mJSONArray);
+            productArray.put(data);
+
+        }
+        System.out.println(productArray);
+
+        return productArray;
     }
 
 

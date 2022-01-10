@@ -29,14 +29,14 @@ public class Order{
     public String state;
     public int zip;
     public Double grandTotal;
-    public LocalDateTime orderDate;
+    public LocalDate orderDate;
 
     public Order(){
 
     }
 
 
-    public Order(Integer orderId, String productIds, String userName, String productNames, String quantities, String prices, String total, String shippingAddress, String country, String state, int zip, Double grandTotal, LocalDateTime orderDate) {
+    public Order(Integer orderId, String productIds, String userName, String productNames, String quantities, String prices, String total, String shippingAddress, String country, String state, int zip, Double grandTotal, LocalDate orderDate) {
         this.orderId = orderId;
         this.productIds = productIds;
         this.userName = userName;
@@ -53,7 +53,7 @@ public class Order{
     }
 
 
-    public Order(String toString,String userId, String toString1, String toString2, String toString3, String toString4, String address, String country, String state, String zip, Double grandTotal, LocalDateTime orderDate) {
+    public Order(String toString,String userId, String toString1, String toString2, String toString3, String toString4, String address, String country, String state, String zip, Double grandTotal, LocalDate orderDate) {
         this.productIds = toString;
         this.userName=userId;
         this.productNames = toString1;
@@ -77,11 +77,11 @@ public class Order{
         this.userName = userName;
     }
 
-    public LocalDateTime getOrderDate() {
+    public LocalDate getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(LocalDateTime orderDate) {
+    public void setOrderDate(LocalDate orderDate) {
         this.orderDate = orderDate;
     }
 
