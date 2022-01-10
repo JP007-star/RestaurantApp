@@ -17,20 +17,22 @@ public class Sale {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long saleId;
-    Long productId;
+    String productId;
     String productName;
     private int quantity;
-    public LocalDate orderDate;
+    public LocalDateTime orderDate;
 
     public Sale() {
     }
 
-    public Sale(Long productId, String productName, int quantity, LocalDate orderDate) {
+    public Sale(String productId, String productName, int quantity, LocalDateTime orderDate) {
         this.productId = productId;
         this.productName = productName;
         this.quantity = quantity;
         this.orderDate = orderDate;
     }
+
+
 
     public Long getSaleId() {
         return saleId;
@@ -40,11 +42,11 @@ public class Sale {
         this.saleId = saleId;
     }
 
-    public Long getProductId() {
+    public String getProductId() {
         return productId;
     }
 
-    public void setProductId(Long productId) {
+    public void setProductId(String productId) {
         this.productId = productId;
     }
 
@@ -65,11 +67,11 @@ public class Sale {
         this.quantity = quantity;
     }
 
-    public LocalDate getOrderDate() {
+    public LocalDateTime getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(LocalDate orderDate) {
+    public void setOrderDate(LocalDateTime orderDate) {
         this.orderDate = orderDate;
     }
 }

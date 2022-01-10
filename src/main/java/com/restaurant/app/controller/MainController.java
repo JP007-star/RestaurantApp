@@ -8,11 +8,8 @@
 package com.restaurant.app.controller;
 
 import com.restaurant.app.model.*;
-import com.restaurant.app.service.CartService;
-import com.restaurant.app.service.OrderService;
-import com.restaurant.app.service.ProductService;
+import com.restaurant.app.service.*;
 import com.restaurant.app.dao.UserRegistrationDto;
-import com.restaurant.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -51,6 +48,8 @@ public class MainController {
     @Autowired
     private OrderService orderService;
     Double grandTotal=0.0;
+    @Autowired
+    private SaleService saleService;
     LocalDateTime orderDate= LocalDateTime.now(ZoneId.of("Asia/Kolkata"));
 
     public MainController(UserService userService) {
@@ -84,6 +83,8 @@ public class MainController {
             quantitiesList.add(String.valueOf(cartItems.getProductQuantity()));
             pricesList.add(cartItems.getProductPrice());
             totalsList.add(String.valueOf(cartItems.getTotalPrice()));
+            Sale sale=new Sale(cartItems.getProductId(),cartItems.getProductName(),cartItems.getProductQuantity(),orderDate);
+            saleService.save(sale);
         }
         String userName= String.valueOf(session.getAttribute("userName"));
         String orderId="OR00"+updateCounter();
