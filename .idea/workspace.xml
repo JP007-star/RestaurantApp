@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="557acc45-a09b-46d1-a2ce-0cb696132ff0" name="Changes" comment="application properties changes">
+    <list default="true" id="557acc45-a09b-46d1-a2ce-0cb696132ff0" name="Changes" comment="count effect code reduced">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/restaurant/app/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/restaurant/app/controller/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/restaurant/app/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/restaurant/app/model/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/restaurant/app/controller/ProductController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/restaurant/app/controller/ProductController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/restaurant/app/model/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/restaurant/app/model/Product.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/success.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/success.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/success.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/success.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,10 +63,15 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Code/RestaurantApp" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/static/css" />
   </component>
   <component name="Push.Settings">
     <option name="SHOW_DETAILS_PANEL" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\jaya_muthukrishnan\Documents\ResturantApp\src\main\resources\static\css" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="RestaurantAppApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -320,8 +321,32 @@
       <option name="project" value="LOCAL" />
       <updated>1641738426015</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="ajax count issue">
+      <created>1641799991091</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1641799991091</updated>
+    </task>
+    <task id="LOCAL-00033" summary="sales chart backend">
+      <created>1641817706975</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1641817706975</updated>
+    </task>
+    <task id="LOCAL-00034" summary="count effect code reduced">
+      <created>1641818834036</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1641818834036</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.css" />
   </component>
   <component name="Vcs.Log.History.Properties">
     <option name="COLUMN_ID_ORDER">
@@ -351,7 +376,20 @@
     <MESSAGE value="commit product module" />
     <MESSAGE value="cart delete sweet alert added" />
     <MESSAGE value="application properties changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="application properties changes" />
+    <MESSAGE value="ajax count issue" />
+    <MESSAGE value="sales chart backend" />
+    <MESSAGE value="count effect code reduced" />
+    <option name="LAST_COMMIT_MESSAGE" value="count effect code reduced" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.sql.SQLIntegrityConstraintViolationException" package="java.sql" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ResturantApp$RestaurantAppApplication.ic" NAME="RestaurantAppApplication Coverage Results" MODIFIED="1641319851056" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
