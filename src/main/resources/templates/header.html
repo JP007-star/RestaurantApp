@@ -11,13 +11,13 @@
                 <span class="visually-hidden">unread messages</span>
                 </span>
             </button> &emsp;
-            <button type="button"  class="btn btn-dark position-relative">
-                <a href="cart"><i class="fa fa-shopping-cart text-white" ></i></a>
+            <a href="cart"><button type="button"  class="btn btn-dark position-relative">
+                <i class="fa fa-shopping-cart text-white" ></i>
                 <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                        [[${cartCount}]]
               <span class="visually-hidden">unread messages</span>
                 </span>
-            </button> &emsp;
+            </button></a> &emsp;
             <div sec:authorize="hasRole('ROLE_ADMIN')">
                 <a href="/admin/dashboard/" type="button" class="btn btn-dark float-end"><i class="fa fa-dashboard"></i>
                     </a>
