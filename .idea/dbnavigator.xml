@@ -24,16 +24,12 @@
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
-    <loaded-nodes>
-      <connection connection-id="6327a909-1b39-4839-9cde-66068101033c">
-        <schema name="mysql" object-types="table" />
-      </connection>
-    </loaded-nodes>
+    <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="6327a909-1b39-4839-9cde-66068101033c">
-      <console name="Connection" type="STANDARD" schema="mysql" session="Main">use restaurantApp;
-update role set name='ROLE_ADMIN' WHERE ID=1;</console>
+      <console name="Connection" type="STANDARD" schema="mysql" session="Main"><![CDATA[use restaurantApp;
+update role set name='ROLE_ADMIN' WHERE ID=1;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
