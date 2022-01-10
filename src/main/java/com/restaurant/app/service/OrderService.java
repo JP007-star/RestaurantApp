@@ -182,4 +182,5 @@ public class OrderService implements OrderRepository {
     public <S extends Order, R> R findBy(Example<S> example, Function<FluentQuery.FetchableFluentQuery<S>, R> queryFunction) {
         return null;
     }
+
 }

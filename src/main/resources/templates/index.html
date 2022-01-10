@@ -6,13 +6,7 @@
     <title>Royal Plate</title>
     <div th:replace="script.html"></div>
 <body>
-
-<div th:replace="header.html">
-
-</div>
-
-
-
+<div th:replace="header.html"></div>
 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -76,6 +70,21 @@
     type:"POST",
     data:{"productId":productId},
     success: function(result){
+    swal({
+    title: "Added to cart!",
+    text: "Successfully added to the cart!",
+    icon: "success",
+    button: "Yes!",
+    });
+    if(result=="It is already there in cart"){
+     swal({
+    title: "It is already there in cart",
+    text: "you can proceed to checkout!",
+    icon: "warning",
+    button: "Yes!",
+    });
+    }
+    $("#cart-count").html(result);
     }
   });
 });
