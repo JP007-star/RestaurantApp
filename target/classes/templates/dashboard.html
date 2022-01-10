@@ -16,19 +16,19 @@
         <div  id="product-array" th:data-product-array="${productArray}"></div>
         <div class="d-flex  h-25 col-12" >
             <div class="card w-25 h-75 d-inline-block m-3 p-3 shadow text-center">
-                <h2 id='orders' class="fs-2 text-dark">0</h2>
+                <h2 id='orders' class="fs-2 text-dark count">[[${orderCount}]]</h2>
                 <h4 class="text-dark">Orders</h4>
             </div>
             <div class="card w-25 h-75 d-inline-block m-3 p-3 shadow text-center">
-                <h2 id='products' class="fs-2 text-dark">0</h2>
+                <h2 id='products' class="fs-2 text-dark count">[[${productCount}]]</h2>
                 <h4 class="text-dark">Products</h4>
             </div>
             <div class="card w-25 h-75 d-inline-block m-3 p-3 shadow text-center">
-                <h2 id='customers' class="fs-2 text-dark">0</h2>
+                <h2 id='customers' class="fs-2 text-dark count">[[${userCount}]]</h2>
                 <h4 class="text-dark">Customers</h4>
             </div>
             <div class="card w-25 h-75 d-inline-block m-3 p-3 shadow text-center">
-                <h2 id='revenue' class="fs-2 text-dark">0</h2>
+                <h2 id='revenue' class="fs-2 text-dark count">[[${totalRevenue}]]</h2>
                 <h4 class="text-dark">Revenue</h4>
             </div>
 
@@ -212,51 +212,15 @@ var options = {
 var chart = new ApexCharts(document.querySelector("#product-order-chart"), options);
 chart.render();
 
-function animate(obj, initVal, lastVal, duration) {
-
-        let startTime = null;
-
-        //get the current timestamp and assign it to the currentTime variable
-
-        let currentTime = Date.now();
-
-        //pass the current timestamp to the step function
-
-        const step = (currentTime ) => {
-
-        //if the start time is null, assign the current time to startTime
-
-          if (!startTime) {
-          startTime = currentTime ;
-          }
-
-        //calculate the value to be used in calculating the number to be displayed
-
-            const progress = Math.min((currentTime  - startTime) / duration, 1);
-
-        //calculate what to be displayed using the value gotten above
-
-            obj.innerHTML = Math.floor(progress * (lastVal - initVal) + initVal);
-
-        //checking to make sure the counter does not exceed the last value(lastVal)
-
-            if (progress < 1) {
-                window.requestAnimationFrame(step);
-            }
-        };
-
-        //start animating
-        window.requestAnimationFrame(step);
-    }
-let text1 = document.getElementById('orders');
-let text2 = document.getElementById('products');
-let text3 = document.getElementById('customers');
-let text4 = document.getElementById('revenue');
-const load = () =>{
-
-    animate(text1, 0, [[${orderCount}]], 1000);
-    animate(text2, 0, [[${productCount}]], 1000);
-    animate(text3, 0, [[${userCount}]], 1000);
-    animate(text4, 0, [[${totalRevenue}]], 1000);
-}
+$('.count').each(function () {
+    $(this).prop('Counter',0).animate({
+        Counter: $(this).text()
+    }, {
+        duration: 2000,
+        easing: 'swing',
+        step: function (now) {
+            $(this).text(Math.ceil(now));
+        }
+    });
+});
 </script>
