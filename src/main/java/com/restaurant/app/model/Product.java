@@ -15,8 +15,6 @@ import javax.persistence.*;
 public class Product {
 
    // @GeneratedValue(strategy = GenerationType.AUTO)
-//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_generator")
-//    @SequenceGenerator(name="product_generator", sequenceName = "product_seq", allocationSize=50)
     @Id
     String productId;
     String productName;

@@ -9,9 +9,8 @@ import java.util.Date;
 @Table(name="orders",schema = "targetSchemaName")
 public class Order{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_id")
-    public Integer orderId;
+    public String orderId;
     @Column(name = "product_ids")
     public String productIds;
     @Column(name = "user_name")
@@ -29,14 +28,13 @@ public class Order{
     public String state;
     public int zip;
     public Double grandTotal;
-    public LocalDate orderDate;
+    public LocalDateTime orderDate;
 
     public Order(){
 
     }
 
-
-    public Order(Integer orderId, String productIds, String userName, String productNames, String quantities, String prices, String total, String shippingAddress, String country, String state, int zip, Double grandTotal, LocalDateTime orderDate) {
+    public Order(String orderId, String productIds, String userName, String productNames, String quantities, String prices, String total, String shippingAddress, String country, String state, int zip, Double grandTotal, LocalDateTime orderDate) {
         this.orderId = orderId;
         this.productIds = productIds;
         this.userName = userName;
@@ -52,14 +50,14 @@ public class Order{
         this.orderDate = orderDate;
     }
 
-
-    public Order(String toString,String userId, String toString1, String toString2, String toString3, String toString4, String address, String country, String state, String zip, Double grandTotal, LocalDateTime orderDate) {
+    public Order(String toString, String orderId, String userName, String productNames, String quantities, String prices, String total, String address, String country, String state, String zip, Double grandTotal, LocalDateTime orderDate) {
+        this.orderId = orderId;
         this.productIds = toString;
-        this.userName=userId;
-        this.productNames = toString1;
-        this.quantities = toString2;
-        this.prices = toString3;
-        this.total = toString4;
+        this.userName = userName;
+        this.productNames = productNames;
+        this.quantities = quantities;
+        this.prices = prices;
+        this.total = total;
         this.shippingAddress = address;
         this.country = country;
         this.state = state;
@@ -77,11 +75,11 @@ public class Order{
         this.userName = userName;
     }
 
-    public LocalDate getOrderDate() {
+    public LocalDateTime getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(LocalDate orderDate) {
+    public void setOrderDate(LocalDateTime orderDate) {
         this.orderDate = orderDate;
     }
 
@@ -117,11 +115,11 @@ public class Order{
         this.total = total;
     }
 
-    public Integer getOrderId() {
+    public String getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(Integer orderId) {
+    public void setOrderId(String orderId) {
         this.orderId = orderId;
     }
 
