@@ -24,6 +24,7 @@ import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 
 @Controller
@@ -31,8 +32,9 @@ import java.util.Optional;
 public class ProductController {
     @Autowired
     private ProductService productService;
-//    Product product;
-//    String productId;
+
+
+
 
     @PostMapping("/save")
     public String saveProduct(@ModelAttribute("product") Product product) {
@@ -48,7 +50,8 @@ public class ProductController {
                               @RequestParam("quantity") int quantity,
                               @RequestParam("status") String status)
     {
-        productService.saveProductToDB(file, productName,productCategory,productPrice,quantity,status);
+        String productId="PR00"+updateCounter();
+        productService.saveProductToDB(file, productId.toUpperCase(), productName,productCategory,productPrice,quantity,status);
         return "redirect:/admin/product/products";
     }
     @GetMapping("/products")
@@ -58,7 +61,6 @@ public class ProductController {
         model.addAttribute("products",productList);
         model.addAttribute("counter",new Counter());
         model.addAttribute("userName",userName);
-
         return "products";
     }
 
@@ -66,7 +68,7 @@ public class ProductController {
     public ResponseEntity<?> fetchProduct(HttpServletRequest request, Model model) throws SQLException, ClassNotFoundException {
         String productId=request.getParameter("productId");
         System.out.println(productId);
-        Optional<Product> product=productService.findById(Long.valueOf(productId));
+        Optional<Product> product=productService.findById(productId);
         System.out.println(product);
         Optional<Product> result;
         if(product==null) {
@@ -101,54 +103,37 @@ public class ProductController {
     @PostMapping("/deleteProduct")
     public String deleteProduct(HttpServletRequest request)throws NumberFormatException {
         String productId=request.getParameter("productId");
-        productService.deleteById(Long.valueOf(productId));
+        productService.deleteById((productId));
         return "redirect:/admin/product/products";
     }
 
-//
-   /* @PostMapping("/addQuantity")
-    public Cart addQuantity(HttpServletRequest httpServletRequest)
-    {  //This function is used to generate productId
-//    public String generateProductId(){
-//        char productName=product.getProductName().charAt(0);
-//        char productName1=product.getProductName().charAt(1);
-//        String productId = productName+""+productName1+""+"_"+ updateCounter();
-//        System.out.println(productId);
-//        return productId;
-//    }
-//
-//    //This function is used to update counter
-//    public static int updateCounter()
-//    {
-//        String counterFileName="img/counter.txt";
-//        int counter=99;
-//        File counterFile=new File(counterFileName);
-//        if(counterFile.isFile())
-//        {
-//            try (BufferedReader reader = new BufferedReader(new FileReader(counterFileName)))
-//            {
-//                counter=Integer.parseInt(reader.readLine());
-//            }
-//            catch(IOException e)
-//            {
-//                e.printStackTrace();
-//                return 0;
-//            }
-//        }
-//        try(FileWriter writer = new FileWriter(counterFileName))
-//        {
-//            writer.write(String.valueOf(++counter));
-//        } catch(IOException e){
-//            e.printStackTrace();
-//            return 0;
-//        }
-//        return counter;
-//    }
 
-    }*/
-
-
-
-
+   //This function is used to update counter
+    public static int updateCounter()
+   {
+        String counterFileName="counter.txt";
+        int counter=99;
+        File counterFile=new File(counterFileName);
+       if(counterFile.isFile())
+       {
+            try (BufferedReader reader = new BufferedReader(new FileReader(counterFileName)))
+            {
+                counter=Integer.parseInt(reader.readLine());
+            }
+            catch(IOException e)
+           {
+                e.printStackTrace();
+               return 0;
+           }
+        }
+       try(FileWriter writer = new FileWriter(counterFileName))
+       {
+            writer.write(String.valueOf(++counter));
+       } catch(IOException e){
+            e.printStackTrace();
+            return 0;
+       }
+       return counter;
+   }
 
 }

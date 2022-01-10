@@ -8,8 +8,11 @@
 package com.restaurant.app.controller;
 
 import com.restaurant.app.model.*;
-import com.restaurant.app.service.*;
+import com.restaurant.app.service.CartService;
+import com.restaurant.app.service.OrderService;
+import com.restaurant.app.service.ProductService;
 import com.restaurant.app.dao.UserRegistrationDto;
+import com.restaurant.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -23,9 +26,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.awt.*;
-import java.io.IOException;
+import java.io.*;
 import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.time.Clock;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -48,10 +50,8 @@ public class MainController {
     private CartService cartService;
     @Autowired
     private OrderService orderService;
-    @Autowired
-    private SaleService saleService;
     Double grandTotal=0.0;
-    LocalDate orderDate=  LocalDate.now();
+    LocalDateTime orderDate= LocalDateTime.now(ZoneId.of("Asia/Kolkata"));
 
     public MainController(UserService userService) {
         super();
@@ -66,14 +66,12 @@ public class MainController {
 
    //This function is used to confirm the order
     @PostMapping("/confirmOrder")
-    public ResponseEntity<?> confirmOrder(HttpServletRequest request, Model model) throws SQLException, ClassNotFoundException {
-        List<User> userList=userService.findAll();
+    public ResponseEntity<?> confirmOrder(HttpServletRequest request, Model model,HttpSession session) throws SQLException, ClassNotFoundException {
         String address=request.getParameter("address");
         String country=request.getParameter("country");
         String state=request.getParameter("state");
         String zip=request.getParameter("zip");
         List<Cart> cartList=cartService.findAll();
-        ArrayList<String> userNameList=new ArrayList<>();
         ArrayList<String> productIdsList=new ArrayList<>();
         ArrayList<String> productNamesList=new ArrayList<>();
         ArrayList<String> quantitiesList=new ArrayList<>();
@@ -81,27 +79,25 @@ public class MainController {
         ArrayList<String> totalsList=new ArrayList<>();
         for (Cart cartItems:
              cartList) {
-            productIdsList.add(String.valueOf(cartItems.getProductId()));
+            productIdsList.add(cartItems.getProductId());
             productNamesList.add(String.valueOf(cartItems.getProductName()));
             quantitiesList.add(String.valueOf(cartItems.getProductQuantity()));
             pricesList.add(cartItems.getProductPrice());
             totalsList.add(String.valueOf(cartItems.getTotalPrice()));
-            Sale sale=new Sale(cartItems.getProductId(),cartItems.getProductName(),cartItems.getProductQuantity(),orderDate);
-            saleService.save(sale);
         }
-        for (User userItems:userList){
-            userNameList.add(String.valueOf(userItems.getFirstName()));
-        }
+        String userName= String.valueOf(session.getAttribute("userName"));
+        String orderId="OR00"+updateCounter();
         grandTotal=calculateGrandTotal();
-        Order order=new Order(productIdsList.toString(), userNameList.toString(),productNamesList.toString(),quantitiesList.toString(),pricesList.toString(),totalsList.toString(),address,country,state,zip,grandTotal,orderDate);
+        Order order=new Order(productIdsList.toString(),orderId,userName,productNamesList.toString(),quantitiesList.toString(),pricesList.toString(),totalsList.toString(),address,country,state,zip,grandTotal,orderDate);
         orderService.save(order);
         cartService.deleteAll();
         return ResponseEntity.ok("success");
 
     }
+
     @PostMapping("/addToCart")
-    public ResponseEntity<?> addToCart(HttpServletRequest request, Model model)  {
-        Long productId=Long.parseLong(request.getParameter("productId"));
+    public ResponseEntity<?> addToCart(HttpServletRequest request, Model model) throws SQLException, ClassNotFoundException {
+        String productId=request.getParameter("productId");
         Product product=productService.findById(productId).orElse(null);
         System.out.println(product);
         System.out.println(productId);
@@ -167,7 +163,7 @@ public class MainController {
     @GetMapping("/billGenerator")
     public void  billGenerator(HttpServletResponse response,HttpServletRequest request) throws IOException {
         BillGenerator billGenerator=new BillGenerator();
-        Integer orderId=Integer.parseInt(request.getParameter("orderId"));
+        String orderId=request.getParameter("orderId");
         Order order=orderService.findById(orderId).orElse(null);
         User user=new User();
         billGenerator.generateBill(response,order,user);
@@ -244,7 +240,33 @@ public class MainController {
         return "success";
     }
 
-
+    //This function is used to update counter
+    public static int updateCounter()
+    {
+        String counterFileName="ordercounter.txt";
+        int counter=99;
+        File counterFile=new File(counterFileName);
+        if(counterFile.isFile())
+        {
+            try (BufferedReader reader = new BufferedReader(new FileReader(counterFileName)))
+            {
+                counter=Integer.parseInt(reader.readLine());
+            }
+            catch(IOException e)
+            {
+                e.printStackTrace();
+                return 0;
+            }
+        }
+        try(FileWriter writer = new FileWriter(counterFileName))
+        {
+            writer.write(String.valueOf(++counter));
+        } catch(IOException e){
+            e.printStackTrace();
+            return 0;
+        }
+        return counter;
+    }
 
 
 }

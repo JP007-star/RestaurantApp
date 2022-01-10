@@ -17,7 +17,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ProductRepository extends JpaRepository<Product,Long> {
+public interface ProductRepository extends JpaRepository<Product,String> {
     @Query(value = "select quantity from  products", nativeQuery = true)
     public List<String> findAllQuantity();
     @Query(value = "select product_name from  products", nativeQuery = true)
