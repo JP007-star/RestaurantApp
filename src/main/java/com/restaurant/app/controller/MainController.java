@@ -204,6 +204,10 @@ public class MainController {
         System.out.println(registrationDto);
         return "redirect:/login?success";
     }
+    @GetMapping("/registration")
+    public String registerNewUser() {
+        return "registration";
+    }
 
 
     @ModelAttribute("user")
