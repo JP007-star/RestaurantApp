@@ -17,7 +17,7 @@
         <button type="button" data-bs-toggle="modal" data-bs-target="#productRegisterModal" class="m-1 btn btn-primary float-end mb-2"><i class="fa fa-plus"></i> Add product</button>
         <table class="table-striped   shadow m-3 p-3" >
             <thead>
-            <th>Id</th>
+            <th>Product ID</th>
             <th>Product Image</th>
             <th>Product Name</th>
             <th>Product Category</th>
@@ -31,7 +31,7 @@
                 <tr>
                     <td>[[${product.productId}]]</td>
                     <td scope="row">
-                        <img alt="" th:src="*{'data:image/jpeg;base64,'+{product.image}}"   style="width: 100px;height: 100px;" ></td>
+                        <img alt="" th:src="*{'data:image/jpeg;base64,'+{product.image}}" class="rounded-circle"   style="width: 70px;height: 70px;" ></td>
                     <td>[[${product.productName}]]</td>
                     <td>[[${product.productCategory}]]</td>
                     <td>[[${product.productPrice}]]</td>
