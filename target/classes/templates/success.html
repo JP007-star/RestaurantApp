@@ -24,8 +24,12 @@
                 <h5 style="text-align: center;">Our Delivery Agent will deliver it to you once ut get ready🚚</h5>
                 <div class="text-center">
                     <a href="\"  type="button" class="btn btn-primary btn-lg">Back to Home</a>
+                    <a th:href="@{\billGenerator(orderId=${#httpServletRequest.getParameter('orderId')})}"  type="button" class="btn btn-primary btn-lg">Download Bil</a>
                 </div>
         </div>
+        <img class="m-5" src="\img\checkout.png" width="1100px;">
+
+
     </section>
     
 

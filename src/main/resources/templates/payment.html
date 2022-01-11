@@ -220,7 +220,7 @@ $(document).on('click','#confirmOrder' ,function(){
           "zip":zip
     },
     success: function(result){
-       window.location.replace("/confirm");
+       window.location.replace("/confirm?orderId="+result);
     }
   })
   })

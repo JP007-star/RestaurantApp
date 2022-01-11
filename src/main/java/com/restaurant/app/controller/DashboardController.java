@@ -22,6 +22,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
 import java.util.*;
 
 @Controller
@@ -39,7 +40,7 @@ public class DashboardController {
     SaleService saleService;
     Double totalRevenue=0.0;
     @GetMapping("/")
-    public  String index(Model model) throws JSONException {
+    public  String index(Model model, HttpSession session) throws JSONException {
         long cartCount=cartService.count();
         long productCount=productService.count();
         List<String> productQuantityStockList=productService.findAllQuantity();
@@ -47,6 +48,7 @@ public class DashboardController {
         long userCount=userService.userRepository.count();
         long orderCount=orderService.count();
         JSONArray productArray=quantityCount();
+        String userName = String.valueOf(session.getAttribute("userName"));
         model.addAttribute("productCount",productCount);
         model.addAttribute("userCount",userCount);
         model.addAttribute("cartCount",cartCount);
@@ -55,6 +57,7 @@ public class DashboardController {
         model.addAttribute("productQuantityStockList",productQuantityStockList);
         model.addAttribute("productNameStockList",productNameStockList);
         model.addAttribute("productArray",productArray);
+        model.addAttribute("userName", userName);
         return "dashboard";
     }
 

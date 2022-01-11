@@ -8,11 +8,8 @@
 package com.restaurant.app.controller;
 
 import com.restaurant.app.model.*;
-import com.restaurant.app.service.CartService;
-import com.restaurant.app.service.OrderService;
-import com.restaurant.app.service.ProductService;
+import com.restaurant.app.service.*;
 import com.restaurant.app.dao.UserRegistrationDto;
-import com.restaurant.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -50,7 +47,10 @@ public class MainController {
     private CartService cartService;
     @Autowired
     private OrderService orderService;
+
     Double grandTotal=0.0;
+    @Autowired
+    private SaleService saleService;
     LocalDateTime orderDate= LocalDateTime.now(ZoneId.of("Asia/Kolkata"));
 
     public MainController(UserService userService) {
@@ -77,6 +77,7 @@ public class MainController {
         ArrayList<String> quantitiesList=new ArrayList<>();
         ArrayList<String> pricesList=new ArrayList<>();
         ArrayList<String> totalsList=new ArrayList<>();
+        System.out.println(cartList);
         for (Cart cartItems:
              cartList) {
             productIdsList.add(cartItems.getProductId());
@@ -84,14 +85,17 @@ public class MainController {
             quantitiesList.add(String.valueOf(cartItems.getProductQuantity()));
             pricesList.add(cartItems.getProductPrice());
             totalsList.add(String.valueOf(cartItems.getTotalPrice()));
+            Sale sale=new Sale(cartItems.getProductId(),cartItems.getProductName(),cartItems.getProductQuantity(),orderDate);
+            saleService.save(sale);
         }
+
         String userName= String.valueOf(session.getAttribute("userName"));
         String orderId="OR00"+updateCounter();
         grandTotal=calculateGrandTotal();
         Order order=new Order(productIdsList.toString(),orderId,userName,productNamesList.toString(),quantitiesList.toString(),pricesList.toString(),totalsList.toString(),address,country,state,zip,grandTotal,orderDate);
         orderService.save(order);
         cartService.deleteAll();
-        return ResponseEntity.ok("success");
+        return ResponseEntity.ok(orderId);
 
     }
 
@@ -161,11 +165,13 @@ public class MainController {
 
     //This controller function is for generating orderBill as PDF
     @GetMapping("/billGenerator")
-    public void  billGenerator(HttpServletResponse response,HttpServletRequest request) throws IOException {
+    public void  billGenerator(HttpServletResponse response,HttpServletRequest request,HttpSession session) throws IOException {
         BillGenerator billGenerator=new BillGenerator();
         String orderId=request.getParameter("orderId");
         Order order=orderService.findById(orderId).orElse(null);
-        User user=new User();
+        String userId=String.valueOf(session.getAttribute("userId"));
+        System.out.println(userId);
+        User user=userService.findById(Long.parseLong(userId)).orElse(null);
         billGenerator.generateBill(response,order,user);
     }
 
@@ -188,6 +194,7 @@ public class MainController {
         String login = authentication.getName();
         User user=userService.loadByEmailId(login);
         session.setAttribute("userName", user.getFirstName());
+        session.setAttribute("userId", user.getId());
         String userName= String.valueOf(session.getAttribute("userName"));
         List<Product> productList=productService.findAll();
         model.addAttribute("cartCount",cartCount);
@@ -203,6 +210,10 @@ public class MainController {
         System.out.println(registrationDto);
         return "redirect:/login?success";
     }
+    @GetMapping("/registration")
+    public String registerNewUser() {
+        return "registration";
+    }
 
 
     @ModelAttribute("user")
@@ -212,25 +223,29 @@ public class MainController {
 
     //this function will render cart page
     @GetMapping("/cart")
-    public String cartPage(Model model) {
+    public String cartPage(Model model,HttpSession session) {
         List<Cart> cartList=cartService.findAll();
         long cartCount=cartService.count();
         grandTotal=calculateGrandTotal();
+        String userName= String.valueOf(session.getAttribute("userName"));
         model.addAttribute("products",cartList);
         model.addAttribute("cartCount",cartCount);
         model.addAttribute("grandTotal",grandTotal);
+        model.addAttribute("userName",userName);
         return "cart";
     }
 
     //this function will render cart page
     @GetMapping("/payment")
-    public String paymentPage(Model model) {
+    public String paymentPage(Model model,HttpSession session) {
         List<Cart> cartList=cartService.findAll();
         long cartCount=cartService.count();
         grandTotal=calculateGrandTotal();
+        String userName= String.valueOf(session.getAttribute("userName"));
         model.addAttribute("products",cartList);
         model.addAttribute("cartCount",cartCount);
         model.addAttribute("grandTotal",grandTotal);
+        model.addAttribute("userName",userName);
         return "payment";
     }
 

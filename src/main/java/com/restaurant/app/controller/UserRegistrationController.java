@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
@@ -50,12 +51,14 @@ public class UserRegistrationController {
 		return "redirect:/admin/user/users";
 	}
 	@GetMapping("/users")
-	public String fetchUsers(Model model){
+	public String fetchUsers(Model model, HttpSession session){
 		List<User> userList=userService.findAll();
 		long cartCount=cartService.count();
+		String userName = String.valueOf(session.getAttribute("userName"));
 		model.addAttribute("cartCount",cartCount);
 		model.addAttribute("users",userList);
 		model.addAttribute("counter",new Counter());
+		model.addAttribute("userName",userName);
 		return "users";
 	}
 	@PostMapping("/editUser")

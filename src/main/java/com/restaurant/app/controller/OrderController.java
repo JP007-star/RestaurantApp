@@ -39,9 +39,9 @@ public class OrderController {
     public String index(Model model, HttpSession session) {
         List<Order> orderList = orderService.findAll();
         long cartCount=cartService.count();
-        model.addAttribute("cartCount",cartCount);
         System.out.println(orderList);
         String userName = String.valueOf(session.getAttribute("userName"));
+        model.addAttribute("cartCount",cartCount);
         model.addAttribute("orders", orderList);
         model.addAttribute("counter", new Counter());
         model.addAttribute("userName", userName);
