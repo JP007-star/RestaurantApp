@@ -4,10 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="557acc45-a09b-46d1-a2ce-0cb696132ff0" name="Changes" comment="count effect code reduced">
+    <list default="true" id="557acc45-a09b-46d1-a2ce-0cb696132ff0" name="Changes" comment="ProductId and OrderId updated">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/success.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/success.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/success.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/success.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ordercounter.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ordercounter.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/restaurant/app/model/BillGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/restaurant/app/model/BillGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/orders.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/orders.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/restaurant/app/model/BillGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/restaurant/app/model/BillGenerator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/orders.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/orders.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
