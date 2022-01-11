@@ -47,6 +47,7 @@ public class MainController {
     private CartService cartService;
     @Autowired
     private OrderService orderService;
+
     Double grandTotal=0.0;
     @Autowired
     private SaleService saleService;
@@ -76,7 +77,6 @@ public class MainController {
         ArrayList<String> quantitiesList=new ArrayList<>();
         ArrayList<String> pricesList=new ArrayList<>();
         ArrayList<String> totalsList=new ArrayList<>();
-        ArrayList<String> saleArray=new ArrayList<>();
         System.out.println(cartList);
         for (Cart cartItems:
              cartList) {

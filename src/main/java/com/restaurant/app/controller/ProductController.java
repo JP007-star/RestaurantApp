@@ -8,6 +8,7 @@
 package com.restaurant.app.controller;
 
 import com.restaurant.app.model.Cart;
+import com.restaurant.app.service.CartService;
 import com.restaurant.app.utility.Counter;
 
 import com.restaurant.app.model.Product;
@@ -32,7 +33,8 @@ import java.util.Optional;
 public class ProductController {
     @Autowired
     private ProductService productService;
-
+    @Autowired
+    CartService cartService;
 
 
 
@@ -58,6 +60,8 @@ public class ProductController {
     public String fetchProducts(Model model, HttpSession session){
       List<Product> productList=productService.findAll();
         String userName= String.valueOf(session.getAttribute("userName"));
+        long cartCount=cartService.count();
+        model.addAttribute("cartCount",cartCount);
         model.addAttribute("products",productList);
         model.addAttribute("counter",new Counter());
         model.addAttribute("userName",userName);
