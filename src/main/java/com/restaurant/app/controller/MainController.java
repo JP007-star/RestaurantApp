@@ -76,6 +76,8 @@ public class MainController {
         ArrayList<String> quantitiesList=new ArrayList<>();
         ArrayList<String> pricesList=new ArrayList<>();
         ArrayList<String> totalsList=new ArrayList<>();
+        ArrayList<String> saleArray=new ArrayList<>();
+        System.out.println(cartList);
         for (Cart cartItems:
              cartList) {
             productIdsList.add(cartItems.getProductId());
@@ -86,6 +88,7 @@ public class MainController {
             Sale sale=new Sale(cartItems.getProductId(),cartItems.getProductName(),cartItems.getProductQuantity(),orderDate);
             saleService.save(sale);
         }
+
         String userName= String.valueOf(session.getAttribute("userName"));
         String orderId="OR00"+updateCounter();
         grandTotal=calculateGrandTotal();
