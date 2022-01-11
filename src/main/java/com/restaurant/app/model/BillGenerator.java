@@ -29,15 +29,15 @@ public class BillGenerator {
         document.open();
 
         PdfPTable table1=new PdfPTable(2);
+        table1.setWidthPercentage(100);
         table1.getDefaultCell().setBorderColor(Color.WHITE);
         table1.addCell("Order Id");
-        table1.addCell(":"+order.getOrderId().replaceAll("\\s",""));
-        table1.setSpacingBefore(10);
+        table1.addCell(":"+order.getOrderId());
         table1.addCell("UserName");
-        table1.addCell(String.valueOf(":"+user.getFirstName()).replaceAll("\\s",""));
+        table1.addCell(String.valueOf(":"+user.getFirstName()));
         table1.addCell("Shipping Address");
         table1.addCell(":"+order.getShippingAddress()+","+order.getState()+","+order.getCountry()+","+order.getZip());
-        table1.addCell("Travel Date");
+        table1.addCell("Order Date");
         table1.addCell(":"+order.getOrderDate());
         table1.setSpacingAfter(10);
         document.add(table1);
@@ -55,10 +55,10 @@ public class BillGenerator {
         table2.addCell("Product Price");
         table2.addCell("Product Total");
         String[] productIdArray=order.getProductIds().substring(1,order.getProductIds().length() -1).replaceAll("\\s","").split(",");
-        String[] productNameArray=order.getProductNames().substring(1,order.getProductNames().length() -1).replaceAll("\\s","").split(",");
-        String[] productQuantitiesArray=order.getQuantities().substring(1,order.getQuantities().length() -1).replaceAll("\\s","").split(",");
-        String[] productPricesArray=order.getPrices().substring(1,order.getPrices().length() -1).replaceAll("\\s","").split(",");
-        String[] productGetTotalArray=order.getTotal().substring(1,order.getTotal().length() -1).replaceAll("\\s","").split(",");
+        String[] productNameArray=order.getProductNames().substring(1,order.getProductNames().length() -1).split(",");
+        String[] productQuantitiesArray=order.getQuantities().substring(1,order.getQuantities().length() -1).split(",");
+        String[] productPricesArray=order.getPrices().substring(1,order.getPrices().length() -1).split(",");
+        String[] productGetTotalArray=order.getTotal().substring(1,order.getTotal().length() -1).split(",");
         List<String> productList =new ArrayList<>();
         for(int i=0;i<productIdArray.length;i++) {
             productList.add(productIdArray[i]);
