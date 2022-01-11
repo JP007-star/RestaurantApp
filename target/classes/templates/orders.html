@@ -33,7 +33,8 @@
                     <td th:text="${#temporals.format(order.orderDate, 'dd-MM-yyyy HH:mm')}">30-12-2021 23:59</td>
                     <td>[[${order.grandTotal}]]</td>
                     <td>
-                        <button type="button"    th:data-order="(${order.orderId})" id="view-order"  class="btn btn-light" ><i class="fa fa-eye "  ></i> </button>
+                        <a th:href="@{\billGenerator(orderId=${order.orderId})}"  type="button" class="btn btn-light" /><i class="fa fa-eye " ></i>
+<!--                        <button type="button"    th:data-order="(${order.orderId})" id="view-order"  class="btn btn-light" > <i class="fa fa-eye "  ></i></button>-->
                     </td>
                 </tr>
 
@@ -52,7 +53,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <iframe src="http://www.africau.edu/images/default/sample.pdf" width="100%" height="400px">
+                <iframe src="http://localhost:8080/" width="100%" height="400px" name="myIframe" id="myIframe">
                 </iframe>
 
             </div>

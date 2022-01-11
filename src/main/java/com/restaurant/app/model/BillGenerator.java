@@ -22,7 +22,7 @@ public class BillGenerator {
     public void generateBill(HttpServletResponse response,Order order,User user) throws IOException {
         response.setContentType("application/pdf");
         String headerKey= "Content-Disposition";
-        String headerValue ="attachment; filename="+order.getOrderId()+".pdf";
+        String headerValue ="inline; filename="+order.getOrderId()+".pdf";
         response.setHeader(headerKey,headerValue);
         Document document=new Document(PageSize.A4);
         PdfWriter.getInstance(document,response.getOutputStream());
