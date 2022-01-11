@@ -2,14 +2,11 @@ import groovy.sql.Sql
 pipeline {
    agent any
     
-tools
-   {
+   tools
+    {
       maven 'M3'
       jdk 'jdk'
-   } 
-   
-   
-
+    } 
    
     stages { 
         stage('Build') {
@@ -22,22 +19,24 @@ tools
 
                 // To run Maven on a Windows agent, use
                 // bat "mvn -Dmaven.test.failure.ignore=true clean package"
-            }
+            } 
 
             post {
-                // If Maven was able to run the tests, even if some of the test
-                // failed, record the test results and archive the jar file.
-                success {
+                   // If Maven was able to run the tests, even if some of the test
+                  // failed, record the test results and archive the jar file.
+                   success {
                     junit '**/target/surefire-reports/TEST-*.xml'
                     archiveArtifacts 'target/*.jar'
                 }
-            }
+            
+            
            
         }
-    }
+            
+ 
        
     
-     stage("Publish to Nexus Repository Manager") {
+      stage("Publish to Nexus Repository Manager") {
 
             steps {
 
@@ -106,5 +105,7 @@ tools
 
         }
     }
+
+}
 
 
