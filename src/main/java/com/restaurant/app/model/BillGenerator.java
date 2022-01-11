@@ -20,7 +20,7 @@ public class BillGenerator {
     public void generateBill(HttpServletResponse response,Order order,User user) throws IOException {
         response.setContentType("application/pdf");
         String headerKey= "Content-Disposition";
-        String headerValue ="attachment; filename="+111+".pdf";
+        String headerValue ="attachment; filename="+order.getOrderId()+".pdf";
         response.setHeader(headerKey,headerValue);
         Document document=new Document(PageSize.A4);
         PdfWriter.getInstance(document,response.getOutputStream());
@@ -30,13 +30,13 @@ public class BillGenerator {
         table1.setWidthPercentage(100);
         table1.getDefaultCell().setBorderColor(Color.WHITE);
         table1.addCell("Order Id");
-        table1.addCell(":"+111);
+        table1.addCell(":"+order.getOrderId());
         table1.addCell("UserName");
         table1.addCell(String.valueOf(":"+user.getFirstName()));
         table1.addCell("Shipping Address");
-        table1.addCell(":"+"Address of Place");
+        table1.addCell(":"+order.getShippingAddress()+","+order.getState()+","+order.getCountry()+","+order.getZip());
         table1.addCell("Travel Date");
-        table1.addCell(":"+"12-03-2022");
+        table1.addCell(":"+order.getOrderDate());
         table1.setSpacingAfter(10);
         document.add(table1);
 
@@ -51,11 +51,11 @@ public class BillGenerator {
         table2.addCell("Product Quantity");
         table2.addCell("Product Price");
         table2.addCell("Product Total");
-        table2.addCell(order.getProductIds());
-        table2.addCell(String.valueOf(order.getQuantities()));
-        table2.addCell("order.getQuantities()");
-        table2.addCell(String.valueOf(order.getPrices()));
-        table2.addCell(String.valueOf(order.getTotal()));
+        table2.addCell(order.getProductIds().substring(1,order.getProductIds().length() -1));
+        table2.addCell(order.getProductNames().substring(1,order.getProductNames().length() -1));
+        table2.addCell(order.getQuantities().substring(1,order.getQuantities().length() -1));
+        table2.addCell(order.getPrices().substring(1,order.getPrices().length() -1));
+        table2.addCell(order.getTotal().substring(1,order.getTotal().length() -1));
         table2.setSpacingAfter(10);
         document.add(table2);
         document.add(new Paragraph("Total Price:"+order.getGrandTotal()));

@@ -95,7 +95,7 @@ public class MainController {
         Order order=new Order(productIdsList.toString(),orderId,userName,productNamesList.toString(),quantitiesList.toString(),pricesList.toString(),totalsList.toString(),address,country,state,zip,grandTotal,orderDate);
         orderService.save(order);
         cartService.deleteAll();
-        return ResponseEntity.ok("success");
+        return ResponseEntity.ok(orderId);
 
     }
 
@@ -165,11 +165,13 @@ public class MainController {
 
     //This controller function is for generating orderBill as PDF
     @GetMapping("/billGenerator")
-    public void  billGenerator(HttpServletResponse response,HttpServletRequest request) throws IOException {
+    public void  billGenerator(HttpServletResponse response,HttpServletRequest request,HttpSession session) throws IOException {
         BillGenerator billGenerator=new BillGenerator();
         String orderId=request.getParameter("orderId");
         Order order=orderService.findById(orderId).orElse(null);
-        User user=new User();
+        String userId=String.valueOf(session.getAttribute("userId"));
+        System.out.println(userId);
+        User user=userService.findById(Long.parseLong(userId)).orElse(null);
         billGenerator.generateBill(response,order,user);
     }
 
@@ -192,6 +194,7 @@ public class MainController {
         String login = authentication.getName();
         User user=userService.loadByEmailId(login);
         session.setAttribute("userName", user.getFirstName());
+        session.setAttribute("userId", user.getId());
         String userName= String.valueOf(session.getAttribute("userName"));
         List<Product> productList=productService.findAll();
         model.addAttribute("cartCount",cartCount);
