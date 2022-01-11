@@ -34,6 +34,7 @@ tools
             }
            
         }
+    }
        
     
      stage("Publish to Nexus Repository Manager") {
@@ -105,4 +106,5 @@ tools
 
         }
     }
+
 
