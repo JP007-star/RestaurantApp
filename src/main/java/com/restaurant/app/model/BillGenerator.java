@@ -29,17 +29,17 @@ public class BillGenerator {
         document.open();
 
         PdfPTable table1=new PdfPTable(2);
+        table1.setWidthPercentage(100);
         table1.getDefaultCell().setBorderColor(Color.WHITE);
         table1.addCell("Order Id");
         table1.addCell(":"+order.getOrderId());
-
         table1.addCell("UserName");
         table1.addCell(String.valueOf(":"+user.getFirstName()));
         table1.addCell("Shipping Address");
         table1.addCell(":"+order.getShippingAddress()+","+order.getState()+","+order.getCountry()+","+order.getZip());
         table1.addCell("Order Date");
         table1.addCell(":"+order.getOrderDate());
-
+        table1.setSpacingAfter(10);
         document.add(table1);
 
 
