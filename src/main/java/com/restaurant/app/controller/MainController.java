@@ -223,25 +223,29 @@ public class MainController {
 
     //this function will render cart page
     @GetMapping("/cart")
-    public String cartPage(Model model) {
+    public String cartPage(Model model,HttpSession session) {
         List<Cart> cartList=cartService.findAll();
         long cartCount=cartService.count();
         grandTotal=calculateGrandTotal();
+        String userName= String.valueOf(session.getAttribute("userName"));
         model.addAttribute("products",cartList);
         model.addAttribute("cartCount",cartCount);
         model.addAttribute("grandTotal",grandTotal);
+        model.addAttribute("userName",userName);
         return "cart";
     }
 
     //this function will render cart page
     @GetMapping("/payment")
-    public String paymentPage(Model model) {
+    public String paymentPage(Model model,HttpSession session) {
         List<Cart> cartList=cartService.findAll();
         long cartCount=cartService.count();
         grandTotal=calculateGrandTotal();
+        String userName= String.valueOf(session.getAttribute("userName"));
         model.addAttribute("products",cartList);
         model.addAttribute("cartCount",cartCount);
         model.addAttribute("grandTotal",grandTotal);
+        model.addAttribute("userName",userName);
         return "payment";
     }
 
