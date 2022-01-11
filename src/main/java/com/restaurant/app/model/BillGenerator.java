@@ -37,7 +37,7 @@ public class BillGenerator {
         table1.addCell(String.valueOf(":"+user.getFirstName()).replaceAll("\\s",""));
         table1.addCell("Shipping Address");
         table1.addCell(":"+order.getShippingAddress()+","+order.getState()+","+order.getCountry()+","+order.getZip());
-        table1.addCell("Travel Date");
+        table1.addCell("Order Date");
         table1.addCell(":"+order.getOrderDate());
         table1.setSpacingAfter(10);
         document.add(table1);
