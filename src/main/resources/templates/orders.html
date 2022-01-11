@@ -12,32 +12,26 @@
 <div th:replace="header.html"></div>
 <div class="row col-12">
     <div th:replace="sidebar.html"></div>
-    <div class="col-9 m-2">
+    <div class="col-10">
         <table class="table-striped   shadow m-3 p-3" >
             <thead>
             <th>OrderId</th>
+            <th>Customer Name</th>
             <th>Product Names</th>
-            <th>User Name</th>
             <th>Shipping Address</th>
-            <th>Country</th>
-            <th>State</th>
-            <th>Zipcode</th>
-            <th>Grand Total</th>
             <th>Order Date</th>
+            <th>Total</th>
             <th>Action</th>
             </thead>
             <tbody>
             <th:block th:each="order:${orders}">
                 <tr>
-                    <td >[[${order.orderId}]]</td>
-                    <td>[[${order.productNames}]]</td>
+                    <td>[[${order.orderId}]]</td>
                     <td>[[${order.userName}]]</td>
-                    <td>[[${order.shippingAddress}]]</td>
-                    <td>[[${order.country}]]</td>
-                    <td>[[${order.state}]]</td>
-                    <td>[[${order.zip}]]</td>
+                    <td th:text="${#strings.substring(order.productNames,1,#strings.length(order.productNames)-1)}"></td>
+                    <td>[[${order.shippingAddress}]],[[${order.country}]], [[${order.state}]] ,[[${order.zip}]]</td>
+                    <td th:text="${#temporals.format(order.orderDate, 'dd-MM-yyyy HH:mm')}">30-12-2021 23:59</td>
                     <td>[[${order.grandTotal}]]</td>
-                    <td>[[${order.orderDate}]]</td>
                     <td>
                         <button type="button"    th:data-order="(${order.orderId})" id="view-order"  class="btn btn-light" ><i class="fa fa-eye "  ></i> </button>
                     </td>
