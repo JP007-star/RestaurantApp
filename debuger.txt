@@ -1,0 +1,2 @@
+alert missing while confirming order
+status bar changes
