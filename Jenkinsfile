@@ -53,7 +53,7 @@ pipeline {
                             
                             protocol: 'http',
 
-                            nexusUrl: '192.168.1.12:8081/',
+                            nexusUrl: 'localhost:8081/',
 
                             groupId: 'pom.com.restaurant.app',
 
