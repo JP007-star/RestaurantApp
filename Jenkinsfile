@@ -1,17 +1,12 @@
-import groovy.sql.Sql
 pipeline {
-   agent any
-    
-tools
-   {
-      maven 'M3'
-      jdk 'jdk'
-   } 
-   
-   
+    agent any
 
-   
-    stages { 
+    tools {
+        // Install the Maven version configured as "M3" and add it to the path.
+        maven "M3"
+    } 
+
+    stages {
         stage('Build') {
             steps {
                 // Get some code from a GitHub repository
@@ -33,5 +28,7 @@ tools
                 }
             }
         }
+     
     }
+    
 }
