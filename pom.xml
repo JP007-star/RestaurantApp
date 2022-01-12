@@ -90,5 +90,14 @@
 			</plugin>
 		</plugins>
 	</build>
+	<distributionManagement>
+		<repository>
+			<id>deployment</id>
+			<name>Release</name>
+			<url>http://localhost:8081/repository/maven-restaurant/</url>
+			</repository>
+			
+		</distributionManagement>
+		
 
 </project>
