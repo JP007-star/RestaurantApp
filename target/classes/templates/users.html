@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+    <div th:replace="script.html"></div>
+</head>
+<body >
+<div th:replace="header.html"></div>
+<div class="row col-12">
+    <div th:replace="sidebar.html"></div>
+<div class="col-10">
+    <button type="button" data-bs-toggle="modal" data-bs-target="#userRegisterModal" class="m-1 btn btn-primary float-end mb-2"><i class="fa fa-plus"></i> Add User</button>
+    <table class="table-striped   shadow m-3 p-3" >
+        <thead>
+        <th>User ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Phone Number</th>
+        <th>Status</th>
+        <th>Active</th>
+        </thead>
+        <tbody>
+        <th:block th:each="user:${users}">
+        <tr>
+            <td th:text="${counter.incrementAndGet()}"></td>
+            <td>[[${user.firstName}]]</td>
+            <td>[[${user.lastName}]]</td>
+            <td>[[${user.email}]]</td>
+            <td>[[${user.phoneNo}]]</td>
+            <td><div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch"   id="status" th:checked="${user.status}"    required autofocus="autofocus" />
+            </div></td>
+            <td>
+                <button type="button" th:data-user="(${user.id})" id="edit-user"  class="btn btn-primary"><i class="fa fa-edit"></i> </button>
+                <button type="button" th:data-user="(${user.id})" id="delete-user"   class="btn btn-danger"><i class="fa fa-trash"></i> </button>
+            </td>
+        </tr>
+
+        </th:block>
+        </tbody>
+    </table>
+</div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="DeleteUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <h6> Sure you want to delete the User</h6>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="submit" id="delete-user-button" data-user="" class="btn btn-danger">Delete</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="UpdateUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel_U"> Edit</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container card col-12  p-3">
+                    <div class="row">
+                        <div class="col-md-12 col-md-offset-3">
+
+                            <form th:action="@{/admin/user/updateUser}" method="post" >
+                                <input type="hidden" name="userId" id="userId" class="form-control"
+                                       required autofocus="autofocus" />
+                                <div class="form-group">
+                                    <label class="control-label" for="firstName"> First Name </label>
+                                    <input id="firstName" name="firstName" class="form-control"
+                                           required autofocus="autofocus" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label" for="lastName"> Last Name </label> <input
+                                        id="lastName" name="lastName" class="form-control"
+                                        required autofocus="autofocus" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label" for="phoneNo"> Phone Number</label> <input
+                                        id="phoneNo" name="phoneNo" class="form-control" type="text"
+                                        required autofocus="autofocus" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label" for="email"> Email </label> <input
+                                        id="email" name="email" class="form-control"  required
+                                        autofocus="autofocus" />
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="control-label" for="password"> Password </label> <input
+                                        id="password" class="form-control" type="password" name="password"
+                                        required autofocus="autofocus" />
+                                </div><br>
+
+                                <div class="form-check form-switch">
+                                    <label class="control-label" for="status"> Status </label>
+                                    <input class="form-check-input" type="checkbox" role="switch"  value="true" id="status"  name="status"  autofocus="autofocus" />
+                                </div><br>
+
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-success text-center"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="userRegisterModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="container card col-12  p-3">
+                    <div class="row">
+                        <div class="col-md-12 col-md-offset-3">
+                            <h5>User</h5>
+                            <form th:action="@{/admin/user/save}" method="post" th:object="${user}">
+                                <div class="form-group">
+                                    <label class="control-label" for="firstName"> First Name </label>
+                                    <input id="firstName" class="form-control" th:field="*{firstName}"
+                                           required autofocus="autofocus" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="lastName"> Last Name </label> <input
+                                        id="lastName" class="form-control" th:field="*{lastName}"
+                                        required autofocus="autofocus" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="phoneNo"> Phone Number</label> <input
+                                        id="phoneNo" class="form-control" type="text"
+                                        th:field="*{phoneNo}" required autofocus="autofocus" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="email"> Email </label> <input
+                                        id="email" class="form-control" th:field="*{email}" required
+                                        autofocus="autofocus" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="password"> Password </label> <input
+                                        id="password" class="form-control" type="password"
+                                        th:field="*{password}" required autofocus="autofocus" />
+                                </div><br>
+                                <div class="form-check form-switch">
+                                    <label class="control-label" for="status"> Status </label>
+                                    <input class="form-check-input" type="checkbox" role="switch"   id="status"  th:field="*{status}" autofocus="autofocus" />
+                                </div><br>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-success text-center">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<script>
+<!--This function is used to find user-->
+$(document).on('click','#edit-user' ,function(){
+
+ var userId=$(this).attr('data-user');
+  $.ajax({
+    url: "\editUser",
+    type:"POST",
+    data:{"userId":userId},
+    success: function(result){
+      if(result!=""){
+        $('#userId').val(result.id);
+        $('#firstName').val(result.firstName);
+        $('#lastName').val(result.lastName);
+        $('#email').val(result.email);
+        $('#phoneNo').val(result.phoneNo);
+        if(result.status==true){
+        $('#status').attr('th:checked="${result.status}"');
+        }
+     }
+     else if(result==""){
+        $('#firstName').val('');
+        $('#lastName').val('');
+        $('#email').val('');
+        $('#phoneNo').val('');
+        $('#status').prop('checked',false);
+     }
+    }
+  });
+$('#UpdateUser').modal('show');
+});
+<!--This function is used to delete user-->
+$(document).on('click','#delete-user' ,function(){
+ var userId=$(this).attr('data-user');
+  $('#delete-user-button').attr('data-user',userId);
+  $('#DeleteUser').modal('show');
+});
+$(document).on('click','#delete-user-button' ,function(){
+ var userId=$(this).attr('data-user');
+  $.ajax({
+    url: "deleteUser",
+    type:"POST",
+    data:{"userId":userId},
+    success: function(result){
+    $('#DeleteUser').modal('hide');
+    location.reload();
+    }
+  });
+});
+</script>
+</html>
