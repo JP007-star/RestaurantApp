@@ -1,17 +1,12 @@
-import groovy.sql.Sql
 pipeline {
-   agent any
-    
-tools
-   {
-      maven 'M3'
-      jdk 'jdk'
-   } 
-   
-   
+    agent any
 
-   
-    stages { 
+    tools {
+        // Install the Maven version configured as "M3" and add it to the path.
+        maven "M3"
+    }
+
+    stages {
         stage('Build') {
             steps {
                 // Get some code from a GitHub repository
@@ -33,5 +28,74 @@ tools
                 }
             }
         }
+        stage("Publish to Nexus Repository Manager") {
+
+            steps {
+
+                script {
+
+                    pom = readMavenPom file: "pom.xml";
+
+                    filesByGlob = findFiles(glob: "target/*.${pom.packaging}");
+
+                    echo "${filesByGlob[0].name} ${filesByGlob[0].path} ${filesByGlob[0].directory} ${filesByGlob[0].length} ${filesByGlob[0].lastModified}"
+
+                    artifactPath = filesByGlob[0].path;
+
+                    artifactExists = fileExists artifactPath;
+
+                    if(artifactExists) {
+
+                        echo "*** File: ${artifactPath}, group: ${pom.groupId}, packaging: ${pom.packaging}, version ${pom.version}";
+
+                        nexusArtifactUploader(
+                            nexusVersion: 'nexus3',
+                            
+                            protocol: 'http',
+
+                            nexusUrl: '192.168.1.12:8081/',
+
+                            groupId: 'pom.com.restaurant.app',
+
+                            version: 'pom.0.0.1-SNAPSHOT',
+
+                            repository: 'maven-restauranty',
+
+                            credentialsId: 'nexus_cred',
+
+                            artifacts: [
+
+                                [artifactId: 'pom.restaurantApp',
+
+                                classifier: '',
+
+                                file: artifactPath,
+
+                                type: pom.packaging],
+
+                                [artifactId: 'pom.restaurantApp',
+
+                                classifier: '',
+
+                                file: "pom.xml",
+
+                                type: "pom"]
+
+                            ]
+
+                        );
+
+                    } else {
+
+                        error "*** File: ${artifactPath}, could not be found";
+
+                    }
+
+                }
+
+            }
+
+        }
     }
+    
 }
