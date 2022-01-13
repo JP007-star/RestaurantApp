@@ -62,12 +62,3 @@
           Owner: Akshatha chandraraju
           PurPose: Testing EC2 Instance From Ansible
 
-- name: Configure instance
-  hosts: localhost
-  connection: local
-  gather_facts: True
-  tasks:
-    - name: Install git
-      apt:
-        name: git
-        state: present

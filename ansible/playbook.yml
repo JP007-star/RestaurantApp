@@ -1,11 +1,17 @@
 ---
-- name: Install Apache,Docker,Jenkins and Nexus
+- name: Install Apache,mySQL,Docker,Jenkins and Nexus
   hosts: all
   become: true
   tasks:
     - name: Install latest version of Apache
       apt:
         name: apache2
+        update_cache: yes
+        state: present
+
+    - name: Install mySQL
+      apt:
+        name: mysql-client-core-8.0
         update_cache: yes
         state: present
 
