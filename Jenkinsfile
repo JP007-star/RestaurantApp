@@ -14,12 +14,12 @@ pipeline {
     }
      stage('Mysql Container Creation') {
       steps {
-        sh "sudo docker run -d -p 3307:3306 --name mysqldb -e MYSQL_ROOT_PASSWORD=Prasad@66 -e MYSQL_DATABASE=restaurantapp mysql"
+        sh "docker run -d -p 3307:3306 --name mysqldb -e MYSQL_ROOT_PASSWORD=Prasad@66 -e MYSQL_DATABASE=restaurantapp mysql"
       }
      }
     stage('Docker network creation') {
       steps {
-        sh "sudo docker  network create restaurant"
+        sh "docker  network create restaurant"
       }
     }
    stage('Connect docker network and container') {
