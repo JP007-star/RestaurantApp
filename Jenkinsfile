@@ -1,7 +1,7 @@
 pipeline {
   environment {
     registry = "justiceofpeace/restaurant_app"
-    MAVEN_HOME = tool('M3')
+    MAVEN_HOME = tool('MAVEN3')
     registryCredential = 'docker-hub-credentials'
     dockerImage = ''
   }
