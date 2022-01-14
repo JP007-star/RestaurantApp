@@ -1,12 +1,12 @@
 pipeline {
+  agent any
+  tools {
+    maven 'M3'
+  }
   environment {
     registry = "justiceofpeace/restaurant_app"
     registryCredential = 'docker-hub-credentials'
     dockerImage = ''
-  }
-  agent any
-  tools {
-    maven 'M3'
   }
   stages {
     stage('Compile & Build ') {
