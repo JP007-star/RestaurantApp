@@ -2,7 +2,6 @@ pipeline {
   environment {
     registry = "justiceofpeace/restaurant_app"
     MAVEN_HOME = tool('MAVEN3')
-    DOCKER_HOME = tool('docker')
     registryCredential = 'docker-hub-credentials'
     dockerImage = ''
   }
@@ -11,11 +10,6 @@ pipeline {
     stage('Compile & Build ') {
       steps {
         sh "${MAVEN_HOME}/bin/mvn package"
-      }
-    }
-    stage('Initialize Docker'){
-      steps{
-        env.PATH = "${DOCKER_HOME}/bin:${env.PATH}"
       }
     }
     stage('Building Docker Image') {
