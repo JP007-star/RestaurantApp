@@ -4,15 +4,14 @@ pipeline {
     registryCredential = 'docker-hub-credentials'
     dockerImage = ''
   }
- agent any
+  agent any
+  tools {
+    maven 'M3'
+  }
   stages {
-    stage('Compile') {
+    stage('Compile & Build ') {
       steps {
-        git 'https://github.com/JP007-star/RestaurantApp.git'
-        script{
-                def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
-                sh "${mvnHome}/bin/mvn package"
-        }
+        sh 'mvn -B -DskipTests clean package'
       }
     }
     stage('Building Docker Image') {
