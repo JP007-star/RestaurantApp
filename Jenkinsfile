@@ -2,6 +2,7 @@ pipeline {
   environment {
     registry = "justiceofpeace/restaurant_app"
     MAVEN_HOME = tool('MAVEN3')
+    DOCKER_HOME = tool('docker')
     registryCredential = 'docker-hub-credentials'
     dockerImage = ''
   }
@@ -15,7 +16,7 @@ pipeline {
     stage('Building Docker Image') {
       steps{
         script {
-          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+          dockerImage = ${DOCKER_HOME}.build registry + ":$BUILD_NUMBER"
         }
       }
     }
