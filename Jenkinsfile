@@ -22,12 +22,11 @@ pipeline {
         sh "sudo docker  network create restaurant"
       }
     }
-   stage('Mysql Container Creation') {
+   stage('Connect docker network and container') {
     steps {
         sh "docker network connect restaurant mysqldb"
       }
     }
-    
     stage('Building Docker Image') {
       steps{
         script {
