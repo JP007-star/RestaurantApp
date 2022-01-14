@@ -13,10 +13,13 @@ pipeline {
         sh "${MAVEN_HOME}/bin/mvn package"
       }
     }
+    stage('Initialize Docker'){
+        env.PATH = "${DOCKER_HOME}/bin:${env.PATH}"
+    }
     stage('Building Docker Image') {
       steps{
         script {
-          dockerImage = ${DOCKER_HOME}.build registry + ":$BUILD_NUMBER"
+          dockerImage = docker.build registry + ":$BUILD_NUMBER"
         }
       }
     }
