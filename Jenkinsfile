@@ -1,17 +1,15 @@
 pipeline {
-  agent any
-  tools {
-    maven 'M3'
-  }
   environment {
     registry = "justiceofpeace/restaurant_app"
+    MAVEN_HOME = tool('M3')
     registryCredential = 'docker-hub-credentials'
     dockerImage = ''
   }
+  agent any
   stages {
     stage('Compile & Build ') {
       steps {
-        sh 'mvn -B -DskipTests clean package'
+        sh "${MAVEN_HOME}/bin/mvn package"
       }
     }
     stage('Building Docker Image') {
