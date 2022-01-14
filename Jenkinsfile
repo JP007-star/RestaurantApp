@@ -12,6 +12,10 @@ pipeline {
         sh "${MAVEN_HOME}/bin/mvn package"
       }
     }
+    stage('Initialize'){
+        def dockerHome = tool 'docker'
+        env.PATH = "${dockerHome}/bin:${env.PATH}"
+    }
     stage('Building Docker Image') {
       steps{
         script {
