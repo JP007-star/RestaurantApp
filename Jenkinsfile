@@ -38,18 +38,20 @@ pipeline {
     stage('Push Image To Docker Hub') {
       steps{
         script {
-              docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+              docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials')
+          {
               dockerImage.push("${env.BUILD_NUMBER}")
               dockerImage.push("latest")
           }
         }
       }
+    }
    stage('Connect docker network and container') {
     steps {
         sh "docker run -p 8082:8082 --name restuarant --net restaurant -e MYSQL_HOST=mysqldb -e MYSQL_USER=root -e MYSQL_PASSWORD=Prasad@66 -e MYSQL_PORT=3306 restaurantapp"
       }
     }
-  }
+  
   
   }
 }
