@@ -13,6 +13,12 @@ pipeline {
         sh "${MAVEN_HOME}/bin/mvn package"
       }
     }
+  stage('create mysql container'){
+      steps {
+        sh "${DOCKER_HOME}/bin/docker pull mysql"
+        sh "${DOCKER_HOME}/bin/docker run -d -p 3307:3306 --name mysqldb -e MYSQL_ROOT_PASSWORD=Prasad@66 -e MYSQL_DATABASE=restaurantapp mysql"
+      }
+    }
     stage('Building Docker Image') {
       steps{
         script {
