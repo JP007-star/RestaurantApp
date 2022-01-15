@@ -46,6 +46,8 @@ sudo docker login --username justiceofpeace
 sudo docker tag restaurantapp justiceofpeace/restaurant-app-backup
 sudo docker push  justiceofpeace/restaurant-app-backup
 
+sudo chmod 666 /var/run/docker.sock
+
 
 
  
