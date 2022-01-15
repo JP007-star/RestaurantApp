@@ -46,11 +46,7 @@ pipeline {
         }
       }
     }
-   stage('Run containers') {
-    steps {
-        sh "docker run -p 8082:8082 --name restuarant --net restaurant -e MYSQL_HOST=mysqldb -e MYSQL_USER=root -e MYSQL_PASSWORD=Prasad@66 -e MYSQL_PORT=3306 ${dockerImage}"
-      }
-    }
+  
   
   
   }
