@@ -31,6 +31,17 @@ pipeline {
         }
       }
     }
+    stage('Deploy to mysql pods'){
+        steps{
+            sh 'kubectl apply -f db-deployment.yml'
+       }
+    }
+     stage('Deploy to spring-boot pods'){
+        steps{
+            sh 'kubectl apply -f app-deployment.yml'
+       }
+    }
+    
   
   
   
