@@ -49,6 +49,21 @@ sudo docker push  justiceofpeace/restaurant-app-backup
 sudo chmod 666 /var/run/docker.sock
 
 
+Ansible way to make kubectl able to run without sudo:
+
+- name: Setup kubeconfig for user
+  become: no
+  command: "{{ item }}"
+  with_items:
+    - mkdir -p /home/$USER/.kube
+    - sudo cp -i /etc/kubernetes/admin.conf /home/$USER/.kube/config
+    - sudo chown $USER:$USER /home/$USER/.kube/config
+Or you could run this commands manually:
+
+mkdir -p /home/$USER/.kube
+cp -i /etc/kubernetes/admin.conf /home/$USER/.kube/config
+chown $USER:$USER /home/$USER/.kube/config
+
 
  
  
