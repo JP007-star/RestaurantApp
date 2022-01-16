@@ -33,12 +33,12 @@ pipeline {
     }
     stage('Deploy to mysql pods'){
         steps{
-            sh 'kubectl apply -f db-deployment.yml'
+            sh "${MAVEN_HOME}/bin/kubectl apply -f db-deployment.yml"
        }
     }
      stage('Deploy to spring-boot pods'){
         steps{
-            sh 'kubectl apply -f app-deployment.yml'
+            sh "${MAVEN_HOME}/bin/kubectl apply -f app-deployment.yml"
        }
     }
     
