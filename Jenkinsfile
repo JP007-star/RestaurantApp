@@ -30,6 +30,10 @@ pipeline {
             remote.user = 'server'
             remote.password = 'server'
             remote.allowAnyHosts = true
+            writeFile file: 'test.sh', text: 'ls'
+            sshCommand remote: remote, command: 'for i in {1..5}; do echo -n \"Loop \$i \"; date ; sleep 1; done'
+            sshScript remote: remote, script: 'test.sh'
+            sshPut remote: remote, from: 'test.sh', into: '.'
             sshPut remote: remote, from: 'db-deployment.yml', into: '.'
             sshCommand remote: remote, command: "kubectl apply -f db-deployment.yml"
           }
