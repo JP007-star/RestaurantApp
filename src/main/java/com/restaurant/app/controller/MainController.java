@@ -133,15 +133,20 @@ public class MainController {
         int quantityOfProductInDb=productInDb.getQuantity();
         int quantityOfCart=productInCart.getProductQuantity();
         System.out.println(productInCart);
-        productInDb.setQuantity(quantityOfProductInDb-1);
-        productInCart.setProductQuantity(quantityOfCart+1);
-        int newQuantityOfCart=productInCart.getProductQuantity();
-        double totalPrice=newQuantityOfCart*Double.parseDouble(productInDb.getProductPrice());
-        productInCart.setTotalPrice(totalPrice);
-        productService.save(productInDb);
-        cartService.save(productInCart);
+        if(quantityOfCart >=1 && quantityOfProductInDb >=1 ) {
+            productInDb.setQuantity(quantityOfProductInDb - 1);
+            productInCart.setProductQuantity(quantityOfCart + 1);
+            int newQuantityOfCart=productInCart.getProductQuantity();
+            double totalPrice=newQuantityOfCart*Double.parseDouble(productInDb.getProductPrice());
+            productInCart.setTotalPrice(totalPrice);
+            productService.save(productInDb);
+            cartService.save(productInCart);
+            grandTotal=calculateGrandTotal();
+            return ResponseEntity.ok(grandTotal);
+        }
         grandTotal=calculateGrandTotal();
         return ResponseEntity.ok(grandTotal);
+
     }
     @PostMapping("/removeQuantityToCart")
     public ResponseEntity<?> removeQuantityToCart(HttpServletRequest httpServletRequest,Model model) {
@@ -152,14 +157,18 @@ public class MainController {
         int quantityOfProductInDb=productInDb.getQuantity();
         int quantityOfCart=productInCart.getProductQuantity();
         System.out.println(productInCart);
-        productInDb.setQuantity(quantityOfProductInDb+1);
-        productInCart.setProductQuantity(quantityOfCart-1);
-        int newQuantityOfCart=productInCart.getProductQuantity();
-        double totalPrice=newQuantityOfCart*Double.parseDouble(productInDb.getProductPrice());
-        productInCart.setTotalPrice(totalPrice);
-        productService.save(productInDb);
-        cartService.save(productInCart);
-        grandTotal=calculateGrandTotal();
+        if(quantityOfCart >=1 && quantityOfProductInDb >=1 ) {
+            productInDb.setQuantity(quantityOfProductInDb + 1);
+            productInCart.setProductQuantity(quantityOfCart - 1);
+            int newQuantityOfCart = productInCart.getProductQuantity();
+            double totalPrice = newQuantityOfCart * Double.parseDouble(productInDb.getProductPrice());
+            productInCart.setTotalPrice(totalPrice);
+            productService.save(productInDb);
+            cartService.save(productInCart);
+            grandTotal = calculateGrandTotal();
+            return ResponseEntity.ok(grandTotal);
+        }
+        grandTotal = calculateGrandTotal();
         return ResponseEntity.ok(grandTotal);
     }
 
