@@ -173,7 +173,7 @@ public class CartService implements CartRepository {
 
 
     @Override
-    public Cart findByProductId(Long productId) {
+    public Cart findByProductId(String productId) {
         return cartRepository.findByProductId(productId);
     }
 }

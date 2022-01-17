@@ -39,13 +39,15 @@ public class Product {
         this.status = status;
     }
 
-    public Product(String productId, String productName, String productCategory, String productPrice, String quantity) {
+    public Product(String productId, String productName, String productCategory, String productPrice, String quantity,Boolean status) {
         this.productId = productId;
         this.productName = productName;
         this.productPrice = productPrice;
         this.productCategory = productCategory;
         this.quantity=Integer.valueOf(quantity);
+        this.status = status;
     }
+
 
     public String getProductId() {
         return productId;

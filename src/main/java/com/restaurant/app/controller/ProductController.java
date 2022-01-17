@@ -50,7 +50,7 @@ public class ProductController {
                               @RequestParam("productCategory") String productCategory,
                               @RequestParam("productPrice") String productPrice,
                               @RequestParam("quantity") int quantity,
-                              @RequestParam("status") String status)
+                              @RequestParam("status") Boolean status)
     {
         String productId="PR00"+updateCounter();
         productService.saveProductToDB(file, productId.toUpperCase(), productName,productCategory,productPrice,quantity,status);
@@ -91,7 +91,8 @@ public class ProductController {
         String productCategory=request.getParameter("productCategory");
         String productPrice=request.getParameter("productPrice");
         String quantity=request.getParameter("quantity");
-        Product product=new Product(productId,productName,productCategory,productPrice,quantity);
+        boolean  status= Boolean.parseBoolean(request.getParameter("status"));
+        Product product=new Product(productId,productName,productCategory,productPrice,quantity,status);
         System.out.println(productId);
         String msg=productService.updateById(product);
         System.out.println(msg);
