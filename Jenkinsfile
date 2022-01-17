@@ -22,6 +22,7 @@ pipeline {
     }
    
    stage('SSH into the server') {
+     steps{
         script {
             def remote = [:]
             remote.name = 'server'
@@ -32,6 +33,8 @@ pipeline {
             sshPut remote: remote, from: 'db-deployment.yml', into: '.'
             sshCommand remote: remote, command: "kubectl apply -f db-deployment.yml"
           }
+       
+     }
    }
         
  
