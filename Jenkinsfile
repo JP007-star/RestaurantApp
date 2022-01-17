@@ -40,10 +40,12 @@ pipeline {
             remote.user = 'server'
             remote.password = 'server'
             remote.allowAnyHosts = true
-         
         }
+      sh "kubectl get pod"
+       
     }
-}
+  }
+
     
   }
 }
