@@ -21,8 +21,9 @@ pipeline {
       }
     }
    
-   stage('SSH into the server') {
-    steps {
+   stages('SSH into the server') {
+     stage{
+       steps {
         script {
             def remote = [:]
             remote.name = 'server'
@@ -30,11 +31,16 @@ pipeline {
             remote.user = 'server'
             remote.password = 'server'
             remote.allowAnyHosts = true
-           sshPut remote: remote, from: 'db-deployment.yml', into: '.'
-           sshCommand remote: remote, command: "kubectl apply -f db-deployment.yml"
-         
+          }
         }
-    }
+      }
+      stage('Put db-deployment.yml onto k8smaster') {
+            sshPut remote: remote, from: 'db-deployment.yml', into: '.'
+        }
+
+        stage('Deploy spring boot') {
+          sshCommand remote: remote, command: "kubectl apply -f db-deployment.yml"
+        }
   }
  
   }
