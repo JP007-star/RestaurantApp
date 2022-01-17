@@ -113,4 +113,19 @@ public class Cart {
     public void setTotalPrice(Double totalPrice) {
         this.totalPrice = totalPrice;
     }
+
+    @Override
+    public String toString() {
+        return "Cart{" +
+                "cartId=" + cartId +
+                ", productId='" + productId + '\'' +
+                ", productName='" + productName + '\'' +
+                ", productPrice='" + productPrice + '\'' +
+                ", productCategory='" + productCategory + '\'' +
+                ", productQuantity=" + productQuantity +
+                ", totalPrice=" + totalPrice +
+                ", image='" + image + '\'' +
+                ", status=" + status +
+                '}';
+    }
 }

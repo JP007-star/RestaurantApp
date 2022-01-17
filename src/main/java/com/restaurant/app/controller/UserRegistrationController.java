@@ -8,6 +8,7 @@ import com.restaurant.app.model.User;
 import com.restaurant.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,6 +29,9 @@ public class UserRegistrationController {
 	private UserService userService;
 	@Autowired
 	CartService cartService;
+	@Autowired
+	private KafkaTemplate<Object, String> kafkaTemplate;
+	private static final String TOPIC = "Kafka_restApp_admin_activity";
 
 	public UserRegistrationController(UserService userService) {
 		super();

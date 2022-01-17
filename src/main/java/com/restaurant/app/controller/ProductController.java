@@ -37,7 +37,7 @@ public class ProductController {
 
     @Autowired
     private KafkaTemplate<Object, String> kafkaTemplate;
-    private static final String TOPIC = "Kafka_restaurant";
+    private static final String TOPIC = "Kafka_restApp_admin_activity";
     @PostMapping("/save")
     public String saveProduct(@ModelAttribute("product") Product product) {
        productService.save(product);
