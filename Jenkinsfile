@@ -40,7 +40,8 @@ pipeline {
             remote.user = 'server'
             remote.password = 'server'
             remote.allowAnyHosts = true
-           sshPut remote: remote, from: 'db-deployment.yml', into: '/'
+            remote.fileTransfer = 'SCP'
+           sshPut remote: remote, from: 'db-deployment.yml', into: '.'
            sshCommand remote: remote, command: "kubectl apply -f db-deployment.yml"
          
         }
