@@ -31,16 +31,14 @@ pipeline {
         }
       }
     }
-    stage('Deploy to mysql pods'){
-        steps{
-            sh "kubectl apply -f db-deployment.yml"
-       }
-    }
-     stage('Deploy to spring-boot pods'){
-        steps{
-            sh "kubectl apply -f app-deployment.yml"
-       }
-    }
+   stage("SSH Into k8s Server") {
+        def remote = [:]
+        remote.name = 'K8S master'
+        remote.host = '100.0.0.2'
+        remote.user = 'vagrant'
+        remote.password = 'vagrant'
+        remote.allowAnyHosts = true
+   } 
     
   
   
