@@ -35,7 +35,7 @@ public class BillGenerator {
         table1.addCell("Order Id");
         table1.addCell(""+order.getOrderId());
         table1.addCell("UserName");
-        table1.addCell(String.valueOf(":"+user.getFirstName()));
+        table1.addCell(String.valueOf(""+user.getFirstName()));
         table1.addCell("Shipping Address");
         table1.addCell(""+order.getShippingAddress()+","+order.getState()+","+order.getCountry()+","+order.getZip());
         table1.addCell("Order Date");
