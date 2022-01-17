@@ -33,12 +33,12 @@ pipeline {
     }
     stage('Deploy to mysql pods'){
         steps{
-            sh "/home/server/RestaurantApp/kubectl apply -f db-deployment.yml"
+            sh "kubectl apply -f db-deployment.yml"
        }
     }
      stage('Deploy to spring-boot pods'){
         steps{
-            sh "/home/server/RestaurantApp/kubectl apply -f app-deployment.yml"
+            sh "kubectl apply -f app-deployment.yml"
        }
     }
     
