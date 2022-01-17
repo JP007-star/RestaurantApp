@@ -7,7 +7,6 @@
  */
 package com.restaurant.app.controller;
 
-import com.restaurant.app.model.Cart;
 import com.restaurant.app.service.CartService;
 import com.restaurant.app.utility.Counter;
 
@@ -15,6 +14,7 @@ import com.restaurant.app.model.Product;
 import com.restaurant.app.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +25,6 @@ import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Locale;
 import java.util.Optional;
 
 @Controller
@@ -36,12 +35,12 @@ public class ProductController {
     @Autowired
     CartService cartService;
 
-
-
+    @Autowired
+    private KafkaTemplate<Object, String> kafkaTemplate;
+    private static final String TOPIC = "Kafka_restaurant";
     @PostMapping("/save")
     public String saveProduct(@ModelAttribute("product") Product product) {
-       /// System.out.println(product);
-        productService.save(product);
+       productService.save(product);
         return "redirect:/admin/product/products";
     }
     @PostMapping("/addProduct")
@@ -53,7 +52,8 @@ public class ProductController {
                               @RequestParam("status") Boolean status)
     {
         String productId="PR00"+updateCounter();
-        productService.saveProductToDB(file, productId.toUpperCase(), productName,productCategory,productPrice,quantity,status);
+        kafkaTemplate.send(TOPIC,productService.saveProductToDB(file, productId.toUpperCase(), productName,productCategory,productPrice,quantity,status));
+
         return "redirect:/admin/product/products";
     }
     @GetMapping("/products")
@@ -96,6 +96,7 @@ public class ProductController {
         System.out.println(productId);
         String msg=productService.updateById(product);
         System.out.println(msg);
+        kafkaTemplate.send(TOPIC,msg);
         String result;
         if(msg==null) {
             result=null;
@@ -111,7 +112,6 @@ public class ProductController {
         productService.deleteById((productId));
         return "redirect:/admin/product/products";
     }
-
 
    //This function is used to update counter
     public static int updateCounter()
