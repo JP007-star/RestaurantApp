@@ -40,18 +40,13 @@ pipeline {
             remote.user = 'server'
             remote.password = 'server'
             remote.allowAnyHosts = true
+           sshPut remote: remote, from: 'db-deployment.yml', into: '.'
+           sshCommand remote: remote, command: "kubectl apply -f db-deployment.yml"
         }
        
     }
   }
-    
-    stage('Put db-deployment.yml onto k8smaster') {
-            sshPut remote: remote, from: 'db-deployment.yml', into: '.'
-        }
-
-        stage('Deploy Mysql Pod') {
-          sshCommand remote: remote, command: "kubectl apply -f k8s-spring-boot-deployment.yml"
-        }
+ 
 
     
   }
