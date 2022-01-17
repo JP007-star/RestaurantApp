@@ -40,8 +40,7 @@ pipeline {
             remote.user = 'server'
             remote.password = 'server'
             remote.allowAnyHosts = true
-            writeFile file: 'abc.sh', text: 'ls -lrt'
-            sshPut remote: remote, from: 'abc.sh', into: '.'
+         
         }
     }
 }
