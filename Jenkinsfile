@@ -22,7 +22,6 @@ pipeline {
     }
    
    stage('SSH into the server') {
-       steps {
         script {
             def remote = [:]
             remote.name = 'server'
@@ -37,7 +36,7 @@ pipeline {
          stage('Deploy spring boot') {
           sshCommand remote: remote, command: "kubectl apply -f db-deployment.yml"
          }
-        }
+       
       }
      
   
