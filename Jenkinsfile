@@ -31,14 +31,20 @@ pipeline {
         }
       }
     }
-   stage("SSH Into k8s Server") {
-        def remote = [:]
-        remote.name = 'server'
-        remote.host = '192.168.1.4'
-        remote.user = 'server'
-        remote.password = 'server'
-        remote.allowAnyHosts = true
-   } 
+   stage('SSH into the server') {
+    steps {
+        script {
+            def remote = [:]
+            remote.name = 'server'
+            remote.host = '192.168.1.4'
+            remote.user = 'server'
+            remote.password = 'server'
+            remote.allowAnyHosts = true
+            writeFile file: 'abc.sh', text: 'ls -lrt'
+            sshPut remote: remote, from: 'abc.sh', into: '.'
+        }
+    }
+}
     
   }
 }
