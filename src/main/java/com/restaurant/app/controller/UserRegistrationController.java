@@ -8,6 +8,7 @@ import com.restaurant.app.model.User;
 import com.restaurant.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -103,11 +104,21 @@ public class UserRegistrationController {
 	}
 	@PostMapping("/deleteUser")
 	public String deleteUser(HttpServletRequest request)throws NumberFormatException {
-		Long userId=Long.parseLong(request.getParameter("userId"));
-		String msg=userService.deleteById(userId);
+		Long userId = Long.parseLong(request.getParameter("userId"));
+		String msg = userService.deleteById(userId);
 		return "redirect:/admin/user/users";
 	}
+	@GetMapping("/userActivity")
+	@KafkaListener(topics = "Kafka_restApp_User_activity", groupId = "group_id")
+	public ResponseEntity<?> userActivity(){
+		String  result=kafkaTemplate.getDefaultTopic();
+		return ResponseEntity.ok(result);
+	}
 
+	@KafkaListener(topics = "Kafka_restApp_User_activity", groupId = "group_id")
+	public String consume(String message) {
+		System.out.println(message);
+		return message;
 
-
+	}
 }
