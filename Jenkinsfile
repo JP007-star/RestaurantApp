@@ -20,6 +20,17 @@ pipeline {
         }
       }
     }
+     stage('Push Image To Docker Hub') {
+      steps{
+        script {
+              docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials')
+          {
+              dockerImage.push("${env.BUILD_NUMBER}")
+              dockerImage.push("latest")
+          }
+        }
+      }
+    }
    
    stage('Mysql deployment') {
      steps{
