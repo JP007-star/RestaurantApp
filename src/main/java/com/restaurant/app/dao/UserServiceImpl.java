@@ -12,6 +12,7 @@ import com.restaurant.app.repository.UserRepository;
 import com.restaurant.app.model.Role;
 import com.restaurant.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -89,4 +90,9 @@ public class UserServiceImpl implements UserService {
         return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
     }
 
+    @KafkaListener(containerFactory ="kafkaListenerContainerFactory",topics = "Kafka_restApp_User_activity", groupId = "group_id")
+    public String consume(String message) {
+        System.out.println(message);
+        return (message);
+    }
 }

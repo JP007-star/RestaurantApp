@@ -25,4 +25,6 @@ public interface UserService extends UserDetailsService {
     String updateById(User user);
 
     User loadByEmailId(String email) throws UsernameNotFoundException;
+
+    String consume(String message);
 }

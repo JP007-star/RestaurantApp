@@ -6,10 +6,15 @@ import com.restaurant.app.utility.Counter;
 import com.restaurant.app.dao.UserRegistrationDto;
 import com.restaurant.app.model.User;
 import com.restaurant.app.service.UserService;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.annotation.KafkaListeners;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.support.converter.RecordMessageConverter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +25,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,7 +38,7 @@ public class UserRegistrationController {
 	@Autowired
 	CartService cartService;
 	@Autowired
-	private KafkaTemplate<Object, String> kafkaTemplate;
+	private KafkaTemplate<String,String> kafkaTemplate;
 	private static final String TOPIC = "Kafka_restApp_admin_activity";
 
 	public UserRegistrationController(UserService userService) {
@@ -108,17 +115,11 @@ public class UserRegistrationController {
 		String msg = userService.deleteById(userId);
 		return "redirect:/admin/user/users";
 	}
+
 	@GetMapping("/userActivity")
-	@KafkaListener(topics = "Kafka_restApp_User_activity", groupId = "group_id")
-	public ResponseEntity<?> userActivity(){
-		String  result=kafkaTemplate.getDefaultTopic();
+	public ResponseEntity<?> userActivity(String msg){
+		String result=userService.consume(msg);
 		return ResponseEntity.ok(result);
 	}
 
-	@KafkaListener(topics = "Kafka_restApp_User_activity", groupId = "group_id")
-	public String consume(String message) {
-		System.out.println(message);
-		return message;
-
-	}
 }

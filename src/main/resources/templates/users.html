@@ -46,7 +46,7 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="UserActivityModel" tabindex="1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="userActivityModel" tabindex="1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -246,17 +246,17 @@ $(document).on('click','#delete-user-button' ,function(){
   });
 });
 $(document).on('click','#view-activity' ,function(){
-$.ajax({
+ var userId=$(this).attr('data-user');
+  $.ajax({
     url: "userActivity",
-    type:"GET",
+    type:"Get",
     data:{"userId":userId},
     success: function(result){
-    $("#userActivity").html(result);
-$("#UserActivityModel").modal('show');
+    $('#userActivity').html(result);
+    $('#userActivityModel').modal('show');
 
     }
   });
-
+});
 </script>
-
 </html>
