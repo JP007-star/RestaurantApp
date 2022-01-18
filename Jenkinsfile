@@ -21,10 +21,18 @@ pipeline {
       }
     }
    
-   stage('SSH into the server') {
+   stage('Mysql deployment') {
      steps{
        script{
            kubernetesDeploy(configs:"db-deployment.yml",kubeconfigId:"newjp")
+       }
+       
+     }
+   }
+   stage('App deployemnt') {
+     steps{
+       script{
+           kubernetesDeploy(configs:"app-deployment.yml",kubeconfigId:"newjp")
        }
        
      }
