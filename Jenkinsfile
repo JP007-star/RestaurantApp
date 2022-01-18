@@ -13,6 +13,74 @@ pipeline {
         sh "${MAVEN_HOME}/bin/mvn package"
       }
     }
+     stage("Publish to Nexus Repository Manager") {
+
+            steps {
+
+                script {
+
+                    pom = readMavenPom file: "pom.xml";
+
+                    filesByGlob = findFiles(glob: "target/*.${pom.packaging}");
+
+                    echo "${filesByGlob[0].name} ${filesByGlob[0].path} ${filesByGlob[0].directory} ${filesByGlob[0].length} ${filesByGlob[0].lastModified}"
+
+                    artifactPath = filesByGlob[0].path;
+
+                    artifactExists = fileExists artifactPath;
+
+                    if(artifactExists) {
+
+                        echo "*** File: ${artifactPath}, group: ${pom.groupId}, packaging: ${pom.packaging}, version ${pom.version}";
+
+                        nexusArtifactUploader(
+                            nexusVersion: 'nexus3',
+                            
+                            protocol: 'http',
+
+                            nexusUrl: '192.168.1.4:8081',
+
+                            groupId: 'pom.com.restaurant.app',
+
+                            version: 'pom.0.0.1',
+
+                            repository: 'resturant-repo',
+
+                            credentialsId: 'nexus_cred',
+
+                            artifacts: [
+
+                                [artifactId: 'pom.RestaurantApp',
+
+                                classifier: '',
+
+                                file: artifactPath,
+
+                                type: pom.packaging],
+
+                                [artifactId: 'pom.RestaurantApp',
+
+                                classifier: '',
+
+                                file: "pom.xml",
+
+                                type: "pom"]
+
+                            ]
+
+                        );
+
+                    } else {
+
+                        error "*** File: ${artifactPath}, could not be found";
+
+                    }
+
+                }
+
+            }
+
+        }
     stage('Building Docker Image') {
       steps{
         script {
@@ -20,7 +88,7 @@ pipeline {
         }
       }
     }
-    stage('Push Image To Docker Hub') {
+     stage('Push Image To Docker Hub') {
       steps{
         script {
               docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials')
@@ -31,19 +99,27 @@ pipeline {
         }
       }
     }
-    stage('Deploy to mysql pods'){
-        steps{
-            sh "/home/server/RestaurantApp/kubectl apply -f db-deployment.yml"
+   
+   stage('Mysql deployment') {
+     steps{
+       script{
+           kubernetesDeploy(configs:"db-deployment.yml",kubeconfigId:"newjp")
        }
-    }
-     stage('Deploy to spring-boot pods'){
-        steps{
-            sh "/home/server/RestaurantApp/kubectl apply -f app-deployment.yml"
+       
+     }
+   }
+   stage('App deployemnt') {
+     steps{
+       script{
+           kubernetesDeploy(configs:"app-deployment.yml",kubeconfigId:"newjp")
        }
-    }
-    
+       
+     }
+   }
+        
+ 
+     
   
-  
-  
+ 
   }
 }
