@@ -31,6 +31,7 @@ server.port=8082
 - Dockerfile
 FROM openjdk:8
 EXPOSE 8082
+
 ADD target/RestaurantApp-0.0.1.jar RestaurantApp-0.0.1.jar 
 ENTRYPOINT ["java","-jar","RestaurantApp-0.0.1.jar"]
 
@@ -160,3 +161,14 @@ server.port=8082
   304  docker tag fwd:latest dhamok/fwd:fwd
   305  docker push dhamok/fwd:fwd
   306  history
+
+
+
+kubernetes
+
+-- to create a pod
+kubectl apply -f filename.yml
+
+-- to get the cluster ip address to run in browser
+
+kubectl get svc
