@@ -15,7 +15,7 @@ spec:
       containers:
         - name: springboot-crud-k8s
           imagePullPolicy: Never
-          image: justiceofpeace/restuarant_app:latest 
+          image: registry.hub.docker.com/justiceofpeace/restaurant_app:latest
           ports:
             - containerPort: 8080
           env:   # Setting Enviornmental Variables
