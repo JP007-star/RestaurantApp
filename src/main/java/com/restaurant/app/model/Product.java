@@ -9,7 +9,7 @@ package com.restaurant.app.model;
 
 
 import javax.persistence.*;
-
+//Product pojo class
 @Entity
 @Table(name="products")
 public class Product {

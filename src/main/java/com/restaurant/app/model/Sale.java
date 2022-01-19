@@ -10,7 +10,7 @@ package com.restaurant.app.model;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-
+//Sale pojo class
 @Entity
 @Table(name = "sales")
 public class Sale {

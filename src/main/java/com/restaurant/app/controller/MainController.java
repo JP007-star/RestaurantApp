@@ -98,7 +98,7 @@ public class MainController {
         return ResponseEntity.ok(orderId);
 
     }
-
+    //This function is used to addtocart
     @PostMapping("/addToCart")
     public ResponseEntity<?> addToCart(HttpServletRequest request, Model model) throws SQLException, ClassNotFoundException {
         String productId=request.getParameter("productId");
@@ -118,12 +118,14 @@ public class MainController {
         }
         return ResponseEntity.ok(cartCount);
     }
+    //This function is used to delete from cart
     @PostMapping("/deleteToCart")
     public ResponseEntity<?> deleteToCart(HttpServletRequest request, Model model) throws SQLException, ClassNotFoundException {
         Long productId=Long.parseLong(request.getParameter("cartId"));
         cartService.deleteById(productId);
         return ResponseEntity.ok("success");
     }
+    //This function is used to add quantity to cart
     @PostMapping("/addQuantityToCart")
     public ResponseEntity<?> addQuantityToCart(HttpServletRequest httpServletRequest,Model model) {
         Long cartId = Long.parseLong(httpServletRequest.getParameter("cartId"));
@@ -148,6 +150,7 @@ public class MainController {
         return ResponseEntity.ok(grandTotal);
 
     }
+    //This function is used to remove to cart
     @PostMapping("/removeQuantityToCart")
     public ResponseEntity<?> removeQuantityToCart(HttpServletRequest httpServletRequest,Model model) {
         Long cartId = Long.parseLong(httpServletRequest.getParameter("cartId"));
@@ -244,7 +247,7 @@ public class MainController {
         return "cart";
     }
 
-    //this function will render cart page
+    //this function will render payment page
     @GetMapping("/payment")
     public String paymentPage(Model model,HttpSession session) {
         List<Cart> cartList=cartService.findAll();

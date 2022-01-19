@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
         super();
         this.userRepository = userRepository;
     }
-
+    //This function is used to save the user details
     @Override
     public User save(UserRegistrationDto registrationDto) {
         User user = new User(registrationDto.getFirstName(),
@@ -45,21 +45,25 @@ public class UserServiceImpl implements UserService {
 
         return userRepository.save(user);
     }
+    //This function is used to find all users
     @Override
     public List<User> findAll(){
         return userRepository.findAll();
     }
 
     @Override
+    //This function is used to find user by id
     public Optional<User> findById(Long id) throws  UsernameNotFoundException{
         Optional<User> user = userRepository.findById(id);
         return user;
     }
+    //This function is used to delete user by id
     @Override
     public String deleteById(Long id) throws NumberFormatException{
         userRepository.deleteById(id);
         return "success";
     }
+    //This function is used to update user id
     @Override
     public String updateById(User user){
         User user1=userRepository.findById(user.getId()).orElse(null);
@@ -71,10 +75,12 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user1);
         return "success";
     }
+    //This function is used to get the user by email id
     @Override
     public User loadByEmailId(String email) throws UsernameNotFoundException{
         return userRepository.findByEmail(email);
     }
+    //This function is used to get the user by username
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
@@ -84,7 +90,7 @@ public class UserServiceImpl implements UserService {
         }
         return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), mapRolesToAuthorities(user.getRoles()));
     }
-
+    //This function is used to map the roles
     private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles){
         return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
     }

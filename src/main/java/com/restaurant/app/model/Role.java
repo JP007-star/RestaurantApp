@@ -8,7 +8,7 @@
 package com.restaurant.app.model;
 
 import javax.persistence.*;
-
+//Role pojo class
 @Entity
 @Table(name = "role")
 public class Role {

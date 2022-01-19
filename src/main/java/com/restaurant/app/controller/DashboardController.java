@@ -40,6 +40,7 @@ public class DashboardController {
     SaleService saleService;
     Double totalRevenue=0.0;
     @GetMapping("/")
+    //This function is used to display the dashboard
     public  String index(Model model, HttpSession session) throws JSONException {
         long cartCount=cartService.count();
         long productCount=productService.count();
@@ -60,7 +61,7 @@ public class DashboardController {
         model.addAttribute("userName", userName);
         return "dashboard";
     }
-
+    //This function is used for displaying chart
     public JSONArray quantityCount() throws JSONException {
         List<String> productNameStockList = productService.findAllProductName();
         String week[] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
@@ -92,8 +93,7 @@ public class DashboardController {
 
         return productArray;
     }
-
-
+    //This function is used for calculating total revenue
     public Double revenueCalculator(){
         totalRevenue=0.0;
         List<Order> orderList=orderService.findAll();

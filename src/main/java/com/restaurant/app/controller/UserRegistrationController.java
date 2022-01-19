@@ -43,13 +43,15 @@ public class UserRegistrationController {
 	public String showRegistrationForm() {
 		return "registration";
 	}
-	
+
+	//This function is used to save the user details
 	@PostMapping("save")
 	public String registerUserAccount(@ModelAttribute("user") UserRegistrationDto registrationDto) {
 		userService.save(registrationDto);
 		System.out.println(registrationDto);
 		return "redirect:/admin/user/users";
 	}
+	//This function is used to fetch users
 	@GetMapping("/users")
 	public String fetchUsers(Model model, HttpSession session){
 		List<User> userList=userService.findAll();
@@ -61,6 +63,7 @@ public class UserRegistrationController {
 		model.addAttribute("userName",userName);
 		return "users";
 	}
+	//This function is used to edit users details
 	@PostMapping("/editUser")
 	public  ResponseEntity<?> fetchUser(HttpServletRequest request, Model model) throws SQLException, ClassNotFoundException {
 		Long userId=Long.parseLong(request.getParameter("userId"));
@@ -76,6 +79,7 @@ public class UserRegistrationController {
 		}
 		return ResponseEntity.ok(result);
 	}
+	//This function is used to update user
 	@PostMapping("/updateUser")
 	public  String updateUser(HttpServletRequest request, Model model) throws SQLException, ClassNotFoundException {
 		String userId=request.getParameter("userId");
@@ -97,6 +101,7 @@ public class UserRegistrationController {
 		}
 		return "redirect:/admin/user/users";
 	}
+	//This function is used to delete user
 	@PostMapping("/deleteUser")
 	public String deleteUser(HttpServletRequest request)throws NumberFormatException {
 		Long userId=Long.parseLong(request.getParameter("userId"));
