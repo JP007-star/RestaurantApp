@@ -26,5 +26,4 @@ public interface UserService extends UserDetailsService {
 
     User loadByEmailId(String email) throws UsernameNotFoundException;
 
-    String consume(String message);
 }

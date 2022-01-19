@@ -169,8 +169,6 @@ public class CartService implements CartRepository {
     public <S extends Cart, R> R findBy(Example<S> example, Function<FluentQuery.FetchableFluentQuery<S>, R> queryFunction) {
         return null;
     }
-
-
     @Override
     public Cart findByProductId(String productId) {
         return cartRepository.findByProductId(productId);

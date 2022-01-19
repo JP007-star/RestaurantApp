@@ -35,9 +35,6 @@ public class ProductController {
     @Autowired
     CartService cartService;
 
-    @Autowired
-    private KafkaTemplate<Object, String> kafkaTemplate;
-    private static final String TOPIC = "Kafka_restApp_admin_activity";
     @PostMapping("/save")
     public String saveProduct(@ModelAttribute("product") Product product) {
        productService.save(product);
@@ -52,8 +49,7 @@ public class ProductController {
                               @RequestParam("status") Boolean status)
     {
         String productId="PR00"+updateCounter();
-        kafkaTemplate.send(TOPIC,productService.saveProductToDB(file, productId.toUpperCase(), productName,productCategory,productPrice,quantity,status));
-
+        productService.saveProductToDB(file, productId.toUpperCase(), productName,productCategory,productPrice,quantity,status);
         return "redirect:/admin/product/products";
     }
     @GetMapping("/products")
@@ -96,7 +92,6 @@ public class ProductController {
         System.out.println(productId);
         String msg=productService.updateById(product);
         System.out.println(msg);
-        kafkaTemplate.send(TOPIC,msg);
         String result;
         if(msg==null) {
             result=null;

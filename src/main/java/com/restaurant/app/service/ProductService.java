@@ -53,12 +53,6 @@ public class ProductService implements ProductRepository {
         return "product added with Id:"+p.getProductId()+"Added product details:"+p;
     }
 
-//    @Override
-//    public Optional<Product> findById(Long id) throws UsernameNotFoundException {
-//        Optional<Product> product = productRepository.findById(id);
-//        return product;
-//    }
-
     public String updateById(Product product){
         Product product1=productRepository.findById(product.getProductId()).orElse(null);
         product1.setProductName(product.getProductName());
@@ -70,7 +64,6 @@ public class ProductService implements ProductRepository {
         return "Update success for Id:"+product.getProductId()+"Updated details:"+product1;
     }
 
-
     @Override
     public long count() {
         return productRepository.count();
@@ -79,14 +72,8 @@ public class ProductService implements ProductRepository {
     @Override
     public void deleteById(String s) {
         productRepository.deleteById(s);
-
     }
 
-    //    @Override
-//    public void deleteById(Long aLong) {
-//        productRepository.deleteById(aLong);
-//
-//    }
     @Override
     public List<Product> findAll(Sort sort) {
         return null;
@@ -102,10 +89,6 @@ public class ProductService implements ProductRepository {
         return null;
     }
 
-//    @Override
-//    public List<Product> findAllById(Iterable<Long> longs) {
-//        return null;
-//    }
     @Override
     public void delete(Product entity) {
 
@@ -115,11 +98,6 @@ public class ProductService implements ProductRepository {
     public void deleteAllById(Iterable<? extends String> strings) {
 
     }
-
-//    @Override
-//    public void deleteAllById(Iterable<? extends Long> longs) {
-//
-//    }
 
     @Override
     public void deleteAll(Iterable<? extends Product> entities) {
@@ -155,11 +133,6 @@ public class ProductService implements ProductRepository {
     }
 
 
-//    @Override
-//    public boolean existsById(Long aLong) {
-//        return false;
-//    }
-
     @Override
     public void flush() {
 
@@ -185,11 +158,6 @@ public class ProductService implements ProductRepository {
 
     }
 
-//    @Override
-//    public void deleteAllByIdInBatch(Iterable<Long> longs) {
-//
-//    }
-
     @Override
     public void deleteAllInBatch() {
 
@@ -205,15 +173,6 @@ public class ProductService implements ProductRepository {
         return null;
     }
 
-//    @Override
-//    public Product getOne(Long aLong) {
-//        return null;
-//    }
-//
-//    @Override
-//    public Product getById(Long aLong) {
-//        return null;
-//    }
 
     @Override
     public <S extends Product> Optional<S> findOne(Example<S> example) {
@@ -249,7 +208,6 @@ public class ProductService implements ProductRepository {
     public <S extends Product, R> R findBy(Example<S> example, Function<FluentQuery.FetchableFluentQuery<S>, R> queryFunction) {
         return null;
     }
-
 
     @Override
     public List<String> findAllQuantity() {

@@ -90,9 +90,4 @@ public class UserServiceImpl implements UserService {
         return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
     }
 
-    @KafkaListener(containerFactory ="kafkaListenerContainerFactory",topics = "Kafka_restApp_User_activity", groupId = "group_id")
-    public String consume(String message) {
-        System.out.println(message);
-        return (message);
-    }
 }

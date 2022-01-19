@@ -6,15 +6,19 @@ import com.restaurant.app.utility.Counter;
 import com.restaurant.app.dao.UserRegistrationDto;
 import com.restaurant.app.model.User;
 import com.restaurant.app.service.UserService;
+import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.annotation.KafkaListeners;
+import org.springframework.kafka.annotation.TopicPartition;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.converter.RecordMessageConverter;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,10 +29,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Controller
 @RequestMapping("/admin/user")
@@ -38,8 +39,7 @@ public class UserRegistrationController {
 	@Autowired
 	CartService cartService;
 	@Autowired
-	private KafkaTemplate<String,String> kafkaTemplate;
-	private static final String TOPIC = "Kafka_restApp_admin_activity";
+	private final List<String> messages=new ArrayList<>();
 
 	public UserRegistrationController(UserService userService) {
 		super();
@@ -115,11 +115,15 @@ public class UserRegistrationController {
 		String msg = userService.deleteById(userId);
 		return "redirect:/admin/user/users";
 	}
-
 	@GetMapping("/userActivity")
-	public ResponseEntity<?> userActivity(String msg){
-		String result=userService.consume(msg);
-		return ResponseEntity.ok(result);
+	public ResponseEntity<List<String>> userActivity(){
+		return ResponseEntity.ok(messages);
 	}
-
+	@KafkaListener(containerFactory ="kafkaListenerContainerFactory", groupId = "group_id",topicPartitions = @TopicPartition(topic = "Kafka_restApp_User_activity1",partitions = {"1"}))
+	public void consume(String message) {
+		System.out.println(message);
+		synchronized (messages){
+			messages.add(message);
+		}
+	}
 }
