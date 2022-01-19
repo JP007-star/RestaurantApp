@@ -37,14 +37,13 @@ public class ProductController {
     CartService cartService;
 
 
-    //This function is used to save products
+
     @PostMapping("/save")
     public String saveProduct(@ModelAttribute("product") Product product) {
        /// System.out.println(product);
         productService.save(product);
         return "redirect:/admin/product/products";
     }
-    //This function is used to add products
     @PostMapping("/addProduct")
     public String saveProduct(@RequestParam("file") MultipartFile file,
                               @RequestParam("productName") String productName,
@@ -57,7 +56,6 @@ public class ProductController {
         productService.saveProductToDB(file, productId.toUpperCase(), productName,productCategory,productPrice,quantity,status);
         return "redirect:/admin/product/products";
     }
-    //This function is used to fetch products
     @GetMapping("/products")
     public String fetchProducts(Model model, HttpSession session){
       List<Product> productList=productService.findAll();
@@ -69,7 +67,7 @@ public class ProductController {
         model.addAttribute("userName",userName);
         return "products";
     }
-    //This function is used to edit product
+
     @PostMapping("/editProduct")
     public ResponseEntity<?> fetchProduct(HttpServletRequest request, Model model) throws SQLException, ClassNotFoundException {
         String productId=request.getParameter("productId");
@@ -85,7 +83,7 @@ public class ProductController {
         }
         return ResponseEntity.ok(result);
     }
-    //This function is used to update product
+
     @PostMapping("/updateProduct")
     public String updateProduct(HttpServletRequest request, Model model) throws SQLException, ClassNotFoundException {
         String productId=request.getParameter("productId");
@@ -107,7 +105,6 @@ public class ProductController {
         }
         return "redirect:/admin/product/products";
     }
-    //This function is used to delete product
     @PostMapping("/deleteProduct")
     public String deleteProduct(HttpServletRequest request)throws NumberFormatException {
         String productId=request.getParameter("productId");

@@ -20,7 +20,7 @@
         <th>Email</th>
         <th>Phone Number</th>
         <th>Status</th>
-        <th>Active</th>
+        <th>Action</th>
         </thead>
         <tbody>
         <th:block th:each="user:${users}">
@@ -34,6 +34,7 @@
                 <input class="form-check-input" type="checkbox" role="switch"   id="status" th:checked="${user.status}"    required autofocus="autofocus" />
             </div></td>
             <td>
+                <button type="button" id="view-activity"  class="btn btn-light"  /> <i class="fa fa-eye "  ></i></button>
                 <button type="button" th:data-user="(${user.id})" id="edit-user"  class="btn btn-primary"><i class="fa fa-edit"></i> </button>
                 <button type="button" th:data-user="(${user.id})" id="delete-user"   class="btn btn-danger"><i class="fa fa-trash"></i> </button>
             </td>
@@ -45,13 +46,27 @@
 </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="UserActivityModel" tabindex="1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel_H">History</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" >
+                <div id="userActivity"> </div>
 
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Modal -->
 <div class="modal fade" id="DeleteUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -231,5 +246,18 @@ $(document).on('click','#delete-user-button' ,function(){
     }
   });
 });
+$(document).on('click','#view-activity' ,function(){
+$.ajax({
+    url: "userActivity",
+    type:"GET",
+    data:{"userId":userId},
+    success: function(result){
+    $("#userActivity").html(result);
+$("#UserActivityModel").modal('show');
+
+    }
+  });
+
 </script>
+
 </html>

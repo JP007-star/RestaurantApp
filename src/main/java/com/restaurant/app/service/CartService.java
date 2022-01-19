@@ -8,7 +8,6 @@
 package com.restaurant.app.service;
 
 import com.restaurant.app.model.Cart;
-import com.restaurant.app.model.Product;
 import com.restaurant.app.repository.CartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;

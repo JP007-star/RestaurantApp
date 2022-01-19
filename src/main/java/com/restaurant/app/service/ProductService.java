@@ -1,6 +1,5 @@
 package com.restaurant.app.service;
 
-import com.restaurant.app.model.Cart;
 import com.restaurant.app.model.Product;
 import com.restaurant.app.repository.CartRepository;
 import com.restaurant.app.repository.ProductRepository;
@@ -9,10 +8,7 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.FluentQuery;
-import org.springframework.data.repository.query.Param;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -34,7 +30,7 @@ public class ProductService implements ProductRepository {
        return  productRepository.findAll();
     }
 
-    public void saveProductToDB(MultipartFile file,String productId,String productName,String productCategory,String productPrice,int quantity,Boolean status)
+    public String saveProductToDB(MultipartFile file,String productId,String productName,String productCategory,String productPrice,int quantity,Boolean status)
     {
         Product p = new Product();
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
@@ -54,6 +50,7 @@ public class ProductService implements ProductRepository {
         p.setQuantity(quantity);
         p.setStatus(status);
         productRepository.save(p);
+        return "product added with Id:"+p.getProductId()+"Added product details:"+p;
     }
 
 //    @Override
@@ -70,7 +67,7 @@ public class ProductService implements ProductRepository {
         product1.setQuantity(product.getQuantity());
         product1.setStatus(product.getStatus());
         productRepository.save(product1);
-        return "success";
+        return "Update success for Id:"+product.getProductId()+"Updated details:"+product1;
     }
 
 
