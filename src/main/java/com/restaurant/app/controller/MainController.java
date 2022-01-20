@@ -55,7 +55,7 @@ public class MainController {
     LocalDateTime orderDate= LocalDateTime.now(ZoneId.of("Asia/Kolkata"));
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
-    private static final String TOPIC = "Kafka_restApp_User_activity1";
+    private static final String TOPIC = "Kafka_restApp_User_activity_1";
     private String key;
 
     public MainController(UserService userService) {
@@ -232,7 +232,7 @@ public class MainController {
         model.addAttribute("cartCount",cartCount);
         model.addAttribute("products",productList);
         model.addAttribute("userName",userName);
-        String msg="User logged in : Name:"+userName+"Email:"+user.getEmail()+"\n";
+        String msg="User logged in : Name:"+userName+""+"Email:"+user.getEmail()+"\n";
         String p1= String.valueOf(session.getAttribute("userId"));
         kafkaTemplate.send(TOPIC, Integer.valueOf(p1),key,msg);
         return "index";
@@ -243,9 +243,6 @@ public class MainController {
     public String registerUser(@ModelAttribute("user") UserRegistrationDto registrationDto,HttpSession session) {
         userService.save(registrationDto);
         System.out.println(registrationDto);
-        String msg="User registered : Name:"+registrationDto.getFirstName()+"Email:"+userRegistrationDto().getEmail()+"\n";
-        String p1= String.valueOf(session.getAttribute("userId"));
-        kafkaTemplate.send(TOPIC, Integer.valueOf(p1),key,msg);
         return "redirect:/login?success";
     }
     @GetMapping("/registration")

@@ -6,10 +6,10 @@ import com.restaurant.app.utility.Counter;
 import com.restaurant.app.dao.UserRegistrationDto;
 import com.restaurant.app.model.User;
 import com.restaurant.app.service.UserService;
+import org.springframework.kafka.annotation.TopicPartition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.annotation.KafkaListener;
-import org.springframework.kafka.annotation.TopicPartition;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +20,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
+
 import java.util.*;
+
 
 @Controller
 @RequestMapping("/admin/user")
@@ -31,9 +33,13 @@ public class UserRegistrationController {
 	CartService cartService;
 	@Autowired
 	private KafkaTemplate<String, String> kafkaTemplate;
-	private static final String TOPIC = "Kafka_restApp_User_activity1";
-	private Long offset;
 
+	private static final String TOPIC = "Kafka_restApp_User_activity_1";
+	private Long offset;
+//	TopicPartition p1 = new TopicPartition(TOPIC, 1);
+//	TopicPartition p2 = new TopicPartition(TOPIC, 2);
+//	TopicPartition p3 = new TopicPartition(TOPIC, 3);
+	MainController mainController;
 	private final List<String> messages = new ArrayList<>();
 
 
@@ -119,9 +125,13 @@ public class UserRegistrationController {
 		return ResponseEntity.ok(messages);
 	}
 
-	//	public void consume(HttpSession session) {
-//		String p1 = String.valueOf(session.getAttribute("userId"));
-//		String result = String.valueOf(kafkaTemplate.receive());
+	//		public void consume(HttpSession session) {
+//		String userId = String.valueOf(session.getAttribute("userId"));
+//		kafkaConsumer.subscribe(Collections.singleton(TOPIC));
+//		if(userId==String.valueOf(p1)) {
+//			  kafkaConsumer.seekToBeginning(Collections.singleton(p1));
+//		}else
+//			  kafkaConsumer.seekToBeginning(Collections.singleton(p2));
 //		System.out.println(result);
 //		synchronized (messages) {
 //			messages.add(String.valueOf(result));
@@ -135,6 +145,5 @@ public class UserRegistrationController {
 		}
 	}
 }
-
 
 
