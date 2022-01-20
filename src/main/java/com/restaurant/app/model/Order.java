@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
-
+// Order pojo class
 @Entity
 @Table(name="orders",schema = "targetSchemaName")
 public class Order{

@@ -58,6 +58,7 @@ body {
 <div th:replace="header.html"></div>
 <!--Header Section-->
 
+<!--Cart home page starts-->
 <div th:if="${cartCount} > 0" class="card shadow m-5 p-5">
     <div class="progress">
         <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
@@ -109,7 +110,8 @@ body {
     <a href="payment"><button type="button" class="btn btn-warning col-12"><strong>Check Out</strong><i class="fa fa-shopping-cart"></i> </button>
     </a>
 </div>
-
+<!--Cart home page ends-->
+<!--Default message- cart is empty-->
 </div>
 <div th:if="${cartCount} <= 0">
     <br>

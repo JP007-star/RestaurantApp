@@ -35,6 +35,7 @@ public class OrderController {
     @Autowired
     CartService cartService;
 
+    //This function is used to display all orders
     @GetMapping("/orders")
     public String index(Model model, HttpSession session) {
         List<Order> orderList = orderService.findAll();

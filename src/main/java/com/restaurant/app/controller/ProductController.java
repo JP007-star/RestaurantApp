@@ -7,6 +7,7 @@
  */
 package com.restaurant.app.controller;
 
+import com.restaurant.app.model.Cart;
 import com.restaurant.app.service.CartService;
 import com.restaurant.app.utility.Counter;
 
@@ -14,7 +15,6 @@ import com.restaurant.app.model.Product;
 import com.restaurant.app.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +25,7 @@ import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 
 @Controller
@@ -35,9 +36,12 @@ public class ProductController {
     @Autowired
     CartService cartService;
 
+
+
     @PostMapping("/save")
     public String saveProduct(@ModelAttribute("product") Product product) {
-       productService.save(product);
+       /// System.out.println(product);
+        productService.save(product);
         return "redirect:/admin/product/products";
     }
     @PostMapping("/addProduct")
@@ -107,6 +111,7 @@ public class ProductController {
         productService.deleteById((productId));
         return "redirect:/admin/product/products";
     }
+
 
    //This function is used to update counter
     public static int updateCounter()

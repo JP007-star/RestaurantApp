@@ -6,7 +6,6 @@
  * @date 07 01 2022 04:22 PM
  */
 package com.restaurant.app.model;
-
 import com.lowagie.text.Document;
 import com.lowagie.text.PageSize;
 import com.lowagie.text.Paragraph;
@@ -18,6 +17,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+//Bill generator class
 public class BillGenerator {
     public void generateBill(HttpServletResponse response,Order order,User user) throws IOException {
         response.setContentType("application/pdf");

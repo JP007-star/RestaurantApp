@@ -9,7 +9,7 @@ package com.restaurant.app.model;
 
 import javax.persistence.*;
 import java.util.Collection;
-
+//User pojo class
 @Entity
 @Table(name =  "users", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class User {

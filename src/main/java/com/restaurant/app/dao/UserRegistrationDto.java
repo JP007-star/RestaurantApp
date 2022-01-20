@@ -1,5 +1,6 @@
 package com.restaurant.app.dao;
 
+//pojo class for user registration
 public class UserRegistrationDto {
 	private Long id;
 	private String firstName;

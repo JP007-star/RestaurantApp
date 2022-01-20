@@ -8,7 +8,7 @@
 package com.restaurant.app.model;
 
 import javax.persistence.*;
-
+//Cart pojo class
 @Entity
 public class Cart {
     @Id

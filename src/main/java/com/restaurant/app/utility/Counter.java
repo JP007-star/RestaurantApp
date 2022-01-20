@@ -7,6 +7,7 @@
  */
 package com.restaurant.app.utility;
 
+//This function is used to generate counter
 public class Counter {
     private int count;
 
