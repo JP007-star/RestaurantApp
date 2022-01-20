@@ -56,7 +56,6 @@ public class MainController {
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
     private static final String TOPIC = "Kafka_restApp_User_activity1";
-    private int partition=1;
     private String key;
 
     public MainController(UserService userService) {
@@ -100,14 +99,15 @@ public class MainController {
         Order order=new Order(productIdsList.toString(),orderId,userName,productNamesList.toString(),quantitiesList.toString(),pricesList.toString(),totalsList.toString(),address,country,state,zip,grandTotal,orderDate);
         orderService.save(order);
         String msg="\r\nOrder confirmed with Id:"+orderId+"\nOrder details:"+String.valueOf(orderService.save(order)+"\r\n");
-        kafkaTemplate.send(TOPIC,partition,key,msg);
+        String p1= String.valueOf(session.getAttribute("userId"));
+        kafkaTemplate.send(TOPIC, Integer.valueOf(p1),key,msg);
         cartService.deleteAll();
         return ResponseEntity.ok(orderId);
 
     }
 
     @PostMapping("/addToCart")
-    public ResponseEntity<?> addToCart(HttpServletRequest request, Model model) throws SQLException, ClassNotFoundException {
+    public ResponseEntity<?> addToCart(HttpServletRequest request, Model model,HttpSession session) throws SQLException, ClassNotFoundException {
         String productId=request.getParameter("productId");
         Product product=productService.findById(productId).orElse(null);
         System.out.println(product);
@@ -115,7 +115,8 @@ public class MainController {
         Cart cart=new Cart(productId,product.getProductName(),product.getProductPrice(),product.getProductCategory(),product.getImage(),product.getStatus(),1,Double.parseDouble(product.getProductPrice()));
         cartService.save(cart);
         String msg=product.getProductName()+" added to cart with Id:"+productId+"\r\n";
-        kafkaTemplate.send(TOPIC,partition,key,msg);
+        String p1= String.valueOf(session.getAttribute("userId"));
+        kafkaTemplate.send(TOPIC, Integer.valueOf(p1),key,msg);
         String cartCount= String.valueOf(cartService.count());
         String result="";
         if(cartCount!=null){
@@ -129,15 +130,16 @@ public class MainController {
     }
 
     @PostMapping("/deleteToCart")
-    public ResponseEntity<?> deleteToCart(HttpServletRequest request, Model model) throws SQLException, ClassNotFoundException {
+    public ResponseEntity<?> deleteToCart(HttpServletRequest request, Model model,HttpSession session) throws SQLException, ClassNotFoundException {
         Long productId=Long.parseLong(request.getParameter("cartId"));
         cartService.deleteById(productId);
         String msg="Product deleted from cart with Id:"+productId+"\r\n";
-        kafkaTemplate.send(TOPIC,partition,key,msg);
+        String p1= String.valueOf(session.getAttribute("userId"));
+        kafkaTemplate.send(TOPIC, Integer.valueOf(p1),key,msg);
         return ResponseEntity.ok("success");
     }
     @PostMapping("/addQuantityToCart")
-    public ResponseEntity<?> addQuantityToCart(HttpServletRequest httpServletRequest,Model model) {
+    public ResponseEntity<?> addQuantityToCart(HttpServletRequest httpServletRequest,Model model,HttpSession session) {
         Long cartId = Long.parseLong(httpServletRequest.getParameter("cartId"));
         Cart productInCart= cartService.findById(cartId).orElse(null);
         System.out.println(productInCart);
@@ -154,7 +156,8 @@ public class MainController {
             productService.save(productInDb);
             cartService.save(productInCart);
             String msg=productInCart.getProductName()+" Quantity increased in cart\r\n";
-            kafkaTemplate.send(TOPIC,partition,key,msg);
+            String p1= String.valueOf(session.getAttribute("userId"));
+            kafkaTemplate.send(TOPIC, Integer.valueOf(p1),key,msg);
             grandTotal=calculateGrandTotal();
             return ResponseEntity.ok(grandTotal);
         }
@@ -163,7 +166,7 @@ public class MainController {
 
     }
     @PostMapping("/removeQuantityToCart")
-    public ResponseEntity<?> removeQuantityToCart(HttpServletRequest httpServletRequest,Model model) {
+    public ResponseEntity<?> removeQuantityToCart(HttpServletRequest httpServletRequest,Model model,HttpSession session) {
         Long cartId = Long.parseLong(httpServletRequest.getParameter("cartId"));
         Cart productInCart= cartService.findById(cartId).orElse(null);
         System.out.println(productInCart);
@@ -180,7 +183,8 @@ public class MainController {
             productService.save(productInDb);
             cartService.save(productInCart);
             String msg="\n"+productInCart.getProductName()+" Quantity decreased from cart\r\n";
-            kafkaTemplate.send(TOPIC,partition,key,msg);
+            String p1= String.valueOf(session.getAttribute("userId"));
+            kafkaTemplate.send(TOPIC, Integer.valueOf(p1),key,msg);
             grandTotal = calculateGrandTotal();
             return ResponseEntity.ok(grandTotal);
         }
@@ -235,10 +239,11 @@ public class MainController {
 
     //This function is used to register a user
     @PostMapping("/register")
-    public String registerUser(@ModelAttribute("user") UserRegistrationDto registrationDto) {
+    public String registerUser(@ModelAttribute("user") UserRegistrationDto registrationDto,HttpSession session) {
         userService.save(registrationDto);
         String msg="User registered with details:\n"+String.valueOf(userService.save(registrationDto))+"\r\n";
-        kafkaTemplate.send(TOPIC,partition,key,msg);
+        String p1= String.valueOf(session.getAttribute("userId"));
+        kafkaTemplate.send(TOPIC, Integer.valueOf(p1),key,msg);
         System.out.println(registrationDto);
         return "redirect:/login?success";
     }
