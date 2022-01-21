@@ -142,14 +142,14 @@ public class UserRegistrationController {
 			messages1.add(String.valueOf(message));
 		}
 	}
-	@KafkaListener(containerFactory = "kafkaListenerContainerFactory2", groupId = "group_id2", topicPartitions = @TopicPartition(topic = "Kafka_restApp_User_activity_1", partitionOffsets = @PartitionOffset(partition = "3",initialOffset = "0")))
+	@KafkaListener(containerFactory = "kafkaListenerContainerFactory2", groupId = "group_id2", topicPartitions = @TopicPartition(topic = "Kafka_restApp_User_activity_1", partitionOffsets = @PartitionOffset(partition = "2",initialOffset = "0")))
 	public void consume2(String message) {
 		System.out.println(message);
 		synchronized (messages2) {
 			messages2.add(String.valueOf(message));
 		}
 	}
-	@KafkaListener(containerFactory = "kafkaListenerContainerFactory3", groupId = "group_id3", topicPartitions = @TopicPartition(topic = "Kafka_restApp_User_activity_1", partitionOffsets = @PartitionOffset(partition = "4",initialOffset = "0")))
+	@KafkaListener(containerFactory = "kafkaListenerContainerFactory3", groupId = "group_id3", topicPartitions = @TopicPartition(topic = "Kafka_restApp_User_activity_1", partitionOffsets = @PartitionOffset(partition = "3",initialOffset = "0")))
 	public void consume3(String message) {
 		System.out.println(message);
 		synchronized (messages3) {
