@@ -55,7 +55,7 @@ public class MainController {
     LocalDateTime orderDate= LocalDateTime.now(ZoneId.of("Asia/Kolkata"));
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
-    private static final String TOPIC = "Kafka_restApp_User";
+    private static final String TOPIC = "Kafka_restApp_User_activity_1";
     private String key;
 
     public MainController(UserService userService) {
@@ -118,12 +118,9 @@ public class MainController {
         String cartCount= String.valueOf(cartService.count());
         String result="";
         if(cartCount!=null){
-            result=cartCount;
-
-        }
+            result=cartCount;}
         else {
-            result="It is already there in cart";
-        }
+            result="It is already there in cart";}
         String msg=product.getProductName()+""+"added to cart\n";
         String p1= String.valueOf(session.getAttribute("userId"));
         kafkaTemplate.send(TOPIC, Integer.valueOf(p1),key,msg);
@@ -132,10 +129,11 @@ public class MainController {
     @PostMapping("/deleteToCart")
     public ResponseEntity<?> deleteToCart(HttpServletRequest request, Model model,HttpSession session) throws SQLException, ClassNotFoundException {
         Long productId=Long.parseLong(request.getParameter("cartId"));
-        cartService.deleteById(productId);
-        String msg="One Product deleted from cart with Id:"+productId+"\n";
+        Cart cart =  cartService.findById(productId).orElse(null);
+        String msg=cart.getProductName()+""+" deleted from cart \n";
         String p1= String.valueOf(session.getAttribute("userId"));
         kafkaTemplate.send(TOPIC, Integer.valueOf(p1),key,msg);
+        cartService.deleteById(productId);
         return ResponseEntity.ok("success");
     }
     @PostMapping("/addQuantityToCart")
