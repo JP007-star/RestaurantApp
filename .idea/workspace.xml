@@ -4,16 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="557acc45-a09b-46d1-a2ce-0cb696132ff0" name="Changes" comment="Kafka added.">
+    <list default="true" id="557acc45-a09b-46d1-a2ce-0cb696132ff0" name="Changes" comment="Kafka updated.">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ordercounter.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ordercounter.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/restaurant/app/config/KafkaConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/restaurant/app/config/KafkaConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/restaurant/app/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/restaurant/app/controller/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/restaurant/app/controller/UserRegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/restaurant/app/controller/UserRegistrationController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/restaurant/app/controller/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/restaurant/app/controller/MainController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/restaurant/app/controller/UserRegistrationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/restaurant/app/controller/UserRegistrationController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -389,7 +385,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642398324816</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="Kafka updated.">
+      <created>1642757100086</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1642757100086</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -441,7 +444,8 @@
     <MESSAGE value="view bill in order page added" />
     <MESSAGE value="ansible playbook added" />
     <MESSAGE value="quantity" />
-    <option name="LAST_COMMIT_MESSAGE" value="quantity" />
+    <MESSAGE value="Kafka updated." />
+    <option name="LAST_COMMIT_MESSAGE" value="Kafka updated." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
