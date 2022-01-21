@@ -35,7 +35,7 @@ public class UserRegistrationController {
 	@Autowired
 	private KafkaTemplate<String, String> kafkaTemplate;
 
-	private static final String TOPIC = "Kafka_restApp_User_activity_1";
+	private static final String TOPIC = "Kafka_restApp_User";
 
 	private final List<String> messages1 = new ArrayList<>();
 	private final List<String> messages2 = new ArrayList<>();
@@ -135,21 +135,21 @@ public class UserRegistrationController {
 		}
 	}
 
-	@KafkaListener(containerFactory = "kafkaListenerContainerFactory1", groupId = "group_id1", topicPartitions = @TopicPartition(topic = "Kafka_restApp_User_activity_1",partitionOffsets = @PartitionOffset(partition = "1",initialOffset = "0")))
+	@KafkaListener(containerFactory = "kafkaListenerContainerFactory1", groupId = "group_id1", topicPartitions = @TopicPartition(topic = TOPIC,partitionOffsets = @PartitionOffset(partition = "1",initialOffset = "0")))
 	public void consume1(String message) {
 		System.out.println(message);
 		synchronized (messages1) {
 			messages1.add(String.valueOf(message));
 		}
 	}
-	@KafkaListener(containerFactory = "kafkaListenerContainerFactory2", groupId = "group_id2", topicPartitions = @TopicPartition(topic = "Kafka_restApp_User_activity_1", partitionOffsets = @PartitionOffset(partition = "3",initialOffset = "0")))
+	@KafkaListener(containerFactory = "kafkaListenerContainerFactory2", groupId = "group_id2", topicPartitions = @TopicPartition(topic = TOPIC, partitionOffsets = @PartitionOffset(partition = "3",initialOffset = "0")))
 	public void consume2(String message) {
 		System.out.println(message);
 		synchronized (messages2) {
 			messages2.add(String.valueOf(message));
 		}
 	}
-	@KafkaListener(containerFactory = "kafkaListenerContainerFactory3", groupId = "group_id3", topicPartitions = @TopicPartition(topic = "Kafka_restApp_User_activity_1", partitionOffsets = @PartitionOffset(partition = "4",initialOffset = "0")))
+	@KafkaListener(containerFactory = "kafkaListenerContainerFactory3", groupId = "group_id3", topicPartitions = @TopicPartition(topic = TOPIC, partitionOffsets = @PartitionOffset(partition = "4",initialOffset = "0")))
 	public void consume3(String message) {
 		System.out.println(message);
 		synchronized (messages3) {
