@@ -37,10 +37,7 @@ update role set name='ROLE_ADMIN' WHERE ID=1;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="6327a909-1b39-4839-9cde-66068101033c" object-ref="schemas/restaurantapp/tables/products" />
-      <object connection-id="6327a909-1b39-4839-9cde-66068101033c" object-ref="schemas/restaurantapp/tables/users" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="6327a909-1b39-4839-9cde-66068101033c" />
