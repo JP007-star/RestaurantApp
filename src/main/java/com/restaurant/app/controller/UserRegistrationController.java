@@ -11,7 +11,6 @@ import org.springframework.kafka.annotation.TopicPartition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.annotation.KafkaListener;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
-
 import java.util.*;
 
 
@@ -32,10 +30,11 @@ public class UserRegistrationController {
 	private UserService userService;
 	@Autowired
 	CartService cartService;
-	@Autowired
-	private KafkaTemplate<String, String> kafkaTemplate;
 
-	private static final String TOPIC = "Kafka_restApp_User";
+	private static final String TOPIC = "Kafka_restApp_User_activity_1";
+	private final String PARTITION1="1" ;
+	private final String PARTITION2="2" ;
+	private final String PARTITION3="3" ;
 
 	private final List<String> messages1 = new ArrayList<>();
 	private final List<String> messages2 = new ArrayList<>();
@@ -121,12 +120,13 @@ public class UserRegistrationController {
 
 	@GetMapping("/userActivity")
 	public ResponseEntity<List<String>> userActivity(HttpServletRequest request) {
+//		PARTITION= request.getParameter("userId");
 		String userId= request.getParameter("userId");
-		boolean areEqual=userId.equals("1");
+		boolean areEqual=userId.equals(PARTITION1);
 		if(areEqual) {
 			System.out.println(userId+"equal");
 			return ResponseEntity.ok(messages1);
-		} else if(userId.equals("2")) {
+		} else if(userId.equals(PARTITION2)) {
 			System.out.println(userId + "equal");
 			return ResponseEntity.ok(messages2);
 		}else{
@@ -135,21 +135,21 @@ public class UserRegistrationController {
 		}
 	}
 
-	@KafkaListener(containerFactory = "kafkaListenerContainerFactory1", groupId = "group_id1", topicPartitions = @TopicPartition(topic = TOPIC,partitionOffsets = @PartitionOffset(partition = "1",initialOffset = "0")))
+	@KafkaListener(containerFactory = "kafkaListenerContainerFactory", groupId = "group_id", topicPartitions = @TopicPartition(topic = TOPIC,partitionOffsets = @PartitionOffset(partition = PARTITION1,initialOffset = "0")))
 	public void consume1(String message) {
 		System.out.println(message);
 		synchronized (messages1) {
 			messages1.add(String.valueOf(message));
 		}
 	}
-	@KafkaListener(containerFactory = "kafkaListenerContainerFactory2", groupId = "group_id2", topicPartitions = @TopicPartition(topic = TOPIC, partitionOffsets = @PartitionOffset(partition = "3",initialOffset = "0")))
+	@KafkaListener(containerFactory = "kafkaListenerContainerFactory", groupId = "group_id", topicPartitions = @TopicPartition(topic = TOPIC, partitionOffsets = @PartitionOffset(partition = PARTITION2,initialOffset = "0")))
 	public void consume2(String message) {
 		System.out.println(message);
 		synchronized (messages2) {
 			messages2.add(String.valueOf(message));
 		}
 	}
-	@KafkaListener(containerFactory = "kafkaListenerContainerFactory3", groupId = "group_id3", topicPartitions = @TopicPartition(topic = TOPIC, partitionOffsets = @PartitionOffset(partition = "4",initialOffset = "0")))
+	@KafkaListener(containerFactory = "kafkaListenerContainerFactory", groupId = "group_id", topicPartitions = @TopicPartition(topic = TOPIC, partitionOffsets = @PartitionOffset(partition = PARTITION3,initialOffset = "0")))
 	public void consume3(String message) {
 		System.out.println(message);
 		synchronized (messages3) {
