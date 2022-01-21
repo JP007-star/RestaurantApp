@@ -121,7 +121,7 @@ public class MainController {
             result=cartCount;}
         else {
             result="It is already there in cart";}
-        String msg=product.getProductName()+""+"added to cart\n";
+        String msg=product.getProductName()+""+" added to cart\n";
         String p1= String.valueOf(session.getAttribute("userId"));
         kafkaTemplate.send(TOPIC, Integer.valueOf(p1),key,msg);
         return ResponseEntity.ok(cartCount);
@@ -153,7 +153,7 @@ public class MainController {
             productInCart.setTotalPrice(totalPrice);
             productService.save(productInDb);
             cartService.save(productInCart);
-            String msg=productInCart.getProductName()+""+"Quantity increased in cart\n";
+            String msg=productInCart.getProductName()+""+" Quantity increased in cart\n";
             String p1= String.valueOf(session.getAttribute("userId"));
             kafkaTemplate.send(TOPIC, Integer.valueOf(p1),key,msg);
             grandTotal=calculateGrandTotal();
@@ -180,7 +180,7 @@ public class MainController {
             productInCart.setTotalPrice(totalPrice);
             productService.save(productInDb);
             cartService.save(productInCart);
-            String msg=productInCart.getProductName()+""+"Quantity decreased in cart\n";
+            String msg=productInCart.getProductName()+""+" Quantity decreased in cart\n";
             String p1= String.valueOf(session.getAttribute("userId"));
             kafkaTemplate.send(TOPIC, Integer.valueOf(p1),key,msg);
             grandTotal = calculateGrandTotal();
