@@ -39,7 +39,7 @@
                     <td>[[${product.quantity}]]</td>
                     <td>
                         <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch"   id="status"  th:checked="${product.status}"   required autofocus="autofocus" />
+                        <input class="form-check-input product_status" th:data-product="(${product.productId})"  type="checkbox" role="switch"   id="status"  th:checked="${product.status}"   required autofocus="autofocus" />
                     </div>
                     </td>
                     <td>
@@ -188,6 +188,24 @@
 </body>
 
 <script>
+toastr.options = {
+  "closeButton": false,
+  "debug": true,
+  "newestOnTop": false,
+  "progressBar": true,
+  "positionClass": "toast-bottom-right",
+  "preventDuplicates": false,
+  "onclick": null,
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": 2000,
+  "extendedTimeOut": 0,
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut",
+  "tapToDismiss": false
+}
 <!--This function is used to find product-->
 $(document).on('click','#edit-product' ,function(){
 
@@ -233,6 +251,21 @@ $(document).on('click','#delete-product-button' ,function(){
     success: function(result){
     $('#Deleteproduct').modal('hide');
     location.reload();
+    }
+  });
+});
+$(document).on('change','.product_status' ,function(){
+ var productStatus=this.checked;
+ var productId=$(this).attr('data-product');
+  $.ajax({
+    url: "updateProductStatus",
+    type:"POST",
+    data:{
+    "productId":productId,
+    "productStatus":productStatus
+    },
+    success: function(result){
+       toastr.success("ProductID : "+result);
     }
   });
 });

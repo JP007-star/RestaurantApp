@@ -63,6 +63,12 @@ public class ProductService implements ProductRepository {
         productRepository.save(product1);
         return "Update success for Id:"+product.getProductId()+"Updated details:"+product1;
     }
+    public String updateStatus(Product product){
+        Product product1=productRepository.findById(product.getProductId()).orElse(null);
+        product1.setStatus(product.getStatus());
+        productRepository.save(product1);
+        return "Update success for Id:"+product.getProductId()+"Updated details:"+product1;
+    }
 
     @Override
     public long count() {

@@ -48,6 +48,11 @@ public class Product {
         this.status = status;
     }
 
+    public Product(String productId, boolean status) {
+        this.productId = productId;
+        this.status = status;
+    }
+
 
     public String getProductId() {
         return productId;

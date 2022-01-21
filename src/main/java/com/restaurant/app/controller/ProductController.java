@@ -56,6 +56,7 @@ public class ProductController {
         productService.saveProductToDB(file, productId.toUpperCase(), productName,productCategory,productPrice,quantity,status);
         return "redirect:/admin/product/products";
     }
+
     @GetMapping("/products")
     public String fetchProducts(Model model, HttpSession session){
       List<Product> productList=productService.findAll();
@@ -104,6 +105,23 @@ public class ProductController {
             result = msg;
         }
         return "redirect:/admin/product/products";
+    }
+    @PostMapping("/updateProductStatus")
+    public ResponseEntity<?> updateProductStatus(HttpServletRequest request, Model model) throws SQLException, ClassNotFoundException {
+        String productId=request.getParameter("productId");
+        boolean  productStatus= Boolean.parseBoolean(request.getParameter("productStatus"));
+        Product product=new Product(productId,productStatus);
+        System.out.println(productId);
+        String msg=productService.updateStatus(product);
+        System.out.println(msg);
+        String result;
+        if(productStatus==true) {
+            result=productId+" is Active";
+        }
+        else {
+            result = productId+" is In Active";
+        }
+        return ResponseEntity.ok(result);
     }
     @PostMapping("/deleteProduct")
     public String deleteProduct(HttpServletRequest request)throws NumberFormatException {
