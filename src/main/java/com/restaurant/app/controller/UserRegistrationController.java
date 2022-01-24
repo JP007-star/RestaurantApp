@@ -31,7 +31,7 @@ public class UserRegistrationController {
 	@Autowired
 	CartService cartService;
 
-	private static final String TOPIC = "Kafka_restApp_User_activity_1";
+	private static final String TOPIC = "Kafka_restApp_User";
 	private final String PARTITION1="1" ;
 	private final String PARTITION2="2" ;
 	private final String PARTITION3="3" ;

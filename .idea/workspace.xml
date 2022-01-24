@@ -4,23 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="557acc45-a09b-46d1-a2ce-0cb696132ff0" name="Changes" comment="Kafka updated and .gitignore file added.">
+    <list default="true" id="557acc45-a09b-46d1-a2ce-0cb696132ff0" name="Changes" comment="product show only active products&#10;feature">
+      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ordercounter.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ordercounter.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/restaurant/app/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/restaurant/app/controller/MainController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/restaurant/app/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/restaurant/app/controller/ProductController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/restaurant/app/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/restaurant/app/model/Product.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/restaurant/app/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/restaurant/app/service/ProductService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/products.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/products.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/users.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/users.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/restaurant/app/controller/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/restaurant/app/controller/MainController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/script.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/script.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/restaurant/app/controller/ProductController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/restaurant/app/controller/ProductController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/restaurant/app/model/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/restaurant/app/model/Product.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/restaurant/app/service/ProductService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/restaurant/app/service/ProductService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/products.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/products.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/users.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/users.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/script.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/script.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,11 +88,6 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\jaya_muthukrishnan\Documents\ResturantApp\src\main\resources\static\css" />
     </key>
-  </component>
-  <component name="RunAnythingCache">
-    <option name="myCommands">
-      <command value="mvn compile" />
-    </option>
   </component>
   <component name="RunManager">
     <configuration name="RestaurantAppApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -401,21 +393,28 @@
       <option name="project" value="LOCAL" />
       <updated>1642398324816</updated>
     </task>
-    <task id="LOCAL-00040" summary="Kafka updated.">
-      <created>1642757100086</created>
+    <task id="LOCAL-00040" summary="kafka issue fix">
+      <created>1642745772918</created>
       <option name="number" value="00040" />
       <option name="presentableId" value="LOCAL-00040" />
       <option name="project" value="LOCAL" />
-      <updated>1642757100086</updated>
+      <updated>1642745772918</updated>
     </task>
-    <task id="LOCAL-00041" summary="Kafka updated and .gitignore file added.">
-      <created>1642758079403</created>
+    <task id="LOCAL-00041" summary="product status issue">
+      <created>1642762767853</created>
       <option name="number" value="00041" />
       <option name="presentableId" value="LOCAL-00041" />
       <option name="project" value="LOCAL" />
-      <updated>1642758079403</updated>
+      <updated>1642762767853</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="product show only active products&#10;feature">
+      <created>1642763388703</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1642763388703</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -467,9 +466,10 @@
     <MESSAGE value="view bill in order page added" />
     <MESSAGE value="ansible playbook added" />
     <MESSAGE value="quantity" />
-    <MESSAGE value="Kafka updated." />
-    <MESSAGE value="Kafka updated and .gitignore file added." />
-    <option name="LAST_COMMIT_MESSAGE" value="Kafka updated and .gitignore file added." />
+    <MESSAGE value="kafka issue fix" />
+    <MESSAGE value="product status issue" />
+    <MESSAGE value="product show only active products&#10;feature" />
+    <option name="LAST_COMMIT_MESSAGE" value="product show only active products&#10;feature" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

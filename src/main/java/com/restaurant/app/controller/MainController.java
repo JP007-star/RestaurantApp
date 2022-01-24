@@ -55,7 +55,7 @@ public class MainController {
     LocalDateTime orderDate= LocalDateTime.now(ZoneId.of("Asia/Kolkata"));
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
-    private static final String TOPIC = "Kafka_restApp_User_activity_1";
+    private static final String TOPIC = "Kafka_restApp_User";
     private String key;
 
     public MainController(UserService userService) {
@@ -226,7 +226,7 @@ public class MainController {
         session.setAttribute("userName", user.getFirstName());
         session.setAttribute("userId", user.getId());
         String userName= String.valueOf(session.getAttribute("userName"));
-        List<Product> productList=productService.findAll();
+        List<Product> productList=productService.findAllActiveProduct();
         model.addAttribute("cartCount",cartCount);
         model.addAttribute("products",productList);
         model.addAttribute("userName",userName);

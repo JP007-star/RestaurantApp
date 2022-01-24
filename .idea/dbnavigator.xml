@@ -26,6 +26,7 @@
     <show-object-properties value="true" />
     <loaded-nodes>
       <connection connection-id="6327a909-1b39-4839-9cde-66068101033c">
+        <schema name="mysql" object-types="table, view, procedure, function" />
         <schema name="restaurantapp" object-types="table, view, procedure, function, constraint, index, column, dataset trigger" />
       </connection>
     </loaded-nodes>
