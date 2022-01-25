@@ -107,7 +107,7 @@ pipeline {
    stage('Mysql deployment') {
      steps{
        script{
-           kubernetesDeploy(configs:"db-deployment.yml",kubeconfigId:"newjp")
+           kubernetesDeploy(configs:"db-deployment.yml",kubeconfigId:"kubernetes")
        }
        
      }
@@ -115,7 +115,7 @@ pipeline {
    stage('App deployemnt') {
      steps{
        script{
-           kubernetesDeploy(configs:"app-deployment.yml",kubeconfigId:"newjp")
+           kubernetesDeploy(configs:"app-deployment.yml",kubeconfigId:"kubernetes")
        }
        
      }
