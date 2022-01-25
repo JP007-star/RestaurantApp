@@ -8,7 +8,7 @@ pipeline {
     dockerImage = ''
   }
   agent any
-  tool{
+  tools{
     jdk "JAVA8"
   }
   stages {
