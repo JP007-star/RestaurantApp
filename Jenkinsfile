@@ -1,4 +1,5 @@
 pipeline {
+  
   environment {
     registry = "justiceofpeace/restaurant_app"
     MAVEN_HOME = tool('MAVEN3')
@@ -7,6 +8,9 @@ pipeline {
     dockerImage = ''
   }
   agent any
+  tools{
+    jdk "JAVA8"
+  }
   stages {
     stage('Compile & Build ') {
       steps {
