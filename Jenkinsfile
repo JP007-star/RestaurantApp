@@ -42,7 +42,7 @@ pipeline {
                             
                             protocol: 'http',
 
-                            nexusUrl: '192.168.1.4:8081',
+                            nexusUrl: '3.88.176.235:8081',
 
                             groupId: 'pom.com.restaurant.app',
 
