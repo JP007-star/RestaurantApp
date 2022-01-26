@@ -232,7 +232,7 @@ public class MainController {
         model.addAttribute("userName",userName);
         String msg="User logged in : Name:"+userName+""+"Email:"+user.getEmail()+"\n";
         String p1= String.valueOf(session.getAttribute("userId"));
-        kafkaTemplate.send(TOPIC, Integer.valueOf(p1),key,msg);
+        //kafkaTemplate.send(TOPIC, Integer.valueOf(p1),key,msg);
         return "index";
     }
 
