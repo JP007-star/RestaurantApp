@@ -227,8 +227,11 @@ public class MainController {
         session.setAttribute("userId", user.getId());
         String userName= String.valueOf(session.getAttribute("userName"));
         List<Product> productList=productService.findAllActiveProduct();
+        List<Product> specialProductList=productService.findAllActiveDisplayProduct();
+
         model.addAttribute("cartCount",cartCount);
         model.addAttribute("products",productList);
+        model.addAttribute("specialProducts",specialProductList);
         model.addAttribute("userName",userName);
         String msg="User logged in : Name:"+userName+""+"Email:"+user.getEmail()+"\n";
         String p1= String.valueOf(session.getAttribute("userId"));
