@@ -1,5 +1,4 @@
 pipeline {
-  
   environment {
     registry = "justiceofpeace/restaurant_app"
     MAVEN_HOME = tool('MAVEN3')
@@ -8,9 +7,6 @@ pipeline {
     dockerImage = ''
   }
   agent any
-  tools{
-    jdk "JAVA8"
-  }
   stages {
     stage('Compile & Build ') {
       steps {
@@ -42,7 +38,7 @@ pipeline {
                             
                             protocol: 'http',
 
-                            nexusUrl: '3.88.176.235:8081',
+                            nexusUrl: '192.168.1.4:8081',
 
                             groupId: 'pom.com.restaurant.app',
 
@@ -107,7 +103,7 @@ pipeline {
    stage('Mysql deployment') {
      steps{
        script{
-           kubernetesDeploy(configs:"db-deployment.yml",kubeconfigId:"kubernetes")
+           kubernetesDeploy(configs:"db-deployment.yml",kubeconfigId:"newjp")
        }
        
      }
@@ -115,7 +111,7 @@ pipeline {
    stage('App deployemnt') {
      steps{
        script{
-           kubernetesDeploy(configs:"app-deployment.yml",kubeconfigId:"kubernetes")
+           kubernetesDeploy(configs:"app-deployment.yml",kubeconfigId:"newjp")
        }
        
      }
