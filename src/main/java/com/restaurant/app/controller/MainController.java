@@ -102,7 +102,7 @@ public class MainController {
         cartService.deleteAll();
         String msg="Order confirmed with orderId:"+orderId+"\n";
         String p1= String.valueOf(session.getAttribute("userId"));
-        kafkaTemplate.send(TOPIC, Integer.valueOf(p1),key,msg);
+       // kafkaTemplate.send(TOPIC, Integer.valueOf(p1),key,msg);
         return ResponseEntity.ok(orderId);
 
     }
@@ -123,7 +123,7 @@ public class MainController {
             result="It is already there in cart";}
         String msg=product.getProductName()+""+"added to cart\n";
         String p1= String.valueOf(session.getAttribute("userId"));
-        kafkaTemplate.send(TOPIC, Integer.valueOf(p1),key,msg);
+       // kafkaTemplate.send(TOPIC, Integer.valueOf(p1),key,msg);
         return ResponseEntity.ok(cartCount);
     }
     @PostMapping("/deleteToCart")
@@ -132,7 +132,7 @@ public class MainController {
         Cart cart =  cartService.findById(productId).orElse(null);
         String msg=cart.getProductName()+""+" deleted from cart \n";
         String p1= String.valueOf(session.getAttribute("userId"));
-        kafkaTemplate.send(TOPIC, Integer.valueOf(p1),key,msg);
+        //kafkaTemplate.send(TOPIC, Integer.valueOf(p1),key,msg);
         cartService.deleteById(productId);
         return ResponseEntity.ok("success");
     }
@@ -155,7 +155,7 @@ public class MainController {
             cartService.save(productInCart);
             String msg=productInCart.getProductName()+""+"Quantity increased in cart\n";
             String p1= String.valueOf(session.getAttribute("userId"));
-            kafkaTemplate.send(TOPIC, Integer.valueOf(p1),key,msg);
+            //kafkaTemplate.send(TOPIC, Integer.valueOf(p1),key,msg);
             grandTotal=calculateGrandTotal();
             return ResponseEntity.ok(grandTotal);
         }
@@ -182,7 +182,7 @@ public class MainController {
             cartService.save(productInCart);
             String msg=productInCart.getProductName()+""+"Quantity decreased in cart\n";
             String p1= String.valueOf(session.getAttribute("userId"));
-            kafkaTemplate.send(TOPIC, Integer.valueOf(p1),key,msg);
+            //kafkaTemplate.send(TOPIC, Integer.valueOf(p1),key,msg);
             grandTotal = calculateGrandTotal();
             return ResponseEntity.ok(grandTotal);
         }
@@ -201,7 +201,7 @@ public class MainController {
         User user=userService.findById(Long.parseLong(userId)).orElse(null);
         String msg="Bill generated for order:"+orderId+"\n";
         String p1= String.valueOf(session.getAttribute("userId"));
-        kafkaTemplate.send(TOPIC, Integer.valueOf(p1),key,msg);
+        //kafkaTemplate.send(TOPIC, Integer.valueOf(p1),key,msg);
         billGenerator.generateBill(response,order,user);
     }
 
