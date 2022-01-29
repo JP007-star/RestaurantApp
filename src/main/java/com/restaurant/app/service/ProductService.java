@@ -234,4 +234,9 @@ public class ProductService implements ProductRepository {
     public List<Product> findAllActiveDisplayProduct() {
         return productRepository.findAllActiveDisplayProduct();
     }
+
+    @Override
+    public List<Product> findAllActiveProductByName(String productName) {
+        return productRepository.findAllActiveProductByName(productName);
+    }
 }

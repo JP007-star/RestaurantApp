@@ -59,28 +59,14 @@
     </button>
 </div>
 <section class="section-products">
-    <div class="row">
-    <div class="card shadow col-md-6 offset-md-3 p-3 m-5">
-        <div class="d-flex  justify-content-between">
-        <img src="#" class="" alt="image">
-        <h5>Pizza</h5>
-        <p><i class="fa fa-rupee"></i> 400</p>
-        <div class="d-flex justify-content-between align-items-center">
-            <div class="ratings"> <i class="fa fa-star rating-color"></i> <i class="fa fa-star rating-color"></i> <i class="fa fa-star rating-color"></i> <i class="fa fa-star rating-color"></i> <i class="fa fa-star"></i> </div>
-            <h5 class="review-count">12 Reviews</h5>
-        </div><br>
-        <button type="button" id="add-to-cart" data-productid="" class="btn btn-danger">Add to Cart <i class="fa fa-shopping-cart"></i> </button>
-        </div>
-    </div>
-    </div>
-        <div class="container p-5 m-3 ">
+        <div class="container p-1 m-1">
             <div class="row height d-flex justify-content-center align-items-center">
-                <div class="col-md-10">
-                    <div class="search"><i class="fa fa-search"></i>  <input type="text"  class="form-control" placeholder="Do you hungry? Let have some snack ..."> <button class="btn btn-primary"><i class="fa fa-search fa-lg"></i> </button> </div>
+                <div class="col-md-8 offset-md-1">
+                    <div class="search"><i class="fa fa-search"></i>  <input type="text" id="productSearch"  class="form-control" placeholder="Do you hungry? Let have some snack ..."> <button class="btn btn-primary"><i class="fa fa-search fa-lg"></i> </button> </div>
                 </div>
             </div>
 
-    </div>
+        </div>
 </section>
 <section class="section-products">
     <div class="container">
@@ -91,10 +77,11 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div>
             <!-- Single Product -->
-            <th:block th:each="product:${products}">
-                <div class="col-2 m-3">
+            <div class="row" id="productFilter" style="height:500px;">
+                <th:block  th:each="product:${products}">
+                <div  class="col-2 m-3">
                     <div class="card shadow">
                         <img th:src="*{'data:image/jpeg;base64,'+{product.image}}" class="card-img-top" alt="">
                         <div class="card-body">
@@ -108,8 +95,9 @@
                         </div>
                     </div>
 
-                </div>
+                    </div>
             </th:block>
+            </div>
             <!--Single Product ends-->
         </div>
     </div>
@@ -119,9 +107,33 @@
 <script>
 const searchButton = document.getElementById('search-button');
 const searchInput = document.getElementById('search-input');
-searchButton.addEventListener('click', () => {
-  const inputValue = searchInput.value;
-  alert(inputValue);
+$(document).on('input','#productSearch' ,function(){
+   $("#productFilter").html('');
+   var productName=$(this).val();
+   $.ajax({
+    url: "searchProduct",
+    type:"POST",
+    data:{"productName":productName},
+    success: function(result){
+      for(let key in result){
+        $("#productFilter").append('<div class="col-2 m-3">'+
+                    '<div class="card shadow">'+
+                        '<img src="data:image/jpeg;base64,'+result[key].image+'" class="card-img-top" alt="">'+
+                        '<div class="card-body">'+
+                            '<h5 class="card-title">'+result[key].productName+'</h5>'+
+                            '<p class="card-text"><i class="fa fa-rupee"></i>'+result[key].productPrice+'</p>'+
+                            '<div class="d-flex justify-content-between align-items-center">'+
+                                '<div class="ratings"> <i class="fa fa-star rating-color"></i> <i class="fa fa-star rating-color"></i> <i class="fa fa-star rating-color"></i> <i class="fa fa-star rating-color"></i> <i class="fa fa-star"></i> </div>'+
+                                '<h5 class="review-count">12 Reviews</h5>'+
+                            '</div><br>'+
+                            '<button type="button" id="add-to-cart" data-productId="'+result[key].productId+'" class="btn btn-danger">Add to Cart <i class="fa fa-shopping-cart"></i> </button>'+
+                        '</div>'+
+                    '</div>'+
+
+                '</div>');
+               }
+    }
+    })
 });
  $(document).on('click','#add-to-cart' ,function(){
  var productId=$(this).attr('data-productId');

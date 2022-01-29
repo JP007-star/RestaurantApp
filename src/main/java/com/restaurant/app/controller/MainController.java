@@ -239,6 +239,14 @@ public class MainController {
         return "index";
     }
 
+    @PostMapping("/searchProduct")
+    public ResponseEntity<?> searchProduct(HttpServletRequest request){
+        String productName=request.getParameter("productName");
+        List<Product> findByProductName=productService.findAllActiveProductByName(productName);
+        System.out.println(findByProductName);
+        return ResponseEntity.ok(findByProductName);
+    }
+
     //This function is used to register a user
     @PostMapping("/register")
     public String registerUser(@ModelAttribute("user") UserRegistrationDto registrationDto,HttpSession session) {
