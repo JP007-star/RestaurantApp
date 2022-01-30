@@ -74,6 +74,46 @@ font-size: 10px !important
 .small-ratings i {
 color: #cecece
 }
+.search {
+    position: relative;
+    box-shadow: 0 0 40px rgba(51, 51, 51, .1)
+}
+
+.search input {
+    height: 60px;
+    text-indent: 25px;
+    border: 2px solid #d6d4d4
+}
+
+.search input:focus {
+    box-shadow: none;
+    border: 2px solid blue
+}
+
+.search .fa-search {
+    position: absolute;
+    top: 20px;
+    left: 16px
+}
+.dropNotification{
+     position: absolute;
+     width: 12px;
+     height: 19px;
+     top: -19px;
+     left: 15px;
+     border-left: 5px solid transparent;
+     border-right: 5px solid transparent;
+     border-bottom: 5px solid white;
+     z-index: 1;
+}
+.search button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    height: 50px;
+    width: 50px;
+    background: blue
+}
 
 .review-stat {
 font-weight: 300;
