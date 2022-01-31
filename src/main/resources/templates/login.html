@@ -2,7 +2,14 @@
 <html lang="en"  xmlns:th="http://www.thymeleaf.org"
 	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" >
 <head>
-<meta charset="ISO-8859-1">
+		<meta charset="utf-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta name="description" content=""/>
+		<meta name="viewport" content="width=device-width"/>
+		<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+		<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+		<script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+<!--<meta charset="ISO-8859-1">-->
 	<title>Restaurant Ticket Reservation</title>
      <div th:replace="script.html"></div>
 </head>
@@ -98,8 +105,9 @@
 							<div class="form-group">
 								<span>New user? </span>
 							</div>
-							<div class="text-center">
-								<a href="/"  th:href="@{/registration}" class="fb btn">
+
+							<div class="container unauthenticated">
+								<a href="/oauth2/authorization/facebook"  class="fb btn">
 									 <i class="fa fa-facebook fa-fw"></i>
 								</a>
 								<a href="/"  th:href="@{/registration}" class="google btn">
@@ -118,6 +126,13 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+    $.get("/user", function(data) {
+        $("#user").html(data.userAuthentication.details.name);
+        $(".unauthenticated").hide()
+        $(".authenticated").show()
+    });
 
+</script>
 </body>
 </html>

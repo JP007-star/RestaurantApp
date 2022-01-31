@@ -5,13 +5,16 @@ C:\RestaurantApp\src\main\java\com\restaurant\app\dao\UserServiceImpl.java
 C:\RestaurantApp\src\main\java\com\restaurant\app\repository\OrderRepository.java
 C:\RestaurantApp\src\main\java\com\restaurant\app\service\OrderService.java
 C:\RestaurantApp\src\main\java\com\restaurant\app\config\KafkaConfiguration.java
+C:\RestaurantApp\src\main\java\com\restaurant\app\repository\NotificationRepository.java
 C:\RestaurantApp\src\main\java\com\restaurant\app\repository\CartRepository.java
 C:\RestaurantApp\src\main\java\com\restaurant\app\service\ProductService.java
 C:\RestaurantApp\src\main\java\com\restaurant\app\service\CartService.java
+C:\RestaurantApp\src\main\java\com\restaurant\app\service\NotificationService.java
 C:\RestaurantApp\src\main\java\com\restaurant\app\model\BillGenerator.java
 C:\RestaurantApp\src\main\java\com\restaurant\app\controller\MainController.java
 C:\RestaurantApp\src\main\java\com\restaurant\app\controller\OrderController.java
 C:\RestaurantApp\src\main\java\com\restaurant\app\model\Cart.java
+C:\RestaurantApp\src\main\java\com\restaurant\app\model\Notification.java
 C:\RestaurantApp\src\main\java\com\restaurant\app\model\Product.java
 C:\RestaurantApp\src\main\java\com\restaurant\app\controller\UserRegistrationController.java
 C:\RestaurantApp\src\main\java\com\restaurant\app\controller\ProductController.java
