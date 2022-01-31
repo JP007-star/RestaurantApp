@@ -47,7 +47,7 @@ public class NotificationService implements NotificationRepository {
 
     @Override
     public long count() {
-        return 0;
+        return notificationRepository.count();
     }
 
     @Override
@@ -77,7 +77,8 @@ public class NotificationService implements NotificationRepository {
 
     @Override
     public <S extends Notification> S save(S entity) {
-        return null;
+       return  notificationRepository.save(entity);
+
     }
 
     @Override
@@ -169,4 +170,5 @@ public class NotificationService implements NotificationRepository {
     public <S extends Notification, R> R findBy(Example<S> example, Function<FluentQuery.FetchableFluentQuery<S>, R> queryFunction) {
         return null;
     }
+
 }

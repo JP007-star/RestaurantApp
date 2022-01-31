@@ -34,6 +34,13 @@ public class Notification {
         this.notificationSeen = notificationSeen;
     }
 
+    public Notification(int i, String head, String sub, LocalDateTime orderDate, Boolean valueOf) {
+        this.notificationHeading = head;
+        this.notificationSubHeading = sub;
+        this.notificationDateTime = orderDate;
+        this.notificationSeen = valueOf;
+    }
+
     public Long getNotificationId() {
         return notificationId;
     }

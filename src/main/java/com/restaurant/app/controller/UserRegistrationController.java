@@ -135,27 +135,27 @@ public class UserRegistrationController {
 		}
 	}
 
-	@KafkaListener(containerFactory = "kafkaListenerContainerFactory", groupId = "group_id", topicPartitions = @TopicPartition(topic = TOPIC,partitionOffsets = @PartitionOffset(partition = PARTITION1,initialOffset = "0")))
-	public void consume1(String message) {
-		System.out.println(message);
-		synchronized (messages1) {
-			messages1.add(String.valueOf(message));
-		}
-	}
-	@KafkaListener(containerFactory = "kafkaListenerContainerFactory", groupId = "group_id", topicPartitions = @TopicPartition(topic = TOPIC, partitionOffsets = @PartitionOffset(partition = PARTITION2,initialOffset = "0")))
-	public void consume2(String message) {
-		System.out.println(message);
-		synchronized (messages2) {
-			messages2.add(String.valueOf(message));
-		}
-	}
-	@KafkaListener(containerFactory = "kafkaListenerContainerFactory", groupId = "group_id", topicPartitions = @TopicPartition(topic = TOPIC, partitionOffsets = @PartitionOffset(partition = PARTITION3,initialOffset = "0")))
-	public void consume3(String message) {
-		System.out.println(message);
-		synchronized (messages3) {
-			messages3.add(String.valueOf(message));
-		}
-	}
+//	@KafkaListener(containerFactory = "kafkaListenerContainerFactory", groupId = "group_id", topicPartitions = @TopicPartition(topic = TOPIC,partitionOffsets = @PartitionOffset(partition = PARTITION1,initialOffset = "0")))
+//	public void consume1(String message) {
+//		System.out.println(message);
+//		synchronized (messages1) {
+//			messages1.add(String.valueOf(message));
+//		}
+//	}
+//	@KafkaListener(containerFactory = "kafkaListenerContainerFactory", groupId = "group_id", topicPartitions = @TopicPartition(topic = TOPIC, partitionOffsets = @PartitionOffset(partition = PARTITION2,initialOffset = "0")))
+//	public void consume2(String message) {
+//		System.out.println(message);
+//		synchronized (messages2) {
+//			messages2.add(String.valueOf(message));
+//		}
+//	}
+//	@KafkaListener(containerFactory = "kafkaListenerContainerFactory", groupId = "group_id", topicPartitions = @TopicPartition(topic = TOPIC, partitionOffsets = @PartitionOffset(partition = PARTITION3,initialOffset = "0")))
+//	public void consume3(String message) {
+//		System.out.println(message);
+//		synchronized (messages3) {
+//			messages3.add(String.valueOf(message));
+//		}
+//	}
 }
 
 

@@ -52,8 +52,10 @@ public class MainController {
     Double grandTotal=0.0;
     @Autowired
     private SaleService saleService;
-    LocalDateTime orderDate= LocalDateTime.now(ZoneId.of("Asia/Kolkata"));
     @Autowired
+    private NotificationService notificationService;
+    LocalDateTime orderDate= LocalDateTime.now(ZoneId.of("Asia/Kolkata"));
+    //@Autowired
     //private  kafkaTemplate<String, String> kafkaTemplate;
     private static final String TOPIC = "Kafka_restApp_User";
     private String key;
@@ -100,6 +102,11 @@ public class MainController {
         Order order=new Order(productIdsList.toString(),orderId,userName,productNamesList.toString(),quantitiesList.toString(),pricesList.toString(),totalsList.toString(),address,country,state,zip,grandTotal,orderDate);
         orderService.save(order);
         cartService.deleteAll();
+        String head="Order confirmation";
+        String sub="Your order has been successfully confirmed!";
+        Notification notification=new Notification(head,sub,orderDate,Boolean.valueOf(String.valueOf(1)));
+        notificationService.save(notification);
+        System.out.println(notification);
         String msg="Order confirmed with orderId:"+orderId+"\n";
         String p1= String.valueOf(session.getAttribute("userId"));
         // kafkaTemplate.send(TOPIC, Integer.valueOf(p1),key,msg);
@@ -115,6 +122,12 @@ public class MainController {
         System.out.println(productId);
         Cart cart=new Cart(productId,product.getProductName(),product.getProductPrice(),product.getProductCategory(),product.getImage(),product.getStatus(),1,Double.parseDouble(product.getProductPrice()));
         cartService.save(cart);
+        if(product.getQuantity() <= 5){
+            String head="Only 5 "+product.getProductName()+"'s are left!!";
+            String sub="Please add products!";
+            Notification notification=new Notification(head,sub,orderDate,Boolean.valueOf(String.valueOf(1)));
+            notificationService.save(notification);
+        }
         String cartCount= String.valueOf(cartService.count());
         String result="";
         if(cartCount!=null){
@@ -153,6 +166,12 @@ public class MainController {
             productInCart.setTotalPrice(totalPrice);
             productService.save(productInDb);
             cartService.save(productInCart);
+            if(productInDb.getQuantity() <= 5){
+                String head="Hurry!! Only few \"+productInDb.getProductName()+\"'s are left";
+                String sub="Only 5 \"+productInDb.getProductName()+\"'s are left!!";
+                Notification notification=new Notification(head,sub,orderDate,Boolean.valueOf(String.valueOf(1)));
+                notificationService.save(notification);
+            }
             String msg=productInCart.getProductName()+""+"Quantity increased in cart\n";
             String p1= String.valueOf(session.getAttribute("userId"));
             // kafkaTemplate.send(TOPIC, Integer.valueOf(p1),key,msg);
@@ -279,6 +298,16 @@ public class MainController {
         return "cart";
     }
 
+   @GetMapping("/notification")
+   public String notificationPage(Model model,HttpSession session){
+        List<Notification> notificationList=notificationService.findAll();
+       long notificationCount=notificationService.count();
+       String userName= String.valueOf(session.getAttribute("userName"));
+       model.addAttribute("notifications",notificationList);
+       model.addAttribute("notificationCount",notificationCount);
+       model.addAttribute("userName",userName);
+       return "notification";
+   }
     //this function will render cart page
     @GetMapping("/payment")
     public String paymentPage(Model model,HttpSession session) {

@@ -223,6 +223,7 @@ $(document).on('click','#confirmOrder' ,function(){
     },
     success: function(result){
        window.location.replace("/confirm?orderId="+result);
+       $("#notification-count").html(result);
     }
   })
   })
