@@ -10,6 +10,7 @@ package com.restaurant.app.controller;
 import com.restaurant.app.model.Cart;
 import com.restaurant.app.model.Notification;
 import com.restaurant.app.service.CartService;
+import com.restaurant.app.service.NotificationService;
 import com.restaurant.app.utility.Counter;
 
 import com.restaurant.app.model.Product;
@@ -37,6 +38,8 @@ public class ProductController {
     private ProductService productService;
     @Autowired
     CartService cartService;
+    @Autowired
+    NotificationService notificationService;
 
     private MultipartFile productImage;
 
@@ -65,7 +68,9 @@ public class ProductController {
       List<Product> productList=productService.findAll();
         String userName= String.valueOf(session.getAttribute("userName"));
         long cartCount=cartService.count();
+        long notificationCount=notificationService.count();
         model.addAttribute("cartCount",cartCount);
+        model.addAttribute("notificationCount",notificationCount);
         model.addAttribute("products",productList);
         model.addAttribute("counter",new Counter());
         model.addAttribute("userName",userName);

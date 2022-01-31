@@ -2,6 +2,7 @@ package com.restaurant.app.controller;
 
 
 import com.restaurant.app.service.CartService;
+import com.restaurant.app.service.NotificationService;
 import com.restaurant.app.utility.Counter;
 import com.restaurant.app.dao.UserRegistrationDto;
 import com.restaurant.app.model.User;
@@ -30,6 +31,8 @@ public class UserRegistrationController {
 	private UserService userService;
 	@Autowired
 	CartService cartService;
+	@Autowired
+	NotificationService notificationService;
 
 	private static final String TOPIC = "Kafka_restApp_User_activity_1";
 	private final String PARTITION1="1" ;
@@ -67,8 +70,10 @@ public class UserRegistrationController {
 	public String fetchUsers(Model model, HttpSession session) {
 		List<User> userList = userService.findAll();
 		long cartCount = cartService.count();
+		long notificationCount = notificationService.count();
 		String userName = String.valueOf(session.getAttribute("userName"));
 		model.addAttribute("cartCount", cartCount);
+		model.addAttribute("notificationCount", notificationCount);
 		model.addAttribute("users", userList);
 		model.addAttribute("counter", new Counter());
 		model.addAttribute("userName", userName);

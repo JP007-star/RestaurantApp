@@ -9,6 +9,7 @@ com\restaurant\app\service\OrderService.class
 com\restaurant\app\repository\OrderRepository.class
 com\restaurant\app\model\Role.class
 com\restaurant\app\utility\Counter.class
+com\restaurant\app\service\NotificationService.class
 com\restaurant\app\model\User.class
 com\restaurant\app\service\CartService.class
 com\restaurant\app\dao\UserRegistrationDto.class
@@ -16,11 +17,13 @@ com\restaurant\app\controller\DashboardController.class
 com\restaurant\app\service\ProductService.class
 com\restaurant\app\repository\ProductRepository.class
 com\restaurant\app\repository\UserRepository.class
+com\restaurant\app\repository\NotificationRepository.class
 com\restaurant\app\repository\CartRepository.class
 com\restaurant\app\model\Sale.class
 com\restaurant\app\service\UserService.class
 com\restaurant\app\model\BillGenerator.class
 com\restaurant\app\model\Order.class
+com\restaurant\app\model\Notification.class
 com\restaurant\app\controller\UserRegistrationController.class
 com\restaurant\app\RestaurantAppApplication.class
 com\restaurant\app\repository\SaleRepository.class

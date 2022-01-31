@@ -8,11 +8,8 @@
 package com.restaurant.app.controller;
 
 import com.restaurant.app.model.Order;
-import com.restaurant.app.service.CartService;
-import com.restaurant.app.service.OrderService;
-import com.restaurant.app.service.ProductService;
+import com.restaurant.app.service.*;
 import com.restaurant.app.dao.UserServiceImpl;
-import com.restaurant.app.service.SaleService;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,6 +32,8 @@ public class DashboardController {
     @Autowired
     OrderService orderService;
     @Autowired
+    NotificationService notificationService;
+    @Autowired
     CartService cartService;
     @Autowired
     SaleService saleService;
@@ -48,11 +47,13 @@ public class DashboardController {
         List<String> productNameStockList=productService.findAllProductName();
         long userCount=userService.userRepository.count();
         long orderCount=orderService.count();
+        long notificationCount=notificationService.count();
         JSONArray productArray=quantityCount();
         String userName = String.valueOf(session.getAttribute("userName"));
         model.addAttribute("productCount",productCount);
         model.addAttribute("userCount",userCount);
         model.addAttribute("cartCount",cartCount);
+        model.addAttribute("notificationCount",notificationCount);
         model.addAttribute("orderCount",orderCount);
         model.addAttribute("totalRevenue",revenueCalculator());
         model.addAttribute("productQuantityStockList",productQuantityStockList);

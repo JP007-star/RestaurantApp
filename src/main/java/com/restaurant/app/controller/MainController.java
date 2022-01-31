@@ -239,6 +239,7 @@ public class MainController {
     @GetMapping("/")
     public String reservation(Model model, HttpSession session){
         long cartCount=cartService.count();
+        long notificationCount=notificationService.count();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String login = authentication.getName();
         User user=userService.loadByEmailId(login);
@@ -249,6 +250,7 @@ public class MainController {
         List<Product> specialProductList=productService.findAllActiveDisplayProduct();
 
         model.addAttribute("cartCount",cartCount);
+        model.addAttribute("notificationCount",notificationCount);
         model.addAttribute("products",productList);
         model.addAttribute("specialProducts",specialProductList);
         model.addAttribute("userName",userName);
@@ -289,10 +291,12 @@ public class MainController {
     public String cartPage(Model model,HttpSession session) {
         List<Cart> cartList=cartService.findAll();
         long cartCount=cartService.count();
+        long notificationCount=notificationService.count();
         grandTotal=calculateGrandTotal();
         String userName= String.valueOf(session.getAttribute("userName"));
         model.addAttribute("products",cartList);
         model.addAttribute("cartCount",cartCount);
+        model.addAttribute("notificationCount",notificationCount);
         model.addAttribute("grandTotal",grandTotal);
         model.addAttribute("userName",userName);
         return "cart";
@@ -302,21 +306,30 @@ public class MainController {
    public String notificationPage(Model model,HttpSession session){
         List<Notification> notificationList=notificationService.findAll();
        long notificationCount=notificationService.count();
+       long cartCount=cartService.count();
        String userName= String.valueOf(session.getAttribute("userName"));
        model.addAttribute("notifications",notificationList);
        model.addAttribute("notificationCount",notificationCount);
+       model.addAttribute("cartCount",cartCount);
        model.addAttribute("userName",userName);
        return "notification";
+   }
+   @PostMapping("/fetchNotification")
+   public ResponseEntity<?> fetchNotification(){
+        List<Notification> notificationList=notificationService.findAll();
+        return ResponseEntity.ok(notificationList);
    }
     //this function will render cart page
     @GetMapping("/payment")
     public String paymentPage(Model model,HttpSession session) {
         List<Cart> cartList=cartService.findAll();
         long cartCount=cartService.count();
+        long notificationCount=notificationService.count();
         grandTotal=calculateGrandTotal();
         String userName= String.valueOf(session.getAttribute("userName"));
         model.addAttribute("products",cartList);
         model.addAttribute("cartCount",cartCount);
+        model.addAttribute("notificationCount",notificationCount);
         model.addAttribute("grandTotal",grandTotal);
         model.addAttribute("userName",userName);
         return "payment";

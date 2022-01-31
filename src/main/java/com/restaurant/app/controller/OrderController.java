@@ -11,6 +11,7 @@ import java.util.List;
 
 import com.restaurant.app.model.Product;
 import com.restaurant.app.service.CartService;
+import com.restaurant.app.service.NotificationService;
 import com.restaurant.app.utility.Counter;
 import com.restaurant.app.model.Order;
 import com.restaurant.app.service.OrderService;
@@ -34,15 +35,19 @@ public class OrderController {
     OrderService orderService;
     @Autowired
     CartService cartService;
+    @Autowired
+    NotificationService notificationService;
 
     //This function is used to display all orders
     @GetMapping("/orders")
     public String index(Model model, HttpSession session) {
         List<Order> orderList = orderService.findAll();
         long cartCount=cartService.count();
+        long notificationCount=notificationService.count();
         System.out.println(orderList);
         String userName = String.valueOf(session.getAttribute("userName"));
         model.addAttribute("cartCount",cartCount);
+        model.addAttribute("notificationCount",notificationCount);
         model.addAttribute("orders", orderList);
         model.addAttribute("counter", new Counter());
         model.addAttribute("userName", userName);
