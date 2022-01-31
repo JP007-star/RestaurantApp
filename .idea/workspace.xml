@@ -4,25 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="557acc45-a09b-46d1-a2ce-0cb696132ff0" name="Changes" comment="Kafka and zookeeper yaml files added to run in kubernetes.">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/notification.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ordercounter.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ordercounter.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/restaurant/app/config/KafkaConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/restaurant/app/config/KafkaConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/restaurant/app/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/restaurant/app/controller/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/restaurant/app/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/restaurant/app/controller/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/restaurant/app/controller/UserRegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/restaurant/app/controller/UserRegistrationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/restaurant/app/model/Notification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/restaurant/app/model/Notification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/restaurant/app/repository/NotificationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/restaurant/app/repository/NotificationRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/restaurant/app/service/NotificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/restaurant/app/service/NotificationService.java" afterDir="false" />
+    <list default="true" id="557acc45-a09b-46d1-a2ce-0cb696132ff0" name="Changes" comment="Facebook login added.">
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/header.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/payment.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/payment.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/restaurant/app/controller/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/restaurant/app/controller/MainController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/restaurant/app/controller/UserRegistrationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/restaurant/app/controller/UserRegistrationController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/header.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/payment.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/payment.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,8 +21,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="HTML File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -86,7 +69,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/spring-boot-social-login-master/spring-boot-social-login-master" />
   </component>
   <component name="Push.Settings">
     <option name="SHOW_DETAILS_PANEL" value="false" />
@@ -98,6 +81,7 @@
   </component>
   <component name="RunAnythingCache">
     <option name="myCommands">
+      <command value="mvn clean" />
       <command value="mvn compile" />
     </option>
   </component>
@@ -433,7 +417,35 @@
       <option name="project" value="LOCAL" />
       <updated>1643554449788</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="notification added.">
+      <created>1643630175640</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1643630175640</updated>
+    </task>
+    <task id="LOCAL-00045" summary="Facebook login added.">
+      <created>1643650570736</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1643650570736</updated>
+    </task>
+    <task id="LOCAL-00046" summary="Facebook login added.">
+      <created>1643650902776</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1643650902776</updated>
+    </task>
+    <task id="LOCAL-00047" summary="Facebook login added.">
+      <created>1643651119084</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1643651119084</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -489,7 +501,9 @@
     <MESSAGE value="Kafka updated and .gitignore file added." />
     <MESSAGE value="update productImage option added." />
     <MESSAGE value="Kafka and zookeeper yaml files added to run in kubernetes." />
-    <option name="LAST_COMMIT_MESSAGE" value="Kafka and zookeeper yaml files added to run in kubernetes." />
+    <MESSAGE value="notification added." />
+    <MESSAGE value="Facebook login added." />
+    <option name="LAST_COMMIT_MESSAGE" value="Facebook login added." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
