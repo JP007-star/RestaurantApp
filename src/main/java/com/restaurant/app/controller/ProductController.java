@@ -8,6 +8,7 @@
 package com.restaurant.app.controller;
 
 import com.restaurant.app.model.Cart;
+import com.restaurant.app.model.Notification;
 import com.restaurant.app.service.CartService;
 import com.restaurant.app.utility.Counter;
 
@@ -22,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.beans.Transient;
 import java.io.*;
 import java.sql.SQLException;
 import java.util.List;
@@ -36,6 +38,7 @@ public class ProductController {
     @Autowired
     CartService cartService;
 
+    private MultipartFile productImage;
 
 
     @PostMapping("/save")
@@ -86,16 +89,16 @@ public class ProductController {
     }
 
     @PostMapping("/updateProduct")
-    public String updateProduct(HttpServletRequest request, Model model) throws SQLException, ClassNotFoundException {
+    public String updateProduct(HttpServletRequest request, Model model,@RequestParam("file") MultipartFile productImage) throws SQLException, ClassNotFoundException {
         String productId=request.getParameter("productId");
         String productName=request.getParameter("productName");
         String productCategory=request.getParameter("productCategory");
         String productPrice=request.getParameter("productPrice");
         String quantity=request.getParameter("quantity");
-        boolean  status= Boolean.parseBoolean(request.getParameter("status"));
+        Boolean status= Boolean.parseBoolean(request.getParameter("status"));
         Product product=new Product(productId,productName,productCategory,productPrice,quantity,status);
         System.out.println(productId);
-        String msg=productService.updateById(product);
+        String msg=productService.updateById(product,productImage);
         System.out.println(msg);
         String result;
         if(msg==null) {

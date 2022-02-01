@@ -26,5 +26,7 @@ public interface ProductRepository extends JpaRepository<Product,String> {
     public List<Product> findAllActiveProduct();
     @Query(value = "select * from  products where status=1 and product_category='special launch'", nativeQuery = true)
     public List<Product> findAllActiveDisplayProduct();
+    @Query(value = "select * from  products where status=1 and product_name like :productName%", nativeQuery = true)
+    public List<Product> findAllActiveProductByName(@Param("productName")String productName);
 
 }

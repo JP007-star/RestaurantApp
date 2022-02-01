@@ -8,6 +8,8 @@
 package com.restaurant.app.model;
 
 
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.persistence.*;
 //Product pojo class
 @Entity
@@ -61,14 +63,6 @@ public class Product {
     public void setProductId(String productId) {
         this.productId = productId;
     }
-//
-//    public Long getProductId() {
-//        return productId;
-//    }
-//
-//    public void setProductId(Long productId) {
-//        this.productId = productId;
-//    }
 
     public String getProductName() {
         return productName;

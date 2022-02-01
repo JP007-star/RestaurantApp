@@ -4,18 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="557acc45-a09b-46d1-a2ce-0cb696132ff0" name="Changes" comment="product show only active products&#10;feature">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_annotation_javax_annotation_api_1_3_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05-01-2022_09_51__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05-01-2022_09_51__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_28-12-2021_18_36__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_28-12-2021_18_36__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/restaurantApp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/restaurantApp.iml" afterDir="false" />
+    <list default="true" id="557acc45-a09b-46d1-a2ce-0cb696132ff0" name="Changes" comment="Facebook login added.">
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/restaurant/app/controller/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/restaurant/app/controller/MainController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/login.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +21,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
+        <option value="HTML File" />
         <option value="Class" />
       </list>
     </option>
@@ -67,9 +58,6 @@
       </map>
     </option>
   </component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
-  </component>
   <component name="ProjectId" id="22s0ffuM8Bdl0qzLuJCVxSafH9P" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -77,10 +65,11 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/spring-boot-social-login-master/spring-boot-social-login-master" />
   </component>
   <component name="Push.Settings">
     <option name="SHOW_DETAILS_PANEL" value="false" />
@@ -89,6 +78,12 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\jaya_muthukrishnan\Documents\ResturantApp\src\main\resources\static\css" />
     </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn clean" />
+      <command value="mvn compile" />
+    </option>
   </component>
   <component name="RunManager">
     <configuration name="RestaurantAppApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -394,28 +389,63 @@
       <option name="project" value="LOCAL" />
       <updated>1642398324816</updated>
     </task>
-    <task id="LOCAL-00040" summary="kafka issue fix">
-      <created>1642745772918</created>
+    <task id="LOCAL-00040" summary="Kafka updated.">
+      <created>1642757100086</created>
       <option name="number" value="00040" />
       <option name="presentableId" value="LOCAL-00040" />
       <option name="project" value="LOCAL" />
-      <updated>1642745772918</updated>
+      <updated>1642757100086</updated>
     </task>
-    <task id="LOCAL-00041" summary="product status issue">
-      <created>1642762767853</created>
+    <task id="LOCAL-00041" summary="Kafka updated and .gitignore file added.">
+      <created>1642758079403</created>
       <option name="number" value="00041" />
       <option name="presentableId" value="LOCAL-00041" />
       <option name="project" value="LOCAL" />
-      <updated>1642762767853</updated>
+      <updated>1642758079403</updated>
     </task>
-    <task id="LOCAL-00042" summary="product show only active products&#10;feature">
-      <created>1642763388703</created>
+    <task id="LOCAL-00042" summary="update productImage option added.">
+      <created>1643025348753</created>
       <option name="number" value="00042" />
       <option name="presentableId" value="LOCAL-00042" />
       <option name="project" value="LOCAL" />
-      <updated>1642763388703</updated>
+      <updated>1643025348754</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="Kafka and zookeeper yaml files added to run in kubernetes.">
+      <created>1643554449788</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1643554449788</updated>
+    </task>
+    <task id="LOCAL-00044" summary="notification added.">
+      <created>1643630175640</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1643630175640</updated>
+    </task>
+    <task id="LOCAL-00045" summary="Facebook login added.">
+      <created>1643650570736</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1643650570736</updated>
+    </task>
+    <task id="LOCAL-00046" summary="Facebook login added.">
+      <created>1643650902776</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1643650902776</updated>
+    </task>
+    <task id="LOCAL-00047" summary="Facebook login added.">
+      <created>1643651119084</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1643651119084</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -454,6 +484,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="commit" />
@@ -466,10 +497,13 @@
     <MESSAGE value="view bill in order page added" />
     <MESSAGE value="ansible playbook added" />
     <MESSAGE value="quantity" />
-    <MESSAGE value="kafka issue fix" />
-    <MESSAGE value="product status issue" />
-    <MESSAGE value="product show only active products&#10;feature" />
-    <option name="LAST_COMMIT_MESSAGE" value="product show only active products&#10;feature" />
+    <MESSAGE value="Kafka updated." />
+    <MESSAGE value="Kafka updated and .gitignore file added." />
+    <MESSAGE value="update productImage option added." />
+    <MESSAGE value="Kafka and zookeeper yaml files added to run in kubernetes." />
+    <MESSAGE value="notification added." />
+    <MESSAGE value="Facebook login added." />
+    <option name="LAST_COMMIT_MESSAGE" value="Facebook login added." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

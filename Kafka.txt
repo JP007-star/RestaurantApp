@@ -10,3 +10,11 @@ kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --pa
 #Consume from the Kafka Topic via Console
 kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic Kafka_restApp_User_activity_1 --partition 1 --from-beginning
 
+#Install Kafkacat in your VM to access Kafka from console
+sudo apt-get install kafkacat
+
+#Consume from Kafka Topic in Kubernetes
+kafkacat -C -b <podIP>:9092 -t <topicname>
+
+#Produce message to Kafka Topic in Kubernetes
+kafkacat -P -b <podIP>:9092 -t <topicname>
