@@ -248,11 +248,21 @@ public class MainController {
         String userName= String.valueOf(session.getAttribute("userName"));
         List<Product> productList=productService.findAllActiveProduct();
         List<Product> specialProductList=productService.findAllActiveDisplayProduct();
+        List<Product> mainCourseList=productService.findAllActiveMainCourse();
+        List<Product> snacksList=productService.findAllActiveSnacks();
+        List<Product> milkshakeList=productService.findAllActiveMilkshake();
+        List<Product> juiceList=productService.findAllActiveJuice();
+        List<Product> soupList=productService.findAllActiveSoup();
 
         model.addAttribute("cartCount",cartCount);
         model.addAttribute("notificationCount",notificationCount);
         model.addAttribute("products",productList);
         model.addAttribute("specialProducts",specialProductList);
+        model.addAttribute("mainCourse",mainCourseList);
+        model.addAttribute("snacks",snacksList);
+        model.addAttribute("milkshake",milkshakeList);
+        model.addAttribute("juice",juiceList);
+        model.addAttribute("soup",soupList);
         model.addAttribute("userName",userName);
         String msg="User logged in : Name:"+userName+""+"Email:"+user.getEmail()+"\n";
         String p1= String.valueOf(session.getAttribute("userId"));
