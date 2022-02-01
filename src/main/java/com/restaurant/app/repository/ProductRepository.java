@@ -26,6 +26,16 @@ public interface ProductRepository extends JpaRepository<Product,String> {
     public List<Product> findAllActiveProduct();
     @Query(value = "select * from  products where status=1 and product_category='special launch'", nativeQuery = true)
     public List<Product> findAllActiveDisplayProduct();
+    @Query(value = "select * from  products where status=1 and product_category='Main course'", nativeQuery = true)
+    public List<Product> findAllActiveMainCourse();
+    @Query(value = "select * from  products where status=1 and product_category='Snacks'", nativeQuery = true)
+    public List<Product> findAllActiveSnacks();
+    @Query(value = "select * from  products where status=1 and product_category='Milkshake'", nativeQuery = true)
+    public List<Product> findAllActiveMilkshake();
+    @Query(value = "select * from  products where status=1 and product_category='Juice'", nativeQuery = true)
+    public List<Product> findAllActiveJuice();
+    @Query(value = "select * from  products where status=1 and product_category='Soup'", nativeQuery = true)
+    public List<Product> findAllActiveSoup();
     @Query(value = "select * from  products where status=1 and product_name like :productName%", nativeQuery = true)
     public List<Product> findAllActiveProductByName(@Param("productName")String productName);
 

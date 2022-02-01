@@ -246,6 +246,31 @@ public class ProductService implements ProductRepository {
     }
 
     @Override
+    public List<Product> findAllActiveMainCourse() {
+        return null;
+    }
+
+    @Override
+    public List<Product> findAllActiveSnacks() {
+        return null;
+    }
+
+    @Override
+    public List<Product> findAllActiveMilkshake() {
+        return null;
+    }
+
+    @Override
+    public List<Product> findAllActiveJuice() {
+        return null;
+    }
+
+    @Override
+    public List<Product> findAllActiveSoup() {
+        return null;
+    }
+
+    @Override
     public List<Product> findAllActiveProductByName(String productName) {
         return productRepository.findAllActiveProductByName(productName);
     }
