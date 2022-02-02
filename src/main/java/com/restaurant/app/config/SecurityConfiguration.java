@@ -1,10 +1,7 @@
 package com.restaurant.app.config;
 
-
-import com.restaurant.app.repository.UserRepository;
 import com.restaurant.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -64,8 +61,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		.permitAll()
 		.and()
 		.csrf().disable()
-		.oauth2Login().loginPage("/login");
-
+		.oauth2Login().loginPage("/login").permitAll();
 	}
-
 }

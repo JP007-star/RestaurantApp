@@ -44,7 +44,7 @@ public class OrderController {
     public String index(Model model, HttpSession session) {
         List<Order> orderList = orderService.findAll();
         long cartCount=cartService.count();
-        long notificationCount=notificationService.count();
+        long notificationCount=notificationService.notificationCountForAdmin();
         System.out.println(orderList);
         String userName = String.valueOf(session.getAttribute("userName"));
         model.addAttribute("cartCount",cartCount);

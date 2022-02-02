@@ -40,17 +40,18 @@ public class DashboardController {
     CartService cartService;
     @Autowired
     SaleService saleService;
+
     Double totalRevenue=0.0;
     @GetMapping("/")
     //This function is used to display the dashboard
     public  String index(Model model, HttpSession session) throws JSONException {
         long cartCount=cartService.count();
+        long notificationCount=notificationService.notificationCountForAdmin();
         long productCount=productService.count();
         List<String> productQuantityStockList=productService.findAllQuantity();
         List<String> productNameStockList=productService.findAllProductName();
         long userCount=userService.userRepository.count();
         long orderCount=orderService.count();
-        long notificationCount=notificationService.count();
         JSONArray productArray=quantityCount();
         String userName = String.valueOf(session.getAttribute("userName"));
         model.addAttribute("productCount",productCount);

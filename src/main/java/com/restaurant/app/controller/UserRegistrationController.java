@@ -71,7 +71,7 @@ public class UserRegistrationController {
 	public String fetchUsers(Model model, HttpSession session) {
 		List<User> userList = userService.findAll();
 		long cartCount = cartService.count();
-		long notificationCount = notificationService.count();
+		long notificationCount=notificationService.notificationCountForAdmin();
 		String userName = String.valueOf(session.getAttribute("userName"));
 		model.addAttribute("cartCount", cartCount);
 		model.addAttribute("notificationCount", notificationCount);

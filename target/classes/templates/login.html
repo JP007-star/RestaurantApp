@@ -2,9 +2,7 @@
 <html lang="en"  xmlns:th="http://www.thymeleaf.org"
 	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" >
 <head>
-		<meta charset="utf-8"/>
-		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-<!--<meta charset="ISO-8859-1">-->
+	<meta charset="UTF-8">
 	<title>Restaurant Ticket Reservation</title>
      <div th:replace="script.html"></div>
 </head>
@@ -114,20 +112,33 @@
 								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 
 							</div>
-						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+</div>
+<div class="container authenticated" style="display:none">
+	<span id="user"></span>
+</div>
 <script type="text/javascript">
-    $.get("/user", function(data) {
-        $("#user").html(data.userAuthentication.details.name);
-        $(".unauthenticated").hide()
-        $(".authenticated").show()
-    });
+  if (window.location.hash == '#_=_'){
+      history.replaceState
+          ? history.replaceState(null, null, window.location.href.split('#')[0])
+          : window.location.hash = '';
+  }
 
-</script>
+  $.ajax({
+    url: "/user",
+    type:"GET",
+    success: function(data){
+    $("#user").html(data.userAuthentication);
+    $(".unauthenticated").show();
+    $(".authenticated").show();
+    }
+  });
+
+  </script>
 </body>
 </html>

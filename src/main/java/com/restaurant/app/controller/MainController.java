@@ -26,12 +26,8 @@ import javax.servlet.http.HttpSession;
 import java.awt.*;
 import java.io.*;
 import java.sql.SQLException;
-import java.time.Clock;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -48,15 +44,15 @@ public class MainController {
     private CartService cartService;
     @Autowired
     private OrderService orderService;
-
-    Double grandTotal=0.0;
     @Autowired
     private SaleService saleService;
     @Autowired
     private NotificationService notificationService;
+//    @Autowired
+//    private  kafkaTemplate<String, String> kafkaTemplate;
+
+    Double grandTotal=0.0;
     LocalDateTime orderDate= LocalDateTime.now(ZoneId.of("Asia/Kolkata"));
-    //@Autowired
-    //private  kafkaTemplate<String, String> kafkaTemplate;
     private static final String TOPIC = "Kafka_restApp_User";
     private String key;
 
@@ -103,10 +99,9 @@ public class MainController {
         orderService.save(order);
         cartService.deleteAll();
         String head="Order confirmation";
-        String sub="Your order has been successfully confirmed!";
-        String userId= String.valueOf(session.getAttribute("userId"));
-        User user=userService.findById(Long.valueOf(userId)).orElse(null);
-        Notification notification=new Notification(head,sub,orderDate,Boolean.valueOf(String.valueOf(1)),"ROLE_USER");
+        String sub=userName+" "+"your order has been successfully confirmed!";
+        Long userId= Long.valueOf(String.valueOf(session.getAttribute("userId")));
+        Notification notification=new Notification(head,sub,orderDate,Boolean.valueOf(String.valueOf(1)),"ROLE_USER",userId);
         notificationService.save(notification);
         System.out.println(notification);
         String msg="Order confirmed with orderId:"+orderId+"\n";
@@ -125,10 +120,8 @@ public class MainController {
         Cart cart=new Cart(productId,product.getProductName(),product.getProductPrice(),product.getProductCategory(),product.getImage(),product.getStatus(),1,Double.parseDouble(product.getProductPrice()));
         cartService.save(cart);
         if(product.getQuantity() <= 5){
-            String head="Only 5 "+product.getProductName()+"'s are left!!";
-            String sub="Please add products!";
-            String userId= String.valueOf(session.getAttribute("userId"));
-            User user=userService.findById(Long.valueOf(userId)).orElse(null);
+            String head="Hurry!! Only few "+product.getProductName()+"'s are left";
+            String sub="Only "+product.getQuantity()+""+product.getProductName()+"'s are left!!";
             Notification notification=new Notification(head,sub,orderDate,Boolean.valueOf(String.valueOf(1)),"ROLE_ADMIN");
             notificationService.save(notification);
         }
@@ -172,9 +165,7 @@ public class MainController {
             cartService.save(productInCart);
             if(productInDb.getQuantity() <= 5){
                 String head="Hurry!! Only few "+productInDb.getProductName()+"'s are left";
-                String sub="Only 5 "+productInDb.getProductName()+"'s are left!!";
-                String userId= String.valueOf(session.getAttribute("userId"));
-                User user=userService.findById(Long.valueOf(userId)).orElse(null);
+                String sub="Only "+productInDb.getQuantity()+""+productInDb.getProductName()+"'s are left!!";
                 Notification notification=new Notification(head,sub,orderDate,Boolean.valueOf(String.valueOf(1)),"ROLE_ADMIN");
                 notificationService.save(notification);
             }
@@ -245,7 +236,7 @@ public class MainController {
     @GetMapping("/")
     public String reservation(Model model, HttpSession session){
         long cartCount=cartService.count();
-        long notificationCount=notificationService.count();
+        long notificationCount=notificationService.notificationCountForUsers((Long) session.getAttribute("userId"));
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String login = authentication.getName();
         User user=userService.loadByEmailId(login);
@@ -307,7 +298,7 @@ public class MainController {
     public String cartPage(Model model,HttpSession session) {
         List<Cart> cartList=cartService.findAll();
         long cartCount=cartService.count();
-        long notificationCount=notificationService.count();
+        long notificationCount=notificationService.notificationCountForUsers((Long) session.getAttribute("userId"));
         grandTotal=calculateGrandTotal();
         String userName= String.valueOf(session.getAttribute("userName"));
         model.addAttribute("products",cartList);
@@ -320,8 +311,8 @@ public class MainController {
 
    @GetMapping("/notification")
    public String notificationPage(Model model,HttpSession session){
-        List<Notification> notificationList=notificationService.findAll();
-       long notificationCount=notificationService.count();
+        List<Notification> notificationList=notificationService.notificationForUsers((Long) session.getAttribute("userId"));
+       long notificationCount=notificationService.notificationCountForUsers((Long) session.getAttribute("userId"));
        long cartCount=cartService.count();
        String userName= String.valueOf(session.getAttribute("userName"));
        model.addAttribute("notifications",notificationList);
@@ -331,16 +322,16 @@ public class MainController {
        return "notification";
    }
    @PostMapping("/fetchNotification")
-   public ResponseEntity<?> fetchNotification(){
-        List<Notification> notificationList=notificationService.notificationForUsers();
-        return ResponseEntity.ok(notificationList);
+   public ResponseEntity<?> fetchNotification(HttpSession session){
+        List<Notification>  notificationList = notificationService.notificationForUsers((Long) session.getAttribute("userId"));
+            return ResponseEntity.ok(notificationList);
    }
     //this function will render cart page
     @GetMapping("/payment")
     public String paymentPage(Model model,HttpSession session) {
         List<Cart> cartList=cartService.findAll();
         long cartCount=cartService.count();
-        long notificationCount=notificationService.count();
+        long notificationCount=notificationService.notificationCountForUsers((Long) session.getAttribute("userId"));
         grandTotal=calculateGrandTotal();
         String userName= String.valueOf(session.getAttribute("userName"));
         model.addAttribute("products",cartList);

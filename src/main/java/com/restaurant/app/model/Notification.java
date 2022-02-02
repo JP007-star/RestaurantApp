@@ -19,6 +19,7 @@ public class Notification {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long  notificationId;
+    private Long userId;
     private String  notificationHeading;
     private String  notificationSubHeading;
     private LocalDateTime notificationDateTime;
@@ -28,6 +29,23 @@ public class Notification {
     public Notification() {
     }
 
+    public Notification(String head, String sub, LocalDateTime orderDate, Boolean valueOf, String role_admin) {
+        this.notificationHeading = head;
+        this.notificationSubHeading = sub;
+        this.notificationDateTime = orderDate;
+        this.notificationSeen = valueOf;
+        this.notificationRole = role_admin;
+    }
+
+
+    public Notification(String notificationHeading, String notificationSubHeading, LocalDateTime notificationDateTime, boolean notificationSeen, String notificationRole, Long userId) {
+        this.notificationHeading = notificationHeading;
+        this.notificationSubHeading = notificationSubHeading;
+        this.notificationDateTime = notificationDateTime;
+        this.notificationSeen = notificationSeen;
+        this.notificationRole = notificationRole;
+        this.userId=userId;
+    }
     public String getNotificationRole() {
         return notificationRole;
     }
@@ -36,19 +54,12 @@ public class Notification {
         this.notificationRole = notificationRole;
     }
 
-    public Notification(String notificationHeading, String notificationSubHeading, LocalDateTime notificationDateTime, boolean notificationSeen,String notificationRole) {
-        this.notificationHeading = notificationHeading;
-        this.notificationSubHeading = notificationSubHeading;
-        this.notificationDateTime = notificationDateTime;
-        this.notificationSeen = notificationSeen;
-        this.notificationRole = notificationRole;
+    public Long getUserId() {
+        return userId;
     }
 
-    public Notification(int i, String head, String sub, LocalDateTime orderDate, Boolean valueOf) {
-        this.notificationHeading = head;
-        this.notificationSubHeading = sub;
-        this.notificationDateTime = orderDate;
-        this.notificationSeen = valueOf;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public Long getNotificationId() {

@@ -68,7 +68,7 @@ public class ProductController {
       List<Product> productList=productService.findAll();
         String userName= String.valueOf(session.getAttribute("userName"));
         long cartCount=cartService.count();
-        long notificationCount=notificationService.count();
+        long notificationCount=notificationService.notificationCountForAdmin();
         model.addAttribute("cartCount",cartCount);
         model.addAttribute("notificationCount",notificationCount);
         model.addAttribute("products",productList);

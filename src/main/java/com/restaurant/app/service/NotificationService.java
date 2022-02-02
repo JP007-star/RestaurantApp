@@ -8,6 +8,7 @@
 package com.restaurant.app.service;
 
 import com.restaurant.app.model.Notification;
+import com.restaurant.app.model.Product;
 import com.restaurant.app.repository.NotificationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -25,6 +26,7 @@ import java.util.function.Function;
 public class NotificationService implements NotificationRepository {
     @Autowired
     NotificationRepository notificationRepository;
+
     @Override
     public List<Notification> findAll() {
         return notificationRepository.findAll();
@@ -171,13 +173,27 @@ public class NotificationService implements NotificationRepository {
         return null;
     }
 
+
     @Override
-    public List<Notification> notificationForUsers() {
-        return notificationRepository.notificationForUsers();
+    public List<Notification> notificationForUsers(Long userId) {
+        return notificationRepository.notificationForUsers(userId);
     }
 
     @Override
     public List<Notification> notificationForAdmin() {
         return notificationRepository.notificationForAdmin();
     }
+
+    @Override
+    public long notificationCountForUsers(Long userId) {
+        return notificationRepository.notificationCountForUsers(userId);
+    }
+
+    @Override
+    public long notificationCountForAdmin() {
+        return notificationRepository.notificationCountForAdmin();
+    }
+
+
+
 }
