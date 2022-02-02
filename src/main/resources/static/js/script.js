@@ -1,4 +1,5 @@
 $(document).on('click','#notification' ,function(){
+   $(".notificationDiv").html('');
    $.ajax({
     url: "fetchNotification",
     type:"POST",

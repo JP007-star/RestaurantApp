@@ -73,8 +73,10 @@ var options = {
     endAngle: 360,
     expandOnClick: true,
     offsetX: -10,
-    offsetY: 40,
-    customScale: 1,
+    offsetY: -30,
+     width: 250,
+    height:250,
+    customScale: 0.6,
     dataLabels: {
         offset: 0,
         minAngleToShowLabel: 10
@@ -126,18 +128,19 @@ var options = {
   },
   chart: {
     offsetX: 0,
+    offsetY: 0,
     width: 250,
-    height:250,
+    height:300,
     type: "donut"
   },
   dataLabels: {
     enabled: true
   },
    legend: {
-       position: 'top',
+       position: 'bottom',
        verticalAlign: 'left',
        floating: true,
-       offsetY: -5,
+       offsetY:  100,
        offsetX: -30
      },
    title: {
