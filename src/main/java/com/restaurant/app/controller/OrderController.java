@@ -9,6 +9,7 @@ package com.restaurant.app.controller;
 
 import java.util.List;
 
+import com.restaurant.app.model.Notification;
 import com.restaurant.app.model.Product;
 import com.restaurant.app.service.CartService;
 import com.restaurant.app.service.NotificationService;
@@ -52,6 +53,11 @@ public class OrderController {
         model.addAttribute("counter", new Counter());
         model.addAttribute("userName", userName);
         return "orders";
+    }
+    @PostMapping("/fetchNotification")
+    public ResponseEntity<?> fetchNotification(){
+        List<Notification> notificationList=notificationService.notificationForAdmin();
+        return ResponseEntity.ok(notificationList);
     }
 
 }

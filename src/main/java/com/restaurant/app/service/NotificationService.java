@@ -171,4 +171,13 @@ public class NotificationService implements NotificationRepository {
         return null;
     }
 
+    @Override
+    public List<Notification> notificationForUsers() {
+        return notificationRepository.notificationForUsers();
+    }
+
+    @Override
+    public List<Notification> notificationForAdmin() {
+        return notificationRepository.notificationForAdmin();
+    }
 }

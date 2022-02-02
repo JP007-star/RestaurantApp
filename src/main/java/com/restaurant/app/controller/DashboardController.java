@@ -7,6 +7,7 @@
  */
 package com.restaurant.app.controller;
 
+import com.restaurant.app.model.Notification;
 import com.restaurant.app.model.Order;
 import com.restaurant.app.service.*;
 import com.restaurant.app.dao.UserServiceImpl;
@@ -14,9 +15,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
@@ -93,6 +96,11 @@ public class DashboardController {
         System.out.println(productArray);
 
         return productArray;
+    }
+    @PostMapping("/fetchNotification")
+    public ResponseEntity<?> fetchNotification(){
+        List<Notification> notificationList=notificationService.notificationForAdmin();
+        return ResponseEntity.ok(notificationList);
     }
     //This function is used for calculating total revenue
     public Double revenueCalculator(){

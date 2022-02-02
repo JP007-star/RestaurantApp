@@ -53,21 +53,11 @@ public class ProductService implements ProductRepository {
         return "product added with Id:"+p.getProductId()+"Added product details:"+p;
     }
 
-    public String updateById(Product product,MultipartFile file){
+    public String updateById(Product product){
         Product product1=productRepository.findById(product.getProductId()).orElse(null);
         product1.setProductName(product.getProductName());
         product1.setProductCategory(product.getProductCategory());
         product1.setProductPrice(product.getProductPrice());
-        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-        if(fileName.contains(".."))
-        {
-            System.out.println("not a a valid file");
-        }
-        try {
-            product1.setImage(Base64.getEncoder().encodeToString(file.getBytes()));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         product1.setQuantity(product.getQuantity());
         product1.setStatus(product.getStatus());
         productRepository.save(product1);

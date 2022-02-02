@@ -94,7 +94,7 @@ public class ProductController {
     }
 
     @PostMapping("/updateProduct")
-    public String updateProduct(HttpServletRequest request, Model model,@RequestParam("file") MultipartFile productImage) throws SQLException, ClassNotFoundException {
+    public String updateProduct(HttpServletRequest request, Model model) throws SQLException, ClassNotFoundException {
         String productId=request.getParameter("productId");
         String productName=request.getParameter("productName");
         String productCategory=request.getParameter("productCategory");
@@ -103,7 +103,7 @@ public class ProductController {
         Boolean status= Boolean.parseBoolean(request.getParameter("status"));
         Product product=new Product(productId,productName,productCategory,productPrice,quantity,status);
         System.out.println(productId);
-        String msg=productService.updateById(product,productImage);
+        String msg=productService.updateById(product);
         System.out.println(msg);
         String result;
         if(msg==null) {
@@ -166,5 +166,10 @@ public class ProductController {
        }
        return counter;
    }
+    @PostMapping("/fetchNotification")
+    public ResponseEntity<?> fetchNotification(){
+        List<Notification> notificationList=notificationService.notificationForAdmin();
+        return ResponseEntity.ok(notificationList);
+    }
 
 }

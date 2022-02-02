@@ -1,6 +1,7 @@
 package com.restaurant.app.controller;
 
 
+import com.restaurant.app.model.Notification;
 import com.restaurant.app.service.CartService;
 import com.restaurant.app.service.NotificationService;
 import com.restaurant.app.utility.Counter;
@@ -138,6 +139,11 @@ public class UserRegistrationController {
 			System.out.println(userId+"not equal");
 			return ResponseEntity.ok(messages3);
 		}
+	}
+	@PostMapping("/fetchNotification")
+	public ResponseEntity<?> fetchNotification(){
+		List<Notification> notificationList=notificationService.notificationForAdmin();
+		return ResponseEntity.ok(notificationList);
 	}
 
 //	@KafkaListener(containerFactory = "kafkaListenerContainerFactory", groupId = "group_id", topicPartitions = @TopicPartition(topic = TOPIC,partitionOffsets = @PartitionOffset(partition = PARTITION1,initialOffset = "0")))

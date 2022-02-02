@@ -22,16 +22,26 @@ public class Notification {
     private String  notificationHeading;
     private String  notificationSubHeading;
     private LocalDateTime notificationDateTime;
+    private String  notificationRole;
     private boolean notificationSeen;
 
     public Notification() {
     }
 
-    public Notification(String notificationHeading, String notificationSubHeading, LocalDateTime notificationDateTime, boolean notificationSeen) {
+    public String getNotificationRole() {
+        return notificationRole;
+    }
+
+    public void setNotificationRole(String notificationRole) {
+        this.notificationRole = notificationRole;
+    }
+
+    public Notification(String notificationHeading, String notificationSubHeading, LocalDateTime notificationDateTime, boolean notificationSeen,String notificationRole) {
         this.notificationHeading = notificationHeading;
         this.notificationSubHeading = notificationSubHeading;
         this.notificationDateTime = notificationDateTime;
         this.notificationSeen = notificationSeen;
+        this.notificationRole = notificationRole;
     }
 
     public Notification(int i, String head, String sub, LocalDateTime orderDate, Boolean valueOf) {

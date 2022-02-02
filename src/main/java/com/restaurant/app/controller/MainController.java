@@ -104,7 +104,9 @@ public class MainController {
         cartService.deleteAll();
         String head="Order confirmation";
         String sub="Your order has been successfully confirmed!";
-        Notification notification=new Notification(head,sub,orderDate,Boolean.valueOf(String.valueOf(1)));
+        String userId= String.valueOf(session.getAttribute("userId"));
+        User user=userService.findById(Long.valueOf(userId)).orElse(null);
+        Notification notification=new Notification(head,sub,orderDate,Boolean.valueOf(String.valueOf(1)),"ROLE_USER");
         notificationService.save(notification);
         System.out.println(notification);
         String msg="Order confirmed with orderId:"+orderId+"\n";
@@ -125,7 +127,9 @@ public class MainController {
         if(product.getQuantity() <= 5){
             String head="Only 5 "+product.getProductName()+"'s are left!!";
             String sub="Please add products!";
-            Notification notification=new Notification(head,sub,orderDate,Boolean.valueOf(String.valueOf(1)));
+            String userId= String.valueOf(session.getAttribute("userId"));
+            User user=userService.findById(Long.valueOf(userId)).orElse(null);
+            Notification notification=new Notification(head,sub,orderDate,Boolean.valueOf(String.valueOf(1)),"ROLE_ADMIN");
             notificationService.save(notification);
         }
         String cartCount= String.valueOf(cartService.count());
@@ -167,9 +171,11 @@ public class MainController {
             productService.save(productInDb);
             cartService.save(productInCart);
             if(productInDb.getQuantity() <= 5){
-                String head="Hurry!! Only few \"+productInDb.getProductName()+\"'s are left";
-                String sub="Only 5 \"+productInDb.getProductName()+\"'s are left!!";
-                Notification notification=new Notification(head,sub,orderDate,Boolean.valueOf(String.valueOf(1)));
+                String head="Hurry!! Only few "+productInDb.getProductName()+"'s are left";
+                String sub="Only 5 "+productInDb.getProductName()+"'s are left!!";
+                String userId= String.valueOf(session.getAttribute("userId"));
+                User user=userService.findById(Long.valueOf(userId)).orElse(null);
+                Notification notification=new Notification(head,sub,orderDate,Boolean.valueOf(String.valueOf(1)),"ROLE_ADMIN");
                 notificationService.save(notification);
             }
             String msg=productInCart.getProductName()+""+"Quantity increased in cart\n";
@@ -326,7 +332,7 @@ public class MainController {
    }
    @PostMapping("/fetchNotification")
    public ResponseEntity<?> fetchNotification(){
-        List<Notification> notificationList=notificationService.findAll();
+        List<Notification> notificationList=notificationService.notificationForUsers();
         return ResponseEntity.ok(notificationList);
    }
     //this function will render cart page
