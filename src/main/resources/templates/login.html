@@ -119,26 +119,5 @@
 	</div>
 </div>
 </div>
-<div class="container authenticated" style="display:none">
-	<span id="user"></span>
-</div>
-<script type="text/javascript">
-  if (window.location.hash == '#_=_'){
-      history.replaceState
-          ? history.replaceState(null, null, window.location.href.split('#')[0])
-          : window.location.hash = '';
-  }
-
-  $.ajax({
-    url: "/user",
-    type:"GET",
-    success: function(data){
-    $("#user").html(data.userAuthentication);
-    $(".unauthenticated").show();
-    $(".authenticated").show();
-    }
-  });
-
-  </script>
 </body>
 </html>
