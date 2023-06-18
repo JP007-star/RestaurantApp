@@ -172,3 +172,9 @@ kubectl apply -f filename.yml
 -- to get the cluster ip address to run in browser
 
 kubectl get svc
+
+
+
+query
+insert into role (id,name) values (2,ROLE_ADMIN);
+update users_roles set role_id=2 where user_id=1;
