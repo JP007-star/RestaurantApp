@@ -9,6 +9,7 @@
 .idea/**/dictionaries
 .idea/**/shelf
 
+
 # Generated files
 .idea/**/contentModel.xml
 
@@ -49,6 +50,7 @@ cmake-build-*/
 
 # IntelliJ
 out/
+target/
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/
